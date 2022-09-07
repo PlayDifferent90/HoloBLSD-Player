@@ -68,6 +68,7 @@ public:
     void InspectorPopulator(QString _msg, int _war, int _err);
     void DrawActivities();
     void PrintSignalDebug();
+    void OpenLog(QString videoName);
 private slots:
 
     void on_listWidgetActivities_itemClicked(QListWidgetItem *item);
@@ -87,7 +88,7 @@ private slots:
 
     void on_play_clicked();
 
-    void on_actionOpenLogs_triggered();
+    //void on_actionOpenLogs_triggered();
 
     void on_horizontalSliderZoom_sliderMoved(int position);
 

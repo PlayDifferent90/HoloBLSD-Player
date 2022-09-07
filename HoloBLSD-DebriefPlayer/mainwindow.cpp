@@ -220,7 +220,9 @@ void MainWindow::on_actionOpenVideo_triggered()
     on_stop_clicked();
 
     player -> setSource(QUrl::fromLocalFile(filename));
-    on_actionOpenLogs_triggered();
+   // qDebug()<< QUrl::fromLocalFile(filename.left(filename.lastIndexOf("."))).fileName();
+    //on_actionOpenLogs_triggered(QUrl::fromLocalFile(filename.left(filename.lastIndexOf("."))).fileName());
+    OpenLog(QUrl::fromLocalFile(filename.left(filename.lastIndexOf("."))).fileName());
     ui->scrollTimeLine->setDisabled(false);
     ui->pushButtonZoomIn->setDisabled(false);
     ui->pushButtonZoomOut->setDisabled(false);
@@ -229,11 +231,11 @@ void MainWindow::on_actionOpenVideo_triggered()
 }
 
 
-void MainWindow::on_actionOpenLogs_triggered()
+void MainWindow::OpenLog(QString videoName)
 {
     ui->scrollTimeLine->setDisabled(false);
 
-    QFile inputFile("D:\\0_PHD\\Holo-BLSD\\HoloBLSD-DP\\HoloBLSD-DebriefPlayer\\demo_holo_HARD.log");  // change path
+    QFile inputFile("D:\\0_PHD\\Holo-BLSD\\HoloBLSD-DP\\HoloBLSD-DebriefPlayer\\"+videoName+ ".log");  // change path
     QRegularExpression re("^<LogEntry time=\"(?<hh>[0-9]+):(?<mm>[0-9]+):(?<ss>[0-9]+)\\.(?<millis>[0-9]+)\" owner=\"(?<owner>[^\"]*)\" type=\"(?<type>[^\"]*)\" msg=\"(?<msg>[^\"]*)\" />$");
     if (inputFile.open(QIODevice::ReadOnly))
     {
