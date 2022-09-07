@@ -6,7 +6,7 @@
 {
 }*/
 
-Activity::Activity(QString name, int err, int war,float start,float length, bool visibility,int numberID,QString message, bool _isEvent)
+Activity::Activity(QString name, int err, int war,float start,float length, bool visibility,int numberID,QString _message, bool _isEvent)
 
 {
     nameAct=name;
@@ -14,7 +14,7 @@ Activity::Activity(QString name, int err, int war,float start,float length, bool
     startTime = start;
     isVisible = visibility;
     actID = numberID;
-
+    message=_message;
     actListItemWidget = new QListWidgetItem();
     actListItemWidget->setText(name + " (Err:" + QString::number(err) + ";War:" + QString::number(war)+")");
 

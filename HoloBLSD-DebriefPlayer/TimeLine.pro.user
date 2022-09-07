@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 8.0.0, 2022-09-06T11:35:43. -->
+<!-- Written by QtCreator 8.0.0, 2022-09-07T10:51:06. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -238,8 +238,9 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:D:/0_PHD/Holo-BLSD/QT/Timeline-master/TimeLine.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">D:/0_PHD/Holo-BLSD/QT/Timeline-master/TimeLine.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">TimeLine2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:D:/0_PHD/Holo-BLSD/HoloBLSD-DP/HoloBLSD-DebriefPlayer/TimeLine.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">D:/0_PHD/Holo-BLSD/HoloBLSD-DP/HoloBLSD-DebriefPlayer/TimeLine.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>

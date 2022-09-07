@@ -5,6 +5,7 @@
 #include <QPolygon>
 #include <QHoverEvent>
 #include <QGraphicsSceneMouseEvent>
+#include "eventItem.h"
 
 
 TimeLine::TimeLine(QWidget *parent) :
@@ -36,12 +37,10 @@ TimeLine::~TimeLine()
 //ereditare da track
 void TimeLine::DrawEvent( QPointF pos){
 
+    EventItem *event = new EventItem(scene);
+    scene->addItem(event);
+    event->setPos(pos+QPointF(0,(rectHeight)/2));
 
-    QRect rect(0,0,eventSize,eventSize);
-
-    QGraphicsItem *item = scene->addEllipse(rect,penBlack, eventBrush);
-
-    item->setPos(pos+QPointF(0,(rectHeight-eventSize)/2));
 }
 
 void TimeLine::DrawNode(QString name, QPointF pos, QRect rect)//, QPen pen, QBrush brush)
@@ -51,6 +50,7 @@ void TimeLine::DrawNode(QString name, QPointF pos, QRect rect)//, QPen pen, QBru
 
     //QGraphicsItem *itemText = scene->addText(name);
     QGraphicsTextItem *itemText = scene->addText(name);
+    itemText->setDefaultTextColor(Qt::white);
     //itemText->setTextWidth(item->x());    //<-- manda il testo a capo ma non lo cancella, si sovrapponme alla linea succesiva
     itemText->setZValue(100);
     itemText->setPos(pos);
@@ -60,7 +60,7 @@ void TimeLine::DrawNode(QString name, QPointF pos, QRect rect)//, QPen pen, QBru
 
 void TimeLine::DrawTimeLineAxis(float length)
 {
-    QGraphicsItem *item = scene->addRect(QRect(0,0,length/tlScale,2),penBlack,Qt::black);
+    QGraphicsItem *item = scene->addRect(QRect(0,0,length/tlScale,2),penBlack,Qt::white);
     item->setZValue(100);
     item->setPos(QPointF(0,tlVerticalOffset));
     SetNumbers(length,tlScale);
@@ -89,7 +89,8 @@ void TimeLine::SetNumbers(float length, float scale){
 
     for(int i =0; i < length/(1000*scale); i++){
 
-        QGraphicsItem  *item = scene->addText(QDateTime::fromSecsSinceEpoch(i).toString("mm:ss"));
+        QGraphicsTextItem  *item = scene->addText(QDateTime::fromSecsSinceEpoch(i).toString("mm:ss"));
+        item->setDefaultTextColor(Qt::white);
         float actualPosition = i*millisecOffset*scale;
 
         if(actualPosition - previousPosition > minNumberDistance){
@@ -100,16 +101,8 @@ void TimeLine::SetNumbers(float length, float scale){
         } else{
             item->setOpacity(0);
         }
-        //qDebug()<< "printed number " << time << "in position "<< item->pos().x();
     }
 }
 void TimeLine::SetScale(float scale){
     tlScale=scale;
-}
-void TimeLine::mouseMoveEvent(QGraphicsSceneMouseEvent *event){
-    qDebug()<<"Press";
-}
-
-void TimeLine::Hovering(){
-    qDebug()<< "debug";
 }

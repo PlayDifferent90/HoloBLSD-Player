@@ -91,6 +91,8 @@ private slots:
 
     void on_horizontalSliderZoom_sliderMoved(int position);
 
+    void on_listWidgetActivities_itemDoubleClicked(QListWidgetItem *item);
+
 private:
     Ui::MainWindow *ui;
     QMediaPlayer* player;

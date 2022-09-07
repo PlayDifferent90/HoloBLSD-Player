@@ -94,11 +94,17 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-/*click su lista ctivities*/
+/*click su listactivities*/
 void MainWindow::on_listWidgetActivities_itemClicked(QListWidgetItem *item)
 {
+   //select activity, display info in inspector and change graphic item color
+
+}
+
+
+void MainWindow::on_listWidgetActivities_itemDoubleClicked(QListWidgetItem *item)
+{
     for(int a=0;a < activityNodes->length();a++){
-        qDebug()<<activityNodes->at(a).actListItemWidget->text();
         if(activityNodes->at(a).actListItemWidget->text()==item->text()){
             (*activityNodes)[a].visibilitySwitch();
         }
@@ -106,6 +112,7 @@ void MainWindow::on_listWidgetActivities_itemClicked(QListWidgetItem *item)
     UpdateTimeLine(tlScale);
 
 }
+
 
 /*zoom timeline*/
 void MainWindow::on_pushButtonZoomOut_clicked()
@@ -192,16 +199,8 @@ float MainWindow::scaledVideoLength(float lineLength, float scale){
 }
 
 void MainWindow::UpdateViewInit(){
-    float prevMin=1;
     videoLength = player->duration();
-    qDebug()<< "videolenaght on upload" << videoLength;
-   // while(prevMin!=minScale){
-   //     on_pushButtonZoomOut_clicked();
-   //     if(prevMin==minScale){
-   //         break;
-   //     }
-   //     prevMin=minScale;
-   // }
+
     while(tlScale!=minScale){
         on_pushButtonZoomOut_clicked();
 
@@ -234,7 +233,7 @@ void MainWindow::on_actionOpenLogs_triggered()
 {
     ui->scrollTimeLine->setDisabled(false);
 
-    QFile inputFile("/0_PHD/Holo-BLSD/QT/demo_holo_HARD.log");
+    QFile inputFile("D:\\0_PHD\\Holo-BLSD\\HoloBLSD-DP\\HoloBLSD-DebriefPlayer\\demo_holo_HARD.log");  // change path
     QRegularExpression re("^<LogEntry time=\"(?<hh>[0-9]+):(?<mm>[0-9]+):(?<ss>[0-9]+)\\.(?<millis>[0-9]+)\" owner=\"(?<owner>[^\"]*)\" type=\"(?<type>[^\"]*)\" msg=\"(?<msg>[^\"]*)\" />$");
     if (inputFile.open(QIODevice::ReadOnly))
     {
@@ -264,11 +263,6 @@ void MainWindow::on_actionOpenLogs_triggered()
        inputFile.close();
     }
     nodes.append(events);
-    //qDebug()<< "\n"<<"nodes :"<<"\n";
-    //foreach (ActivityEntry* ae, nodes) {
-    //    qDebug()<< ae->owner << " : " << ae->isEvent;
-    //}
-    //DrawActivities();
 }
 
 void MainWindow::InspectorPopulator(QString _msg){  // creare metodo analogo per ogni ramo di ae
@@ -298,7 +292,6 @@ void MainWindow::AddActivityToTL(int _time, QString _owner, QString _type, QStri
                 int tempnumAct = ae->numAct;
                 ActivityEntry* ae = new ActivityEntry{_time,0,_owner,_type, _msg, tempnumAct ,war,err,true};
                 nodes.append(ae);
-               // qDebug() << _owner << " is event equal to " << ae->owner ;
                 found = true;
                 break;
             }else{
@@ -331,6 +324,7 @@ void MainWindow::DrawActivities(){
       //  qDebug()<< act.nameAct << " in present: " << ui->listWidgetActivities->findItems(act.nameAct,Qt::MatchContains).isEmpty();
 
          if(ui->listWidgetActivities->findItems(act.nameAct,Qt::MatchContains).isEmpty()){
+             act.actListItemWidget->setToolTip("Event Name : " + act.message);  // todo : deve diventare il msg dell'event
             ui->listWidgetActivities->addItem(act.actListItemWidget);
          }
 
@@ -376,6 +370,8 @@ void MainWindow::MoveVideoCursor(int moving){
 void MainWindow::SlotVideoCursor(float x){
     emit SignalVideoCursor(x / tlScale);
 }
+
+
 
 
 

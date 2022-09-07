@@ -21,6 +21,7 @@ public:
     float zoomScale = 1;
     bool isEvent = false;
     QString nameAct;
+    QString message;
     QIcon visibleIcon = QIcon(":/Visibility_gold.png");
     QIcon invisibleIcon = QIcon(":/Invisibility_lightgrey.png");
 

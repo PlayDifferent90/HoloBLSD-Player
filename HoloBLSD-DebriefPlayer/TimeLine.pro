@@ -28,21 +28,24 @@ SOURCES += \
     VideoCursor.cpp \
     activity.cpp \
     activityentry.cpp \
+    eventItem.cpp \
     main.cpp \
     mainwindow.cpp \
     timeline.cpp \
-    GraphicsView.cpp \
-    GraphicsScene.cpp
+   # GraphicsView.cpp \
+   # GraphicsScene.cpp \
+   # Track.cpp
 
 HEADERS += \
     VideoCursor.h \
     activity.h \
     activityentry.h \
+    eventItem.h \
     mainwindow.h \
     timeline.h \
-    GraphicsView.h \
-    GraphicsScene.h
-
+   # GraphicsView.h \
+   # GraphicsScene.h \
+   # Track.h
 FORMS += \
     mainwindow.ui
 
