@@ -97,7 +97,7 @@ MainWindow::~MainWindow()
 /*click su listactivities*/
 void MainWindow::on_listWidgetActivities_itemClicked(QListWidgetItem *item)
 {
-   //select activity, display info in inspector and change graphic item color
+   //todo: select activity, display info in inspector and change graphic item color
 
 }
 
@@ -146,7 +146,7 @@ void MainWindow::on_horizontalSliderZoom_sliderMoved(int position)
 }
 
 
-//------------------------------------------------------------------------------------------todo: move to timeline
+//------------------------------------------------------------------------------------------(long term): move to timeline
 void MainWindow::UpdateTimeLineLength(float length)
 {
     timeline->DrawTimeLineAxis(length);
@@ -165,17 +165,27 @@ void MainWindow::UpdateTimeLine(float scale){
 
     int line =0;
     QList<QString> hiddenAct;
+    int lastLine =0;
     foreach(Activity a, *activityNodes) {
         if(a.isVisible){
-            if(a.isEvent){
-                a.UpdateRectLength(tlScale);
-                timeline->DrawEvent( a.UpdateStartingPoint(a.actID-line,tlScale));
+            if(a.actID == lastLine){
+                if(a.isEvent){
+                    timeline->DrawEvent( a.UpdateStartingPoint(a.actID-line+1,tlScale));
+                }else{
+                    a.UpdateRectLength(tlScale);
+                    timeline->DrawNode(a.nameAct, a.UpdateStartingPoint(a.actID-line+1,tlScale) , *a.actRect);
+                }
             }else{
-                a.UpdateRectLength(tlScale);
-                timeline->DrawNode(a.nameAct, a.UpdateStartingPoint(a.actID-line,tlScale) , *a.actRect);
+                if(a.isEvent){
+                    timeline->DrawEvent( a.UpdateStartingPoint(a.actID-line,tlScale));
+                }else{
+                    a.UpdateRectLength(tlScale);
+                    timeline->DrawNode(a.nameAct, a.UpdateStartingPoint(a.actID-line,tlScale) , *a.actRect);
+                }
             }
         }else{
             if(!hiddenAct.contains(a.nameAct)){
+                lastLine = a.actID;
                 hiddenAct.append(a.nameAct);
                 line=hiddenAct.length();
             }
@@ -185,11 +195,8 @@ void MainWindow::UpdateTimeLine(float scale){
 
 float MainWindow::scaledVideoLength(float lineLength, float scale){
 
-    //todo: fix control on width
     float actualTLL = lineLength*scale;
     int scrollTabWidth = ui->scrollTimeLine->viewport()->size().width();// width();
-
-
 
     if(actualTLL< scrollTabWidth){
         minScale = scale;
@@ -205,12 +212,12 @@ void MainWindow::UpdateViewInit(){
         on_pushButtonZoomOut_clicked();
 
     }
-    ui->label_int3->setText(QDateTime::fromMSecsSinceEpoch(videoLength).toString("mm:ss"));  //todo: trovare fromula giusta
+    ui->label_int3->setText(QDateTime::fromMSecsSinceEpoch(videoLength).toString("mm:ss"));
 
 
     DrawActivities();
 }
-//------------------------------------------------------------------------------------------todo: move to timeline
+//------------------------------------------------------------------------------------------(long term): move to timeline
 
 /*file management*/
 void MainWindow::on_actionOpenVideo_triggered()
@@ -235,7 +242,7 @@ void MainWindow::OpenLog(QString videoName)
 {
     ui->scrollTimeLine->setDisabled(false);
 
-    QFile inputFile("D:\\0_PHD\\Holo-BLSD\\HoloBLSD-DP\\HoloBLSD-DebriefPlayer\\"+videoName+ ".log");  // change path
+    QFile inputFile("D:\\0_PHD\\Holo-BLSD\\HoloBLSD-DP\\HoloBLSD-Debrief_Player\\"+videoName+ ".log");  // change path
     QRegularExpression re("^<LogEntry time=\"(?<hh>[0-9]+):(?<mm>[0-9]+):(?<ss>[0-9]+)\\.(?<millis>[0-9]+)\" owner=\"(?<owner>[^\"]*)\" type=\"(?<type>[^\"]*)\" msg=\"(?<msg>[^\"]*)\" />$");
     if (inputFile.open(QIODevice::ReadOnly))
     {
@@ -266,6 +273,8 @@ void MainWindow::OpenLog(QString videoName)
     }
     nodes.append(events);
 }
+
+
 
 void MainWindow::InspectorPopulator(QString _msg){  // creare metodo analogo per ogni ramo di ae
     QRegularExpression exp("(?<log>[a-zA-Z]+): ([a-zA-Z]+( [a-zA-Z]+)+)", QRegularExpression::CaseInsensitiveOption);
@@ -331,6 +340,8 @@ void MainWindow::DrawActivities(){
          }
 
     }
+    std::sort(activityNodes->begin(), activityNodes->end(),[=](const Activity& ae1, const Activity& ae2) {
+            return (ae1.actID < ae2.actID);});
     UpdateTimeLine(tlScale);
 }
 

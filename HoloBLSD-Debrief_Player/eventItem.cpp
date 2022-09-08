@@ -12,7 +12,9 @@ void EventItem::paint(QPainter *_painter, const QStyleOptionGraphicsItem *option
                 <<QPointF(0,-eventSize);
     painter->setPen(penBlack);
     painter->setBrush(eventBrush);
-    painter->drawPolygon(points);
+    painter->drawEllipse(boundingRect());
+    //painter->drawPolygon(points); //<--- genera glitch durante videopllay
+
     setAcceptHoverEvents(true);
 }
 

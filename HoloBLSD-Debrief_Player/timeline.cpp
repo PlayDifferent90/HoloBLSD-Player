@@ -95,7 +95,7 @@ void TimeLine::SetNumbers(float length, float scale){
 
         if(actualPosition - previousPosition > minNumberDistance){
             item->setPos(actualPosition,numOffset);
-            scene->addRect(QRect(actualPosition,tlVerticalOffset,1,scene->height()),penLineTimeStop,nodeBrush);
+            scene->addRect(QRect(actualPosition,tlVerticalOffset,1,scene->height()),penLineTimeStop,nodeBrush)->setZValue(0);
 
             previousPosition = actualPosition;
         } else{

@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    QFile style("D:\\0_PHD\\Holo-BLSD\\HoloBLSD-DP\\HoloBLSD-DebriefPlayer\\Combinear.qss");// change path
+    QFile style("D:\\0_PHD\\Holo-BLSD\\HoloBLSD-DP\\HoloBLSD-Debrief_Player\\Combinear.qss");// change path
     style.open(QFile::ReadOnly);
     QString styleSheet = QLatin1String(style.readAll());
     a.setStyleSheet(styleSheet);

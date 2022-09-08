@@ -32,7 +32,7 @@ void Activity::visibilitySwitch(){
     SetIcon(isVisible);
 }
 
-//todo: move in timeline
+//(long term): move to timeline
 QPointF Activity::UpdateStartingPoint(int lineNumber, float scale){
     //rememeber to update this for zoom
     actStartingPoint = new QPointF( startTime*scale,(lineNumber -1) * rectHeight +alignement );
