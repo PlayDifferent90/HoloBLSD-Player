@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     /*Create Horizontal Line*/
     UpdateTimeLineLength(videoLength);
 
-    /*Assign and Show timeline*/
+    /*Assignplayer and Show timeline*/
 
     ui->scrollTimeLine->setWidget(viewTimeLine);
     ui->scrollTimeLine->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -85,9 +85,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 }
 
-void MainWindow::PrintSignalDebug(){
-    qDebug()<<"ping";
-}
 
 MainWindow::~MainWindow()
 {
@@ -100,7 +97,6 @@ void MainWindow::on_listWidgetActivities_itemClicked(QListWidgetItem *item)
    //todo: select activity, display info in inspector and change graphic item color
 
 }
-
 
 void MainWindow::on_listWidgetActivities_itemDoubleClicked(QListWidgetItem *item)
 {
@@ -135,7 +131,6 @@ void MainWindow::on_pushButtonZoomIn_clicked()
     qDebug()<<" " <<tlScale;
 }
 
-
 void MainWindow::on_horizontalSliderZoom_sliderMoved(int position)
 {
     float sliderValue = (float) (position+1)/100;
@@ -144,6 +139,7 @@ void MainWindow::on_horizontalSliderZoom_sliderMoved(int position)
     UpdateTimeLine(tlScale);
     qDebug()<<sliderValue <<" " <<tlScale;
 }
+
 
 
 //------------------------------------------------------------------------------------------(long term): move to timeline
@@ -219,16 +215,15 @@ void MainWindow::UpdateViewInit(){
 }
 //------------------------------------------------------------------------------------------(long term): move to timeline
 
+
 /*file management*/
 void MainWindow::on_actionOpenVideo_triggered()
 {
 
-    QString filename = QFileDialog::getOpenFileName(this,"Open a file","","Videofile(*.*)"); // check goodness file  --> might use VLC embedded in QT (QTVLC)
-    on_stop_clicked();
-
+    QString filename = QFileDialog::getOpenFileName(this,"Open a file","","Videofile(*.*)"); // check goodness file  --> might use VLC embedded in QT (QTVLC) // open cv
+    on_stop_clicked(); // try play on start + cjheck slack
+// if player busy, create new tab
     player -> setSource(QUrl::fromLocalFile(filename));
-   // qDebug()<< QUrl::fromLocalFile(filename.left(filename.lastIndexOf("."))).fileName();
-    //on_actionOpenLogs_triggered(QUrl::fromLocalFile(filename.left(filename.lastIndexOf("."))).fileName());
     OpenLog(QUrl::fromLocalFile(filename.left(filename.lastIndexOf("."))).fileName());
     ui->scrollTimeLine->setDisabled(false);
     ui->pushButtonZoomIn->setDisabled(false);
@@ -236,7 +231,6 @@ void MainWindow::on_actionOpenVideo_triggered()
     ui->horizontalSliderZoom->setDisabled(false);
 
 }
-
 
 void MainWindow::OpenLog(QString videoName)
 {
@@ -274,9 +268,7 @@ void MainWindow::OpenLog(QString videoName)
     nodes.append(events);
 }
 
-
-
-void MainWindow::InspectorPopulator(QString _msg){  // creare metodo analogo per ogni ramo di ae
+void MainWindow::InspectorPopulator(QString _msg){
     QRegularExpression exp("(?<log>[a-zA-Z]+): ([a-zA-Z]+( [a-zA-Z]+)+)", QRegularExpression::CaseInsensitiveOption);
     QRegularExpressionMatch match= exp.match(_msg);
     if(match.captured("log") == "ERROR"){
@@ -290,7 +282,6 @@ void MainWindow::InspectorPopulator(QString _msg){  // creare metodo analogo per
     }
 }
 
-
 void MainWindow::AddActivityToTL(int _time, QString _owner, QString _type, QString _msg, int war, int err)
 {
     bool found = false;
@@ -300,12 +291,14 @@ void MainWindow::AddActivityToTL(int _time, QString _owner, QString _type, QStri
         i++;
         if(ae->owner == _owner){
             if(_type=="Event"){
+                // no in widgetList.
                 int tempnumAct = ae->numAct;
                 ActivityEntry* ae = new ActivityEntry{_time,0,_owner,_type, _msg, tempnumAct ,war,err,true};
                 nodes.append(ae);
                 found = true;
                 break;
-            }else{
+            }else if (_type=="NodeCompleted"){
+                 // todo: more control node type aka ingore start
                 ae->length = (_time - ae->GetTime());
                 //qDebug() << _owner << " is node equal to " << ae->owner ;
                 found = true;
@@ -313,19 +306,14 @@ void MainWindow::AddActivityToTL(int _time, QString _owner, QString _type, QStri
             }
         }
     }
-    if(!found){
+    if(!found && (_type=="NodeTriggered" || _type == "Event")){  // todo: check and finish
         actNum++;
        // qDebug()<< actNum;
+        // todo: _owner - "node"
         ActivityEntry* ae = new ActivityEntry{_time,0,_owner,_type, _msg, actNum,war,err,_type=="Event"};
         nodes.append(ae);
         //qDebug() <<"adding " << ae->owner ;
     }
-}
-
-void MainWindow::RepToCSV(QString actDuplicate)
-{
-   // qDebug()<< actDuplicate;
-
 }
 
 void MainWindow::DrawActivities(){
@@ -374,6 +362,8 @@ void MainWindow::on_play_clicked()
     ui->statusBar ->showMessage("Playing video");
     UpdateTimeLineLength(videoLength);
 }
+
+
 
 /*controllo cursore*/
 void MainWindow::MoveVideoCursor(int moving){

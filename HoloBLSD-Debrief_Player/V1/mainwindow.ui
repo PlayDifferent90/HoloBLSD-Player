@@ -54,7 +54,7 @@
           <item>
            <widget class="QLabel" name="Ttitle">
             <property name="text">
-             <string>Inspector - User 1</string>
+             <string>Summary - User 1</string>
             </property>
             <property name="margin">
              <number>30</number>

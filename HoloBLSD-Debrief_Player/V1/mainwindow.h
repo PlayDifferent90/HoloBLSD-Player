@@ -73,7 +73,6 @@ private slots:
 
     void on_listWidgetActivities_itemClicked(QListWidgetItem *item);
 
-   // void on_actionformattedActivity_triggered();
 
     void on_pushButtonZoomOut_clicked();
 
@@ -88,7 +87,6 @@ private slots:
 
     void on_play_clicked();
 
-    //void on_actionOpenLogs_triggered();
 
     void on_horizontalSliderZoom_sliderMoved(int position);
 

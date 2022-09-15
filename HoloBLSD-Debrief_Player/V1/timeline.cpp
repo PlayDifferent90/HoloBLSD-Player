@@ -49,7 +49,7 @@ void TimeLine::DrawNode(QString name, QPointF pos, QRect rect)//, QPen pen, QBru
     item->setPos(pos);
 
     //QGraphicsItem *itemText = scene->addText(name);
-    QGraphicsTextItem *itemText = scene->addText(name);
+    QGraphicsTextItem *itemText = scene->addText(name);  // todo: nome sopra  non dentro allineato con vista
     itemText->setDefaultTextColor(Qt::white);
     //itemText->setTextWidth(item->x());    //<-- manda il testo a capo ma non lo cancella, si sovrapponme alla linea succesiva
     itemText->setZValue(100);
