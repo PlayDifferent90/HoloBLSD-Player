@@ -15,6 +15,8 @@
 #include "mainwindow.h"
 #include "inspector.h"
 #include "videoplayer.h"
+#include "timeline.h"
+#include "timelinewidget.h"
 
 class TabWidget : public QWidget
 {
@@ -37,12 +39,17 @@ private:
     Inspector* inspector;
     VideoPlayer* videoPlayer;
     QString tabName;
+    TimelineWidget* timeline;
+    Theme* theme;
+    QGraphicsScene* timelineScene;
+    QGraphicsView* timelineView;
 
 
     int leftColumnWidth = 350;
     int centralColumnWidth = 750;
-    int rightColumnMinWidth  = 600;
+    int rightColumnMinWidth  = 1080;
     int upperRowHeight = 720;
+    void SetWidgetDimention(MainWindow *_mainWin);
 };
 
 #endif // TABWIDGET_H

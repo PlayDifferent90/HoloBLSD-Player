@@ -3,6 +3,9 @@
 
 TabWidget::TabWidget( MainWindow* mainWin, QString _name)
 {
+    theme = new Theme();
+    SetWidgetDimention(mainWin);
+
     tabName = _name;
     layout = new QGridLayout(this);
 
@@ -21,23 +24,21 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name)
     centralColumn -> addWidget(inspector->InspectorWidget());
 
     //video
-    videoPlayer = new VideoPlayer(this, "video_user" + _name, rightColumnMinWidth, upperRowHeight );
+    videoPlayer = new VideoPlayer(this, "video - " + _name, rightColumnMinWidth, upperRowHeight );
 
     QVBoxLayout* rightColumn = new QVBoxLayout(this);
     rightColumn -> addWidget(videoPlayer);
 
     //timeline
-    QScrollArea* timelineScroll = new QScrollArea(this);
-    timelineScroll->setMinimumHeight(720);
+    timeline = new TimelineWidget(this, (leftColumnWidth+centralColumnWidth + rightColumnMinWidth), upperRowHeight  /*,QList<QGRaphicsItem> Nodes */);
 
     //all together
     layout->addLayout(leftColumn,0,0,1,1);
-    layout->addLayout(centralColumn,0,1,2,1);
-    layout->addLayout(rightColumn,0,2,2,2);
-    layout->addWidget(timelineScroll,2,0,2,4);
+    layout->addLayout(centralColumn,0,1,1,1);
+    layout->addLayout(rightColumn,0,2,1,2);
+    layout->addWidget(timeline,1,0,2,4);
 
-   //connect only in tab master.
-    //after the first user is added, create the master user and connect it to the signal
+   //connect only in tab masterafter the first user is added, create the master user and connect it to the signal
    //     connect(mainWin, &MainWindow::userAdded, this, &TabWidget::AddUserToInspector);
     connect(mainWin, &MainWindow::videoAdded, this, &TabWidget::OpenVideo);
 }
@@ -48,7 +49,6 @@ TabWidget::~TabWidget(){
 
 void TabWidget::OpenVideo(QString fileName){
 
-    qDebug()<<"opening file "<< fileName;
      videoPlayer->ShowVideo(fileName);
 }
 
@@ -62,4 +62,15 @@ void TabWidget::AddActivity(QString _text){
 
 QString* TabWidget::GetName(){
     return &tabName;
+}
+
+void TabWidget::SetWidgetDimention(MainWindow* _mainWin){
+    //todo: on resize di window chiamare la funzione per aggiornare dimensione dei widget
+    int  colWidth=  _mainWin->size().width()*0.98;
+    int  rowHeight= _mainWin->size().height();
+
+    leftColumnWidth = colWidth/6;
+    centralColumnWidth = colWidth/6*2;
+    rightColumnMinWidth  = colWidth/6*3;
+    upperRowHeight = rowHeight/2 *0.8;
 }

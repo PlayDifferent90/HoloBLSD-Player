@@ -43,7 +43,7 @@ public:
 
     qreal outlineSize = 0;
 
-   //QColor bluedimmed{45,114,178};
+    QColor bluedimmed{45,114,178};
     QColor blue{57,92,107};
     QColor skyblue{74,123,157};
     QColor lightblue{118,152,179};
@@ -60,7 +60,7 @@ public:
     QColor verLineColor{70,70,70};
     QPen penLineTimeStop{verLineColor,1};
 
-    QPolygon poly;
+    //QPolygon poly;
 
 
     int frame;

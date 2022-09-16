@@ -10,19 +10,29 @@ CONFIG += c++17
 
 SOURCES += \
     activitylist.cpp \
+    fileopener.cpp \
     inspector.cpp \
     main.cpp \
     mainwindow.cpp \
     summary.cpp \
     tabwidget.cpp \
+    theme.cpp \
+    timeline.cpp \
+    timelinecursor.cpp \
+    timelinewidget.cpp \
     videoplayer.cpp
 
 HEADERS += \
     activitylist.h \
+    fileopener.h \
     inspector.h \
     mainwindow.h \
     summary.h \
     tabwidget.h \
+    theme.h \
+    timeline.h \
+    timelinecursor.h \
+    timelinewidget.h \
     videoplayer.h
 
 FORMS += \

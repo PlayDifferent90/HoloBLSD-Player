@@ -1,5 +1,5 @@
 #include "timeline.h"
-#include "graphics_view_zoom.h"
+//#include "graphics_view_zoom.h"
 #include "qdatetime.h"
 #include "QVector"
 #include <QPolygon>
