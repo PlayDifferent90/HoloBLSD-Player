@@ -9,30 +9,38 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    activity.cpp \
     activitylist.cpp \
     fileopener.cpp \
     inspector.cpp \
     main.cpp \
     mainwindow.cpp \
+    node.cpp \
     summary.cpp \
     tabwidget.cpp \
     theme.cpp \
     timeline.cpp \
     timelinecursor.cpp \
     timelinewidget.cpp \
+    timestamp.cpp \
+    user.cpp \
     videoplayer.cpp
 
 HEADERS += \
+    activity.h \
     activitylist.h \
     fileopener.h \
     inspector.h \
     mainwindow.h \
+    node.h \
     summary.h \
     tabwidget.h \
     theme.h \
     timeline.h \
     timelinecursor.h \
     timelinewidget.h \
+    timestamp.h \
+    user.h \
     videoplayer.h
 
 FORMS += \

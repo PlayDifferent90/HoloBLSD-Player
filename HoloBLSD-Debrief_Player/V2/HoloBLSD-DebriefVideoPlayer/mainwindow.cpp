@@ -42,3 +42,9 @@ void MainWindow::on_actionOpenSingleUserFile_triggered()
 }
 
 
+
+void MainWindow::on_actionAddActvity_triggered()
+{
+    emit addActivity("newAct");
+}
+

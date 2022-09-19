@@ -45,6 +45,7 @@
    </attribute>
    <addaction name="actionOpenVideo"/>
    <addaction name="actionOpenSingleUserFile"/>
+   <addaction name="actionAddActvity"/>
   </widget>
   <action name="actionOpenVideo">
    <property name="text">
@@ -54,6 +55,11 @@
   <action name="actionOpenSingleUserFile">
    <property name="text">
     <string>OpenSingleUserFile</string>
+   </property>
+  </action>
+  <action name="actionAddActvity">
+   <property name="text">
+    <string>AddActvity</string>
    </property>
   </action>
  </widget>

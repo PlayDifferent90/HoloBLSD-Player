@@ -30,17 +30,18 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name)
     rightColumn -> addWidget(videoPlayer);
 
     //timeline
-    timeline = new TimelineWidget(this, (leftColumnWidth+centralColumnWidth + rightColumnMinWidth), upperRowHeight  /*,QList<QGRaphicsItem> Nodes */);
+    timelineWid = new TimelineWidget(this, (leftColumnWidth+centralColumnWidth + rightColumnMinWidth), upperRowHeight  /*,QList<QGRaphicsItem> Nodes */);
 
     //all together
     layout->addLayout(leftColumn,0,0,1,1);
     layout->addLayout(centralColumn,0,1,1,1);
     layout->addLayout(rightColumn,0,2,1,2);
-    layout->addWidget(timeline,1,0,2,4);
+    layout->addWidget(timelineWid,1,0,2,4);
 
    //connect only in tab masterafter the first user is added, create the master user and connect it to the signal
    //     connect(mainWin, &MainWindow::userAdded, this, &TabWidget::AddUserToInspector);
     connect(mainWin, &MainWindow::videoAdded, this, &TabWidget::OpenVideo);
+    connect(mainWin, &MainWindow::addActivity, this, &TabWidget::AddActivity);
 }
 
 TabWidget::~TabWidget(){
@@ -57,7 +58,17 @@ void TabWidget::AddUserToInspector(QString _userName){
 }
 
 void TabWidget::AddActivity(QString _text){
+    activityIDGenerator++;
     activity->AddActivityItem(_text);
+    Activity* act = new Activity(&_text,activityIDGenerator);
+    Node* nod = new Node(new Timestamp(1,"banana", "ughetto"),1 );
+    nod->SetFinish(new Timestamp(600,"a", "b"));
+
+    qDebug()<< "adding Node";
+    act->AddNode(nod);
+    qDebug()<< "adding Activity";
+    activities.append(act);
+    timelineWid->GetTimeline()->DrawActivity(activities.at(activityIDGenerator-1));
 }
 
 QString* TabWidget::GetName(){

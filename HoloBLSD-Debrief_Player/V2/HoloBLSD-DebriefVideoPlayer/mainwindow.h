@@ -22,6 +22,8 @@ private slots:
 
     void on_actionOpenSingleUserFile_triggered();
 
+    void on_actionAddActvity_triggered();
+
 private:
     Ui::MainWindow *ui;
     void NewTab(QString _name);
@@ -32,5 +34,6 @@ private:
 signals:
     void userAdded(QString _userName);
     void videoAdded(QString _fileName);
+    void addActivity(QString actName);
 };
 #endif // MAINWINDOW_H
