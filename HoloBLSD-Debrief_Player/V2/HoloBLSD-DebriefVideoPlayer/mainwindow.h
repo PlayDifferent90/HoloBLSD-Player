@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QGroupBox>
 #include <QDebug>
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -23,6 +24,8 @@ private slots:
     void on_actionOpenSingleUserFile_triggered();
 
     void on_actionAddActvity_triggered();
+
+    void on_actionPlay_triggered();
 
 private:
     Ui::MainWindow *ui;

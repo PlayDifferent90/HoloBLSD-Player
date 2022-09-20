@@ -21,6 +21,7 @@ SOURCES += \
     theme.cpp \
     timeline.cpp \
     timelinecursor.cpp \
+    timelinetoolbar.cpp \
     timelinewidget.cpp \
     timestamp.cpp \
     user.cpp \
@@ -38,6 +39,7 @@ HEADERS += \
     theme.h \
     timeline.h \
     timelinecursor.h \
+    timelinetoolbar.h \
     timelinewidget.h \
     timestamp.h \
     user.h \

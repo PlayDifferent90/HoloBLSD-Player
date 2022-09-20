@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
      //Add main tab widget to main window
     mainTab = new QTabWidget(parent);
     ui->horizontalLayout->addWidget(mainTab);
-
+    QTimer::singleShot(0, this, SLOT(showMaximized()));
 }
 
 MainWindow::~MainWindow()
@@ -46,5 +46,11 @@ void MainWindow::on_actionOpenSingleUserFile_triggered()
 void MainWindow::on_actionAddActvity_triggered()
 {
     emit addActivity("newAct");
+}
+
+
+void MainWindow::on_actionPlay_triggered()
+{
+
 }
 

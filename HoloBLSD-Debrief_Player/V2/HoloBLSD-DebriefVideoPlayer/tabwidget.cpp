@@ -40,8 +40,33 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name)
 
    //connect only in tab masterafter the first user is added, create the master user and connect it to the signal
    //     connect(mainWin, &MainWindow::userAdded, this, &TabWidget::AddUserToInspector);
+    //Actions
     connect(mainWin, &MainWindow::videoAdded, this, &TabWidget::OpenVideo);
     connect(mainWin, &MainWindow::addActivity, this, &TabWidget::AddActivity);
+    //video
+    connect(timelineWid->GetToolBar(), &TimelineToolBar::Play, videoPlayer->GetPlayer(),&QMediaPlayer::play);
+    connect(timelineWid->GetToolBar(), &TimelineToolBar::Pause, videoPlayer->GetPlayer(),&QMediaPlayer::pause);
+    connect(timelineWid->GetToolBar(), &TimelineToolBar::Stop, videoPlayer->GetPlayer(),&QMediaPlayer::stop);
+    //audio
+    connect(timelineWid->GetToolBar(), &TimelineToolBar::Volume, videoPlayer->GetPlayer(),&QMediaPlayer::setVolume);
+    //timelinezoom  //Todo: collegare once zoom implemented
+    //connect(timelineWid->GetToolBar(), &TimelineToolBar::Play, videoPlayer->GetPlayer(),&QMediaPlayer::play);
+    //connect(timelineWid->GetToolBar(), &TimelineToolBar::Pause, videoPlayer->GetPlayer(),&QMediaPlayer::pause);
+
+
+    //durata video -> lunghezza timeline
+    connect(videoPlayer->GetPlayer(),&QMediaPlayer::durationChanged,timelineWid->GetTimeline(),&Timeline::DrawTimeLineAxis);
+    // riproduzione video -> scorrimento timeline
+    connect(videoPlayer->GetPlayer(),&QMediaPlayer::positionChanged,timelineWid->GetTimeline(),&Timeline::UpdateVideoCursorX);
+    //scorrimento barra -> scorriemnto timeline
+    connect(videoPlayer->GetSlider(), &QSlider::sliderMoved,timelineWid->GetTimeline(),&Timeline::UpdateVideoCursorX);
+
+    //scorrimento timeline -> scorrimento barra
+    connect(timelineWid->GetTimeline()->GetCursor(),&timelineCursor::CursorMoved, videoPlayer->GetSlider(), &QSlider::setValue);
+    //scorrimento timeline -> riproduzione video
+    connect(timelineWid->GetTimeline()->GetCursor(),&timelineCursor::CursorMoved, videoPlayer->GetPlayer(), &QMediaPlayer::setPosition);
+
+
 }
 
 TabWidget::~TabWidget(){
@@ -59,15 +84,16 @@ void TabWidget::AddUserToInspector(QString _userName){
 
 void TabWidget::AddActivity(QString _text){
     activityIDGenerator++;
+    qDebug()<<"ID : " << activityIDGenerator;
     activity->AddActivityItem(_text);
     Activity* act = new Activity(&_text,activityIDGenerator);
-    Node* nod = new Node(new Timestamp(1,"banana", "ughetto"),1 );
-    nod->SetFinish(new Timestamp(600,"a", "b"));
-
-    qDebug()<< "adding Node";
+    Node* nod = new Node(new Timestamp(50*activityIDGenerator,"banana", "ughetto"),1 );
+    nod->SetFinish(new Timestamp(100*activityIDGenerator,"a", "b"));
     act->AddNode(nod);
-    qDebug()<< "adding Activity";
     activities.append(act);
+
+
+
     timelineWid->GetTimeline()->DrawActivity(activities.at(activityIDGenerator-1));
 }
 
