@@ -41,7 +41,7 @@ TimelineToolBar::TimelineToolBar(QWidget *parent)
 
     zoomSlider = new QSlider(Qt::Horizontal, this);
     connect(zoomSlider, &QSlider::sliderMoved,this, &TimelineToolBar::ZoomValue);
-
+    zoomSlider->setSliderPosition(100);
     //volume
 
 

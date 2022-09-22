@@ -10,9 +10,8 @@ timelineCursor::timelineCursor(QObject *parent,QGraphicsItem * parentGraphics)
 timelineCursor::timelineCursor(float _height,QObject* _parent,QGraphicsItem* _parentGaphics)
 {
     theme= new Theme();
-    pen = QPen(theme->cursorPenColor,2);
-    brush = QBrush(Qt::RoundCap);
-    brush.setColor(theme->cursorBrushColor);
+    pen = QPen(theme->videoCursorBrush,2);
+    brush = theme->videoCursorBrush;
     points<<QPointF(-cursorSize,-cursorSize)
          <<QPointF(0,cursorSize)
         <<QPointF(cursorSize,-cursorSize)

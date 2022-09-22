@@ -5,14 +5,15 @@ FileOpener::FileOpener(QString _fileName, int _userID)
 {
     //one for each file
     userID=_userID;
-    OpenLog(QUrl::fromLocalFile(_fileName.left(_fileName.lastIndexOf("."))).fileName());
+    OpenLog(_fileName);
 
 
 }
 void FileOpener::OpenLog(QString _fileName)
 {
     qDebug()<< "Opening file : " << _fileName;
-    QFile inputFile("D:\\0_PHD\\Holo-BLSD\\HoloBLSD-DP\\HoloBLSD-Debrief_Player\\V2\\Debrief_1\\"+_fileName+ ".log");  // change path #URL
+    QFile inputFile(_fileName);  // change path #URL
+    //QFile inputFile("D:\\0_PHD\\Holo-BLSD\\HoloBLSD-DP\\HoloBLSD-DebriefTool\\V2\\Debrief_1\\recipe_test.log");  // change path #URL
     QRegularExpression regEx("^<LogEntry time=\"(?<hh>[0-9]+):(?<mm>[0-9]+):(?<ss>[0-9]+)\\.(?<millis>[0-9]+)\" owner=\"(?<owner>[^\"]*)\" type=\"(?<type>[^\"]*)\" msg=\"(?<msg>[^\"]*)\" />$");
     if (inputFile.open(QIODevice::ReadOnly))
     {
@@ -39,14 +40,7 @@ void FileOpener::OpenLog(QString _fileName)
           }
        }
        inputFile.close();
-       foreach (Activity* act, activities) {
 
-           //qDebug()<<"activity " << act->GetName() << " has finish : " << act->GetNodesByUser(userID)->GetFinish();
-           //if(act->GetNodeByUser(userID)->GetFinish()==NULL){
-           //    qDebug()<<"activity " << act->GetName() << " does NOT have a finish : " << act->GetNodeByUser(userID)->GetFinish();
-           //    act->GetNodeByUser(userID)->SetFinish(act->GetNodeByUser(userID)->GetEvents().last());
-           //}
-       }
     }
 }
 

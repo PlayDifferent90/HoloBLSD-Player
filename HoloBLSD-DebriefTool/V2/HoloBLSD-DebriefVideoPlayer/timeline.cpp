@@ -29,11 +29,9 @@ Timeline::~Timeline()
 
 void Timeline::DrawActivity(Activity* _activity){
     if(_activity->GetActID()%2!=0){
-        qDebug()<<"drawing BG";
        DrawBackgroundNode(currentBGRow, timelineLength, _activity->GetNodes().count());
     }
     if(!_activity->GetNodes().empty()){
-        qDebug()<<"drawing Node";
         foreach (Node* n, _activity->GetNodes()) {
                 DrawNode(n, _activity->GetActID());
         }
@@ -44,9 +42,9 @@ void Timeline::DrawActivity(Activity* _activity){
 
 void Timeline::DrawBackgroundNode(int _posY, int _timeLineLength, int _numUsers){
     QRect* rect= new QRect(0,0,_timeLineLength,_numUsers*timelineNodeHeight);
-    QGraphicsItem *itemBG = scene->addRect(*rect,theme->penLineTimeStop, theme->greyBlue);
+    QGraphicsItem *itemBG = scene->addRect(*rect,theme->penLineTimeStop, theme->lineBGBrush);
     itemBG->setPos(0,(_posY)*timelineNodeHeight);
-    itemBG->setZValue(50);
+    itemBG->setZValue(10);
 
     //draw rect in colonna sx too
     delete rect; //todo: valutare if good
@@ -54,13 +52,14 @@ void Timeline::DrawBackgroundNode(int _posY, int _timeLineLength, int _numUsers)
 
 void Timeline::DrawNode(Node* _node, int _actID)
 {
-
     int nodeLength = _node->GetFinish()->GetTime() - _node->GetStart()->GetTime();
 
     qDebug()<<"node Lenght = " << nodeLength;
     QRectF* rect = new QRectF(0,0,nodeLength,timelineNodeHeight);
     QGraphicsItem *item = scene->addRect(*rect,theme->penBlack,theme->nodeBrush); //#themetag
-    item->setPos(_node->GetStart()->GetTime(),timelineNodeHeight * (_node->GetUserID()+_actID-1));
+    item->setPos(_node->GetStart()->GetTime(),timelineNodeHeight * (_node->GetUserID()));
+
+    qDebug()<<"drawing :" << _node<< " at "<< _node->GetStart()->GetTime() << " , "<< timelineNodeHeight * (_node->GetUserID()+_actID-1);
     item->setZValue(90);
     if(!_node->GetEvents().empty()){
         foreach (Timestamp* t, _node->GetEvents()) {
@@ -91,7 +90,7 @@ void Timeline::FlushTimeLineElement(){
 
 void Timeline::UpdateVideoCursorX(float x){
     videoCursor->setHeight(height()*2);
-    videoCursor->setX(x);
+    videoCursor->setX((float)x);
 }
 
 void Timeline::SetNumbers(){
@@ -108,7 +107,7 @@ void Timeline::SetNumbers(){
 
         if(actualPosition - previousPosition > minNumberDistance){
             item->setPos(actualPosition,verNumberOffset);
-            scene->addRect(QRect(actualPosition,verTimelineOffset,1,scene->height()),theme->penLineTimeStop,theme->nodeBrush)->setZValue(0);
+            scene->addRect(QRect(actualPosition,verTimelineOffset,1,scene->height()),theme->penLineTimeStop,theme->yellow)->setZValue(0);
 
             previousPosition = actualPosition;
         } else{
@@ -119,6 +118,7 @@ void Timeline::SetNumbers(){
 
 void Timeline::SetScale(float _scale){
     tlScale=_scale/100;
+    if(tlScale ==0) tlScale = 0.001;
     qDebug()<<"Scale value : "<< tlScale;
     UpdateTimeline();
 }
@@ -127,15 +127,22 @@ timelineCursor* Timeline::GetCursor(){
 }
 
 void Timeline::UpdateTimeline(){
+    qDebug()<< "entering Update";
     FlushTimeLineElement();
     DrawTimeLineAxis();
 
-    foreach (Activity* act, fileOpener->GetAtivities()) {
-        DrawActivity(act);
+    if(!fileOpener->GetAtivities().empty()){
+        foreach (Activity* act, fileOpener->GetAtivities()) {
+            DrawActivity(act);
+        }
     }
 
 }
 
 void Timeline::SetFileOpener(FileOpener* _fileopener){
     fileOpener=_fileopener;
+}
+void Timeline::SetupTimeline(int _length){
+    timelineLength=_length;
+    UpdateTimeline();
 }

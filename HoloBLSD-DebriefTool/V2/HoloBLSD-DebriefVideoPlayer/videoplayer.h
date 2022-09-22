@@ -29,6 +29,7 @@ private:
     QVideoWidget* videoArea;
     QLabel* videoLabel;
     QSlider* videoSlider;
+    QString extention = ".mp4";
 signals:
 
 };

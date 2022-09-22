@@ -29,28 +29,30 @@ TimelineWidget::TimelineWidget(QWidget *parent,FileOpener* _fileOpener ,int _wid
 
     QScrollArea* activityScrollArea = new QScrollArea();
     activityScrollArea->setMaximumWidth(_width/6);
+    activityScrollArea->setMinimumWidth(_width/6);
+    activityScrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    activityScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     timelineWidgetLayout->addWidget(activityScrollArea);
-    //timelineWidgetLayout->addWidget(timelineGraphicsScrollArea);
 
 
     timelineScene = new QGraphicsScene();
     timelineView = new QGraphicsView(timelineScene);
     timelineView->setInteractive(true);
 
-    timelineScene->setBackgroundBrush(theme->eventBrush);
+    timelineScene->setBackgroundBrush(theme->BGTEst);
     timelineScene->setSceneRect(0,0, 20000,1500);  // todo: calcoalre dimensioni da numero di activity, e durata tempo
     timelineWidgetLayout->addWidget(timelineView);
 
-    timeline = new Timeline(timelineView,this, _fileOpener, timelineScene->width());// todo : replace with videolength
+    timeline = new Timeline(timelineView,this, _fileOpener, 0);// todo : replace with videolength
 
     activityScene = new QGraphicsScene();
     activityView = new QGraphicsView(activityScene);
     activityView->setInteractive(true);
 
-    activityScene->setBackgroundBrush(theme->nodeBrush);
-    activityScene->setSceneRect(0,0,395,1000);
-    DrawBackground(activityScene, 395,timeline->timelineNodeHeight/* *num of nodes */);
+    activityScene->setBackgroundBrush(theme->BGTEst);
+    activityScene->setSceneRect(0,0,_width/6,1000);
+    DrawBackground(activityScene, _width/6,timeline->timelineNodeHeight/* *num of nodes */);
     activityScrollArea->setWidget(activityView);
 
     connect(activityScrollArea->verticalScrollBar(), &QScrollBar::valueChanged, timelineView->verticalScrollBar(), &QScrollBar::setValue);

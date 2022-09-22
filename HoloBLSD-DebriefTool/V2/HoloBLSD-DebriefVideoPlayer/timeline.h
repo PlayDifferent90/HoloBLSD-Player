@@ -70,6 +70,7 @@ public:
 
     void UpdateTimeline();
     void SetFileOpener(FileOpener *_fileopener);
+    void SetupTimeline(int _length);
 };
 
 #endif // TIMELINE_H

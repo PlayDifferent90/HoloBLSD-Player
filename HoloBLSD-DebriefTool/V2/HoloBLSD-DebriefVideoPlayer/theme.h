@@ -12,10 +12,9 @@ class Theme: public QObject
 public:
     Theme();
 
-    qreal outlineSize = 0;
+    qreal outlineSize = 1;
 
     QColor cursorPenColor = QColor(183,134,32);
-    QColor cursorBrushColor = QColor(183,134,32);
 
 
     QColor bluedimmed{45,114,178};
@@ -28,13 +27,17 @@ public:
     QColor orange{255,127,00};
     QColor yellow{243,255,185};
     QColor verticalLineColor{70,70,70};
+    QColor gold{183,134,32};
 
     QPen penBlue {blue,outlineSize};
     QPen penBlack {Qt::black,outlineSize};
     QPen penLineTimeStop{verticalLineColor,1};
 
-    QBrush nodeBrush {orange};
-    QBrush eventBrush {red};
+    QBrush nodeBrush {lightgreen};
+    QBrush eventBrush {skyblue};
+    QBrush BGTEst{orange};
+    QBrush lineBGBrush{red};
+    QBrush videoCursorBrush{Qt::black};
 
 };
 

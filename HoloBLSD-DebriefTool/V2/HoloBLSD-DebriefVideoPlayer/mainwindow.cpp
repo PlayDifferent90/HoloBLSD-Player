@@ -38,6 +38,7 @@ void MainWindow::on_actionOpenSingleUserFile_triggered()
    FileOpener* fo = new FileOpener(filename, 1);
    NewTab("new User", fo);
    emit userAdded("new User");
+   emit videoAdded(filename);
 }
 
 void MainWindow::on_actionAddActvity_triggered(){

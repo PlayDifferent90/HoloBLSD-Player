@@ -46,8 +46,10 @@ void VideoPlayer::SetVideoLabel(QString _title){
 }
 
 void VideoPlayer::ShowVideo(QString _fileName){
-    player->setMedia(QUrl::fromLocalFile(_fileName));
+    player->setMedia(QUrl::fromLocalFile(_fileName.left(_fileName.lastIndexOf("."))+ extention));
+
     player->play();
+    player->pause();
 }
 QMediaPlayer* VideoPlayer::GetPlayer(){
     return player;
