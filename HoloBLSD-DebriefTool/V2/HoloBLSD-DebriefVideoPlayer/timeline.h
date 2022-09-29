@@ -58,6 +58,7 @@ public:
     float tlScale =1;
 
     int timelineLength = 1000;
+    int videoLength = 1000;
     int timelineNodeHeight = 30;
     int verNumberOffset = -4;
     int verTimelineOffset = 15;
@@ -71,6 +72,9 @@ public:
     void UpdateTimeline();
     void SetFileOpener(FileOpener *_fileopener);
     void SetupTimeline(int _length);
+    void SetVideoLength(int _videolength);
+signals:
+    void TimelineDrawn();
 };
 
 #endif // TIMELINE_H

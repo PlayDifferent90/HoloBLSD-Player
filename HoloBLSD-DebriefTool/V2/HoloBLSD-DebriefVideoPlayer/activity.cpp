@@ -1,4 +1,5 @@
 #include "activity.h"
+#include "qapplication.h"
 #include "qdebug.h"
 
 Activity::Activity(QObject *parent)

@@ -18,6 +18,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    FileOpener* GetFileOpener();
 
 private slots:
     void on_actionOpenVideo_triggered();
@@ -36,6 +37,7 @@ private:
     QTabWidget* mainTab;
     QAction* demoAction;
     QList<QString> users;
+    FileOpener* fo;
 signals:
     void userAdded(QString _userName);
     void videoAdded(QString _fileName);

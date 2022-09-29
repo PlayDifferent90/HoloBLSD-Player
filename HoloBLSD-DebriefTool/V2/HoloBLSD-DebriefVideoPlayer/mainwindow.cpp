@@ -35,8 +35,9 @@ void MainWindow::on_actionOpenVideo_triggered()
 void MainWindow::on_actionOpenSingleUserFile_triggered()
 {
    QString filename = QFileDialog::getOpenFileName(this,"Open a Log file","","(*.*)"); // check goodness file  --> might use VLC embedded in QT (QTVLC) // open cv
-   FileOpener* fo = new FileOpener(filename, 1);
+   fo = new FileOpener( 1);
    NewTab("new User", fo);
+   fo->OpenLog(filename);
    emit userAdded("new User");
    emit videoAdded(filename);
 }
@@ -49,3 +50,6 @@ void MainWindow::on_actionOpenFile_triggered()
 {
 }
 
+FileOpener* MainWindow::GetFileOpener(){
+    return fo;
+}

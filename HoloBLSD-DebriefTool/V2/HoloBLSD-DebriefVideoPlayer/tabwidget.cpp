@@ -38,6 +38,7 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name, FileOpener* _fileOpene
     layout->addLayout(rightColumn,0,2,1,2);
     layout->addWidget(timelineWid,1,0,2,4);
 
+
    //connect only in tab masterafter the first user is added, create the master user and connect it to the signal
    //     connect(mainWin, &MainWindow::userAdded, this, &TabWidget::AddUserToInspector);
     //Actions
@@ -55,7 +56,7 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name, FileOpener* _fileOpene
 
 
     //durata video -> lunghezza timeline
-    connect(videoPlayer->GetPlayer(),&QMediaPlayer::durationChanged,timelineWid->GetTimeline(),&Timeline::SetupTimeline);
+    connect(videoPlayer->GetPlayer(),&QMediaPlayer::durationChanged,timelineWid->GetTimeline(),&Timeline::SetVideoLength);
     // riproduzione video -> scorrimento timeline
     connect(videoPlayer->GetPlayer(),&QMediaPlayer::positionChanged,timelineWid->GetTimeline(),&Timeline::UpdateVideoCursorX);
     //scorrimento barra -> scorriemnto timeline
@@ -69,7 +70,10 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name, FileOpener* _fileOpene
 
     //init
     timelineWid->GetToolBar()->PauseTriggered();
-    timelineWid->GetToolBar()->ZoomOutTriggered();
+    connect(mainWin->GetFileOpener(), &FileOpener::FileRead, timelineWid->GetTimeline(), &Timeline::UpdateTimeline);
+    //connect(mainWin->GetFileOpener(), &FileOpener::FileRead, timelineWid->GetToolBar(), &TimelineToolBar::ZoomOutTriggered);
+    //connect(timelineWid->GetTimeline(), &Timeline::TimelineDrawn, timelineWid->GetToolBar(), &TimelineToolBar::ZoomOutTriggered);
+
 
 
 }

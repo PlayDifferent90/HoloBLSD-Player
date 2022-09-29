@@ -1,16 +1,19 @@
 #include "fileopener.h"
+#include "qapplication.h"
 #include "qdebug.h"
 
-FileOpener::FileOpener(QString _fileName, int _userID)
+FileOpener::FileOpener(int _userID)
 {
     //one for each file
     userID=_userID;
-    OpenLog(_fileName);
+    //OpenLog(_fileName);
 
 
 }
 void FileOpener::OpenLog(QString _fileName)
 {
+
+    QApplication::setOverrideCursor(Qt::WaitCursor);
     qDebug()<< "Opening file : " << _fileName;
     QFile inputFile(_fileName);  // change path #URL
     //QFile inputFile("D:\\0_PHD\\Holo-BLSD\\HoloBLSD-DP\\HoloBLSD-DebriefTool\\V2\\Debrief_1\\recipe_test.log");  // change path #URL
@@ -19,6 +22,8 @@ void FileOpener::OpenLog(QString _fileName)
     {
         int i =0;
        QTextStream in(&inputFile);
+
+       qDebug()<<"reading file ...";
        while (!in.atEnd())
        {
           QString line = in.readLine();
@@ -41,6 +46,10 @@ void FileOpener::OpenLog(QString _fileName)
        }
        inputFile.close();
 
+       qDebug()<<"emitting FileRead";
+        emit FileRead();
+
+       QApplication::restoreOverrideCursor();
     }
 }
 

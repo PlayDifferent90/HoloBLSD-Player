@@ -1,4 +1,5 @@
 #include "timelinetoolbar.h"
+#include "qapplication.h"
 #include "qboxlayout.h"
 #include "qdebug.h"
 
@@ -100,16 +101,22 @@ void TimelineToolBar::VolumeValue(){
 }
 
 void TimelineToolBar::ZoomInTriggered(){
+
+    QApplication::setOverrideCursor(Qt::WaitCursor);
     zoom = SliderValueCheck(zoom +5);
     qDebug()<<"zoomIn : " + QString::number(zoom);
     zoomSlider->setSliderPosition(zoom);
     ZoomValue();
+    QApplication::restoreOverrideCursor();
 }
 void TimelineToolBar::ZoomOutTriggered(){
+
+    QApplication::setOverrideCursor(Qt::WaitCursor);
     zoom = SliderValueCheck(zoom -5);
     qDebug()<<"zoomOut : " + QString::number(zoom);
     zoomSlider->setSliderPosition(zoom);
     ZoomValue();
+    QApplication::restoreOverrideCursor();
 }
 
 void TimelineToolBar::ZoomValue(){

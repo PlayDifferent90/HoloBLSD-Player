@@ -41,10 +41,10 @@ TimelineWidget::TimelineWidget(QWidget *parent,FileOpener* _fileOpener ,int _wid
     timelineView->setInteractive(true);
 
     timelineScene->setBackgroundBrush(theme->BGTEst);
-    timelineScene->setSceneRect(0,0, 20000,1500);  // todo: calcoalre dimensioni da numero di activity, e durata tempo
+    timelineScene->setSceneRect(0,0, 5*_width/6,1500);
     timelineWidgetLayout->addWidget(timelineView);
 
-    timeline = new Timeline(timelineView,this, _fileOpener, 0);// todo : replace with videolength
+    timeline = new Timeline(timelineView,this, _fileOpener, 5*_width/6);
 
     activityScene = new QGraphicsScene();
     activityView = new QGraphicsView(activityScene);
