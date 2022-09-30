@@ -24,6 +24,7 @@ public:
     virtual QRectF boundingRect() const override;
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
+    void setMovementScale(float _vcScale);
 private:
     virtual QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
     ~timelineCursor();
@@ -39,6 +40,7 @@ private:
     QPen pen;
     QLine line;
     Theme* theme;
+    QObject* parent;
 
 protected:
     virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;

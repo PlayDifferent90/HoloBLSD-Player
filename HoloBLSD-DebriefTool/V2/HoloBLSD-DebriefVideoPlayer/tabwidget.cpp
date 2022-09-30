@@ -52,7 +52,6 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name, FileOpener* _fileOpene
     connect(timelineWid->GetToolBar(), &TimelineToolBar::Volume, videoPlayer->GetPlayer(),&QMediaPlayer::setVolume);
     //timelinezoom
     connect(timelineWid->GetToolBar(), &TimelineToolBar::Zoom, timelineWid->GetTimeline(),&Timeline::SetScale);
-    //connect(timelineWid->GetToolBar(), &TimelineToolBar::Pause, videoPlayer->GetPlayer(),&QMediaPlayer::pause);
 
 
     //durata video -> lunghezza timeline
@@ -63,7 +62,7 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name, FileOpener* _fileOpene
     connect(videoPlayer->GetSlider(), &QSlider::sliderMoved,timelineWid->GetTimeline(),&Timeline::UpdateVideoCursorX);
 
     //scorrimento timeline -> scorrimento barra
-    connect(timelineWid->GetTimeline()->GetCursor(),&timelineCursor::CursorMoved, videoPlayer->GetSlider(), &QSlider::setValue);
+    connect(timelineWid->GetTimeline(),&Timeline::VideoCursorMoved, videoPlayer->GetSlider(), &QSlider::setValue); //todo, catch this signal in timeline e send back correct value
     //scorrimento timeline -> riproduzione video
     connect(timelineWid->GetTimeline()->GetCursor(),&timelineCursor::CursorMoved, videoPlayer->GetPlayer(), &QMediaPlayer::setPosition);
 
@@ -72,8 +71,8 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name, FileOpener* _fileOpene
     timelineWid->GetToolBar()->PauseTriggered();
     connect(mainWin->GetFileOpener(), &FileOpener::FileRead, timelineWid->GetTimeline(), &Timeline::UpdateTimeline);
     //connect(mainWin->GetFileOpener(), &FileOpener::FileRead, timelineWid->GetToolBar(), &TimelineToolBar::ZoomOutTriggered);
-    //connect(timelineWid->GetTimeline(), &Timeline::TimelineDrawn, timelineWid->GetToolBar(), &TimelineToolBar::ZoomOutTriggered);
 
+    connect(videoPlayer->GetPlayer(),&QMediaPlayer::durationChanged,timelineWid->GetToolBar(), &TimelineToolBar::ZoomOutTriggered);
 
 
 }

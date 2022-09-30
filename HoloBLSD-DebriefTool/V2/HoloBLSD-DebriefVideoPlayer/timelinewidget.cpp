@@ -41,7 +41,7 @@ TimelineWidget::TimelineWidget(QWidget *parent,FileOpener* _fileOpener ,int _wid
     timelineView->setInteractive(true);
 
     timelineScene->setBackgroundBrush(theme->BGTEst);
-    timelineScene->setSceneRect(0,0, 5*_width/6,1500);
+    timelineScene->setSceneRect(0,0, 5*_width/6,1500);  // todo: connect this with the new timeline, ogni zoom deve allargare anche scene
     timelineWidgetLayout->addWidget(timelineView);
 
     timeline = new Timeline(timelineView,this, _fileOpener, 5*_width/6);

@@ -58,11 +58,15 @@ public:
     float tlScale =1;
 
     int timelineLength = 1000;
+    int timelineLengthStart = 1000;
     int videoLength = 1000;
     int timelineNodeHeight = 30;
     int verNumberOffset = -4;
     int verTimelineOffset = 15;
     int currentBGRow=1;
+    int timeMarkerDistance = 150;
+    int maxMillisResolution = 10*1000;
+    float maxZoomScale = 1;
 
     void DrawBackgroundNode(int posY, int timeLineLength, int numUsers);
     void DrawActivity(Activity *_activity);
@@ -73,8 +77,10 @@ public:
     void SetFileOpener(FileOpener *_fileopener);
     void SetupTimeline(int _length);
     void SetVideoLength(int _videolength);
+    void RetrieveVideoCursorX(float x);
 signals:
     void TimelineDrawn();
+    void VideoCursorMoved(int t);
 };
 
 #endif // TIMELINE_H

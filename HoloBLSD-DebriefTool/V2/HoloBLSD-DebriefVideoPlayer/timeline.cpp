@@ -12,10 +12,13 @@ Timeline::Timeline(QGraphicsView *_view, QWidget *_parent,FileOpener* _fileOpene
     /*create scene*/
     view = _view;
     scene = view->scene();
-    SetupTimeline(_length);
+    timelineLengthStart = _length;
+    SetupTimeline(timelineLengthStart);
     fileOpener=_fileOpener;
 
     videoCursor = new timelineCursor(scene->sceneRect().height()*2);// non chiaro perchè *2
+
+    connect(videoCursor,&timelineCursor::CursorMoved, this, &Timeline::RetrieveVideoCursorX);
     DrawTimeLineAxis();
     scene->addItem(videoCursor);
     videoCursor->setZValue(101);
@@ -61,7 +64,7 @@ void Timeline::DrawNode(Node* _node, int _actID)
     QGraphicsItem *item = scene->addRect(*rect,theme->penBlack,theme->nodeBrush); //#themetag
     item->setPos(_node->GetStart()->GetTime()*tlScale,timelineNodeHeight * (_node->GetUserID()));  //user id + actid
 
-    qDebug()<<"drawing :" << _node<< " at "<< _node->GetStart()->GetTime() << " node Lenght = " << nodeLength << " , node height"<< QString::number(timelineNodeHeight * (_node->GetUserID())) << " , timeline length " << timelineLength;
+    //qDebug()<<"drawing :" << _node<< " at "<< _node->GetStart()->GetTime() << " node Lenght = " << nodeLength << " , node height"<< QString::number(timelineNodeHeight * (_node->GetUserID())) << " , timeline length " << timelineLength;
     item->setZValue(90);
     if(!_node->GetEvents().empty()){
         foreach (Timestamp* t, _node->GetEvents()) {
@@ -92,40 +95,38 @@ void Timeline::FlushTimeLineElement(){
     }
 }
 
-void Timeline::UpdateVideoCursorX(float x){
+void Timeline::UpdateVideoCursorX(float x){ // todo: this must become %
+   // qDebug()<< "video cursor X input pos : " << x;
     videoCursor->setHeight(height()*2);
-    videoCursor->setX((float)x);
+    videoCursor->setX((float)x*(float)timelineLength/(float)videoLength);
+}
+
+void Timeline::RetrieveVideoCursorX(float x){ // todo: this must become %
+    qDebug()<< "video cursor X moved to  : " << x;
+    emit VideoCursorMoved(x);
 }
 
 void Timeline::SetNumbers(){
-
-    qDebug()<<QTime::currentTime().toString() <<"Setting Numbers ...";
-    int minNumberDistance = 100;
-    int millisecOffset = 1000;
-    float previousPosition =-minNumberDistance -1;
-
-    for(int i =0; i < (timelineLength); i+=10*tlScale){
-        qDebug()<< "video% = " <<(float)i/(float)timelineLength;
-        QGraphicsTextItem  *item = scene->addText(QDateTime::fromSecsSinceEpoch(videoLength*((float)i/(float)timelineLength)).toString("mm:ss"));
+int nums=0;
+    for (int t=0; t<timelineLength; t+=(float)timeMarkerDistance*tlScale/((int)tlScale) ){
+        float posXPercentage = (float)t/(float)timelineLength;
+        qDebug()<<"drawing verical line at % : "<< posXPercentage << " with video length : " << videoLength<<"  ; video millisec = " << videoLength*posXPercentage<< " ; to string mm:ss : " << QDateTime::fromMSecsSinceEpoch(videoLength*posXPercentage).toString("mm:ss");
+        QGraphicsTextItem  *item = scene->addText(QDateTime::fromMSecsSinceEpoch(videoLength*posXPercentage).toString("mm:ss"));
         item->setDefaultTextColor(Qt::white);
-        float actualPosition = i*tlScale;
-
-        if(actualPosition - previousPosition > minNumberDistance){
-            item->setPos(actualPosition,verNumberOffset);
-            scene->addRect(QRect(actualPosition,verTimelineOffset,1,scene->height()),theme->penLineTimeStop,theme->yellow)->setZValue(0);
-
-            previousPosition = actualPosition;
-        } else{
-            item->setOpacity(0);
-        }
+        item->setPos(t,verNumberOffset);
+        scene->addRect(QRect(t,verTimelineOffset,1,scene->height()),theme->penLineTimeStop,theme->yellow)->setZValue(1);
+        nums++;
     }
+//qDebug()<< "printed " << nums << "numbers";
+
 }
 
 void Timeline::SetScale(float _scale){
-    tlScale=_scale/10;
-    if(tlScale <1) tlScale = 1;
+    tlScale= 1 + (maxZoomScale-1)*(_scale/100);
     qDebug()<<"Scale value : "<< tlScale;
-    SetupTimeline(timelineLength);
+
+    SetupTimeline(timelineLengthStart);
+    videoCursor->setMovementScale((float)videoLength/(float)timelineLength);
     UpdateTimeline();
 }
 timelineCursor* Timeline::GetCursor(){
@@ -154,8 +155,14 @@ void Timeline::SetFileOpener(FileOpener* _fileopener){
 }
 void Timeline::SetupTimeline(int _length){
     timelineLength=_length*tlScale;
+    qDebug()<< "timelinelength = "<< timelineLength;
     //UpdateTimeline();
 }
 void Timeline::SetVideoLength(int _videolength){
     videoLength = _videolength;
+
+    maxZoomScale = (((float)videoLength/(float)maxMillisResolution)*(float)timeMarkerDistance)/(float)timelineLengthStart;
+    qDebug()<<"("<< videoLength<<"/"<<maxMillisResolution << "*"<< timeMarkerDistance << ")/" << timelineLengthStart;
+    qDebug()<< "max zoom scale = "<< maxZoomScale;
+
 }

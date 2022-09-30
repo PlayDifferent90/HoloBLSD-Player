@@ -23,6 +23,7 @@ timelineCursor::timelineCursor(float _height,QObject* _parent,QGraphicsItem* _pa
     setFlag(QGraphicsItem::ItemIsMovable);
     setFlag(QGraphicsItem::ItemIsFocusable);
     setFlag(ItemSendsGeometryChanges);
+    parent = _parent;
 }
 
 timelineCursor::~timelineCursor(){
@@ -82,13 +83,18 @@ QVariant timelineCursor::itemChange(GraphicsItemChange change, const QVariant &v
 {
     if (change == ItemPositionChange && scene()) {
         QPointF newPos = value.toPointF();
+        //qDebug()<< "cursor moved to : " << (float)newPos.x()*tlScale;
         newPos.setY(y());
         if(newPos.x() < 0){
             newPos.setX(0);
         }
-        emit CursorMoved ((float) newPos.x());
+        emit CursorMoved ((float) newPos.x()*tlScale);
         return newPos;
     }
     return QGraphicsItem::itemChange(change, value);
 }
 
+void timelineCursor::setMovementScale(float _vcScale){
+    tlScale = _vcScale;
+    qDebug()<<"set vursor scale to " << _vcScale;
+}
