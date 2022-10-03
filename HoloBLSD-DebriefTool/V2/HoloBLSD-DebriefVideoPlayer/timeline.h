@@ -67,6 +67,7 @@ public:
     int timeMarkerDistance = 150;
     int maxMillisResolution = 10*1000;
     float maxZoomScale = 1;
+    int drawnNodes =0;
 
     void DrawBackgroundNode(int posY, int timeLineLength, int numUsers);
     void DrawActivity(Activity *_activity);

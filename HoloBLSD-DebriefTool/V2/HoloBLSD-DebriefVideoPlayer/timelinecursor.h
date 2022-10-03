@@ -29,7 +29,7 @@ private:
     virtual QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
     ~timelineCursor();
 
-    int cursorSize = 8;
+    int cursorSize = 15 ;
     int videoLengthVC=2000;
     bool pressed=false;
     float tlScale =1;

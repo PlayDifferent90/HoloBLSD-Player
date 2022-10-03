@@ -10,6 +10,7 @@ VideoPlayer::VideoPlayer(QWidget *parent, QString _name, int _width, int _height
 
     player = new QMediaPlayer(this);
     player->setVideoOutput(videoArea);
+    player->setNotifyInterval(1500);
 
     videoLabel = new QLabel(this);
     videoLabel->setMaximumHeight(_height/50);

@@ -47,3 +47,13 @@ QList<Node*> Activity::GetNodesByUser(int _user){
 QString Activity::GetName(){
     return actName;
 }
+
+int Activity::GetUsersNumber(){
+    QList<int> countingUsers;
+    foreach(Node* n, nodes){
+        if(!countingUsers.contains(n->GetUserID())){
+            countingUsers.append(n->GetUserID());
+        }
+    }
+    return countingUsers.count();
+}
