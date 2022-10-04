@@ -16,8 +16,9 @@ public:
     QList<Node*> GetNodes();
     void ActivitySwitch();
     QString GetName();
-    QList<Node *> GetNodesByUser(int _user);
+    QList<Node *> GetNodesByUser(QString _user);
     int GetUsersNumber();
+    bool GetVisibility();
 private:
     QString actName;
     QList<Node*> nodes;

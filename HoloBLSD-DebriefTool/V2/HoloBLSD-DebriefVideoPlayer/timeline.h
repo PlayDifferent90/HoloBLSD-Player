@@ -82,6 +82,10 @@ public:
 signals:
     void TimelineDrawn();
     void VideoCursorMoved(int t);
+    void AddedActivity(QString name);
+    void FlushedActivities();
+private:
+    void DrawActivity(Activity *_activity, int _actRow);
 };
 
 #endif // TIMELINE_H

@@ -2,7 +2,7 @@
 #include "qapplication.h"
 #include "qdebug.h"
 
-FileOpener::FileOpener(int _userID)
+FileOpener::FileOpener(QString _userID)
 {
     //one for each file
     userID=_userID;
@@ -117,7 +117,7 @@ void FileOpener::CreateActivity(int _time, QString _owner, QString _type, QStrin
     }
     if((_type=="NodeTriggered" && !actFound)){  // todo: check and finish
         activityID++;
-        Activity* activity = new Activity{_owner, activityID};
+        Activity* activity = new Activity{_owner, (int)activityID};
         Timestamp* timestampTriggered = new Timestamp{_time, _type, _msg};
         Node* node = new Node{timestampTriggered,userID};
         activity->AddNode(node);

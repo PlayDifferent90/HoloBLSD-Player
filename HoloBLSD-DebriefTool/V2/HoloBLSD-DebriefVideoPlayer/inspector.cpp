@@ -1,4 +1,5 @@
 #include "inspector.h"
+#include "qdebug.h"
 
 Inspector::Inspector(QWidget *parent, int _width, int _height)
     : QWidget{parent}
@@ -31,8 +32,42 @@ QWidget* Inspector::InspectorWidget(){
 void Inspector::AddUserTab(QString _userName){
     QWidget* userInspectorTab = new  QWidget(this);
     users.append(userInspectorTab);
-    inspectorText= new QLabel("this is the Ispector:\n a formattd file will go here");
+    inspectorText= new QLabel( _userName + " infos will be displayed here;");
     inspectorTabs->addTab(userInspectorTab,_userName);
     inspectorLayout = new QGridLayout(userInspectorTab);
-    inspectorLayout->addWidget(inspectorText,0,0,1,1);
+    inspectorLayout->addWidget(inspectorText,0,0,0,0); //todo: move upper
+}
+
+void Inspector::UpdateInspector(QString _name, int _ID, QList<Node*> _nodes,bool _visibility){
+
+    QList<QString> _users;
+    int _numUsers  =0;
+    QString visibility;
+
+    foreach (Node* n, _nodes) {
+        if( !_users.contains(n->GetUserID())){
+            _users.append(n->GetUserID());
+        }
+    }
+
+    if(_visibility) visibility= "true";
+    else visibility = "false";
+    _numUsers = _users.count();
+    inspectorText->clear();
+    inspectorText->setText("Activity: " + _name + "\n"+"ID : "+ QString::number(_ID) +  "\n" +
+                           "Is visible in timeline : " +  visibility + "\n"+
+                           "\n" +
+                           "this activity has been performed by " + QString::number(_numUsers) +" users  : \n \n" );
+
+    foreach (QString  u, _users){
+        inspectorText->setText(inspectorText->text() +
+                               "User "  +  u + ":\n" );
+        foreach (Node* nn, _nodes) {
+            if(nn->GetUserID()==u){
+                inspectorText->setText(inspectorText->text() +
+                                       "Activity started at: " + QDateTime::fromMSecsSinceEpoch(nn->GetStart()->GetTime()).toString("mm:ss")+" , finished at: " + QDateTime::fromMSecsSinceEpoch(nn->GetFinish()->GetTime()).toString("mm:ss") +"\n" );
+            }
+        }
+    }
+
 }

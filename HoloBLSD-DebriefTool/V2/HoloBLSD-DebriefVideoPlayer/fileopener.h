@@ -15,16 +15,16 @@ class FileOpener: public QObject
 public:
     FileOpener();
 
-    FileOpener(QString _fileName);
-    FileOpener(int _userID);
+    //FileOpener(QString _fileName);
+    FileOpener(QString _userID);
     QList<Activity *> GetAtivities();
     void OpenLog(QString _fileName);
 private:
-    int userID;
+    QString userID;
     int durationTime;
     int errors=0;
     int warnings=0;
-    int activityID;
+    int activityID = 0;
     bool actFound=false;
     QList<Activity*> activities;
 

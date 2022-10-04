@@ -11,7 +11,7 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name, FileOpener* _fileOpene
 
     //left column
     summary = new Summary(this,leftColumnWidth,upperRowHeight/4, "this is the summary");
-    activity = new ActivityList(this, leftColumnWidth,upperRowHeight/4);
+    activity = new ActivityList(this, leftColumnWidth,upperRowHeight/4,_fileOpener);
 
     QVBoxLayout* leftColumn = new QVBoxLayout(this);
     leftColumn->addWidget(summary->SummaryWidget());
@@ -50,17 +50,14 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name, FileOpener* _fileOpene
     connect(timelineWid->GetToolBar(), &TimelineToolBar::Stop, videoPlayer->GetPlayer(),&QMediaPlayer::stop);
     //audio
     connect(timelineWid->GetToolBar(), &TimelineToolBar::Volume, videoPlayer->GetPlayer(),&QMediaPlayer::setVolume);
-    //timelinezoom
+    //timeline
     connect(timelineWid->GetToolBar(), &TimelineToolBar::Zoom, timelineWid->GetTimeline(),&Timeline::SetScale);
-
-
     //durata video -> lunghezza timeline
     connect(videoPlayer->GetPlayer(),&QMediaPlayer::durationChanged,timelineWid->GetTimeline(),&Timeline::SetVideoLength);
     // riproduzione video -> scorrimento timeline
     connect(videoPlayer->GetPlayer(),&QMediaPlayer::positionChanged,timelineWid->GetTimeline(),&Timeline::UpdateVideoCursorX);
     //scorrimento barra -> scorriemnto timeline
     connect(videoPlayer->GetSlider(), &QSlider::sliderMoved,timelineWid->GetTimeline(),&Timeline::UpdateVideoCursorX);
-
     //scorrimento timeline -> scorrimento barra
     connect(timelineWid->GetTimeline(),&Timeline::VideoCursorMoved, videoPlayer->GetSlider(), &QSlider::setValue); //todo, catch this signal in timeline e send back correct value
     //scorrimento timeline -> riproduzione video
@@ -70,10 +67,15 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name, FileOpener* _fileOpene
     //init
     timelineWid->GetToolBar()->PauseTriggered();
     connect(mainWin->GetFileOpener(), &FileOpener::FileRead, timelineWid->GetTimeline(), &Timeline::UpdateTimeline);
-    //connect(mainWin->GetFileOpener(), &FileOpener::FileRead, timelineWid->GetToolBar(), &TimelineToolBar::ZoomOutTriggered);
-
+    connect(mainWin->GetFileOpener(), &FileOpener::FileRead, timelineWid->GetTimeline(), &Timeline::UpdateTimeline);
     connect(videoPlayer->GetPlayer(),&QMediaPlayer::durationChanged,timelineWid->GetToolBar(), &TimelineToolBar::ZoomOutTriggered);
+    connect(mainWin, &MainWindow::userAdded, this, &TabWidget::AddUserToInspector);
 
+    //populate activity list
+    connect(timelineWid->GetTimeline(), &Timeline::AddedActivity, activity, &ActivityList::AddActivityInList);
+    connect(timelineWid->GetTimeline(), &Timeline::FlushedActivities, activity, &ActivityList::FlushActivities);
+    connect(activity, &ActivityList::DoubleClicked, timelineWid->GetTimeline(), &Timeline::UpdateTimeline);
+    connect(activity, &ActivityList::Clicked, inspector, &Inspector::UpdateInspector);
 
 }
 
@@ -92,18 +94,18 @@ void TabWidget::AddUserToInspector(QString _userName){
 
 void TabWidget::AddActivity(QString _text){
     activityIDGenerator++;
-    qDebug()<<"ID : " << activityIDGenerator;
+    qDebug()<<"ID ACtivity: " << activityIDGenerator;
     activity->AddActivityItem(_text);
     Activity* act = new Activity(_text,activityIDGenerator);
-    Node* nod = new Node(new Timestamp(50*activityIDGenerator,"banana", "ughetto"),1 );
+    Node* nod = new Node(new Timestamp(50*activityIDGenerator,"banana", "ughetto"), "userID" );
     nod->SetFinish(new Timestamp(100*activityIDGenerator,"a", "b"));
     act->AddNode(nod);
     activities.append(act);
-
-
-
-    timelineWid->GetTimeline()->DrawActivity(activities.at(activityIDGenerator-1));
+    //timelineWid->GetTimeline()->DrawActivity(activities.at(activityIDGenerator-1));
 }
+
+
+
 
 QString* TabWidget::GetName(){
     return &tabName;

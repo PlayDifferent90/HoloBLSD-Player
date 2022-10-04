@@ -32,16 +32,17 @@ Timeline::~Timeline()
 {
 }
 
-void Timeline::DrawActivity(Activity* _activity){
+void Timeline::DrawActivity(Activity* _activity,int _actRow){
     qDebug()<< "drawing activity " << _activity->GetName();
     if(!_activity->GetNodes().empty()){
         foreach (Node* n, _activity->GetNodes()) {
-                DrawNode(n, _activity->GetActID());
+                DrawNode(n, _actRow); //in caso di problemi di linea: prima era _actRow  <-- _activity->GetActID()
         }
     }        qDebug()<< "    drawing bg for " << _activity->GetName() << "at line "<< drawnNodes << " height (number of nodes) "<< _activity->GetUsersNumber();
 
-    if(_activity->GetActID()%2!=0){
+    if(_actRow%2!=0){  //in caso di problemi di linea: prima era _actRow  <-- _activity->GetActID()
        DrawBackgroundNode(drawnNodes, timelineLength, _activity->GetUsersNumber());
+       //emit signal for left column;
     }
 
     drawnNodes+=_activity->GetUsersNumber();
@@ -65,7 +66,7 @@ void Timeline::DrawNode(Node* _node, int _actID)
     QGraphicsItem *item = scene->addRect(*rect,theme->penBlack,theme->nodeBrush); //#themetag
     item->setPos((float)_node->GetStart()->GetTime()/(float)videoLength *(float)timelineLength,timelineNodeHeight * (1+ drawnNodes));  //user id + actid
 
-    qDebug()<<"drawing :" << _node<< " at "<< (float)item->pos().x()<< " node Lenght = " << (float)nodeLength/(float)videoLength *(float)timelineLength << " , node height"<< QString::number(timelineNodeHeight * (_node->GetUserID())) << " , timeline length " << timelineLength;
+    qDebug()<<"drawing :" << _node<< " at "<< (float)item->pos().x()<< " node Lenght = " << (float)nodeLength/(float)videoLength *(float)timelineLength << " , timeline length " << timelineLength;
     item->setZValue(90);
     if(!_node->GetEvents().empty()){
         foreach (Timestamp* t, _node->GetEvents()) {
@@ -96,6 +97,7 @@ void Timeline::FlushTimeLineElement(){
             scene->removeItem(itm);
         }
     }
+    emit FlushedActivities();
 }
 
 void Timeline::UpdateVideoCursorX(float x){ // todo: this must become %
@@ -144,9 +146,14 @@ void Timeline::UpdateTimeline(){
     FlushTimeLineElement();
     DrawTimeLineAxis();
 
+    int actRow=0;
     if(!fileOpener->GetAtivities().empty()){
         foreach (Activity* act, fileOpener->GetAtivities()) {
-           DrawActivity(act);
+           if(act->GetVisibility()){
+            DrawActivity(act,actRow);
+            actRow++;
+           }
+           emit AddedActivity(act->GetName());
         }
     }
     //qDebug()<<QTime::currentTime().toString() << "Emitting TimelineDrawn";

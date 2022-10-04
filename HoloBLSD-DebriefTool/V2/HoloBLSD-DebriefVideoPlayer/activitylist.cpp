@@ -1,8 +1,10 @@
 #include "activitylist.h"
+#include "qdebug.h"
 
-ActivityList::ActivityList(QWidget *parent, int _width, int _height)
+ActivityList::ActivityList(QWidget *parent, int _width, int _height, FileOpener* _fileOpener)
     : QWidget{parent}
 {
+    fileOpener =_fileOpener;
     //activityList
     activityLabel = new QLabel("Activities");
     activityLabel->setMaximumSize(_width,_height/(8));
@@ -18,6 +20,8 @@ ActivityList::ActivityList(QWidget *parent, int _width, int _height)
     localWidget->setLayout(localLayout);
     localWidget->setMaximumSize(_width,_height*3);
 
+    connect(activityList, &QListWidget::itemClicked, this, &ActivityList::SelectedItem);
+    connect(activityList, &QListWidget::itemDoubleClicked, this, &ActivityList::SwitchItem);
     //todo: connect(activityList, &QListWidget::itemClicked, parent, &TabWidget::ActivityTextInInspector);
 }
 
@@ -32,4 +36,38 @@ QWidget* ActivityList::ActivityWidget(){
 
 ActivityList::~ActivityList(){
     delete this;
+}
+
+void ActivityList::AddActivityInList(QString _name){
+    this->AddActivityItem(_name);
+}
+
+void ActivityList::FlushActivities(){
+    activityList->clear();
+}
+
+void ActivityList::Selected(){
+    qDebug()<<"selected "<< this;
+}
+void ActivityList::Switch(){
+
+}
+
+void ActivityList::SelectedItem(QListWidgetItem *item){
+    foreach(Activity*  act , fileOpener->GetAtivities()){
+        if(act->GetName()==item->text()){
+            emit Clicked(act->GetName(),act->GetActID(),act->GetNodes(),act->GetVisibility());
+            // todo: set timeline highlighted
+        }
+    }
+}
+void ActivityList::SwitchItem(QListWidgetItem *item){
+    foreach(Activity*  act , fileOpener->GetAtivities()){
+        if(act->GetName()==item->text()){
+            act->ActivitySwitch();
+            emit Clicked(act->GetName(),act->GetActID(),act->GetNodes(),act->GetVisibility());
+            //todo: set and change icons
+        }
+    }
+    emit DoubleClicked();
 }

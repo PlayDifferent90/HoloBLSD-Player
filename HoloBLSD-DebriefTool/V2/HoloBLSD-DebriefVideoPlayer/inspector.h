@@ -4,6 +4,8 @@
 #include "qgridlayout.h"
 #include "qlabel.h"
 #include "qtabwidget.h"
+#include "QDateTime"
+#include "node.h"
 #include <QObject>
 #include <QWidget>
 
@@ -27,7 +29,8 @@ private:
      QLabel* inspectorLabel;
      QList<QWidget*> users;
 
-
+public slots:
+     void UpdateInspector(QString name, int ID, QList<Node *> nodes, bool visibility);
 signals:
 
 };

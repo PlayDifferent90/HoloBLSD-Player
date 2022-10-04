@@ -34,7 +34,7 @@ void Activity::ActivitySwitch(){
     isVisibile=!isVisibile;
 }
 
-QList<Node*> Activity::GetNodesByUser(int _user){
+QList<Node*> Activity::GetNodesByUser(QString _user){
     QList<Node*> usersNodes;
     foreach (Node* n, nodes){
         if(n->GetUserID()==_user){
@@ -49,11 +49,15 @@ QString Activity::GetName(){
 }
 
 int Activity::GetUsersNumber(){
-    QList<int> countingUsers;
+    QList<QString> countingUsers;
     foreach(Node* n, nodes){
         if(!countingUsers.contains(n->GetUserID())){
             countingUsers.append(n->GetUserID());
         }
     }
     return countingUsers.count();
+}
+
+bool Activity::GetVisibility(){
+    return isVisibile;
 }

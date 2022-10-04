@@ -10,9 +10,9 @@ class Node : public QObject
     Q_OBJECT
 public:
     explicit Node(QObject *parent = nullptr);
-    Node(Timestamp* _tStart, int _userID);
+    Node(Timestamp* _tStart, QString _userID);
     ~Node();
-    int GetUserID();
+    QString GetUserID();
     void AddEvent(Timestamp* _tEvent, bool _isError, bool _isWarning);
     void SetFinish(Timestamp* _tFinish);
     void NodeSwitch();
@@ -25,7 +25,7 @@ private:
     QList<Timestamp*> tEvents;
     int errors, warning = 0;
     bool isVisible = true;
-    int userID =0; // todo: deve essere assegnato e incrementato da chi apre file per
+    QString userID = "Empty"; // todo: deve essere assegnato e incrementato da chi apre file per
 
 signals:
 

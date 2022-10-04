@@ -6,7 +6,7 @@ Node::Node(QObject *parent)
 {
 
 }
-Node::Node(Timestamp* _tStart, int _userID){
+Node::Node(Timestamp* _tStart, QString _userID){
     tStart = _tStart;
     userID =_userID;
 }
@@ -15,7 +15,7 @@ Node::~Node(){
     delete this;
 }
 
-int Node::GetUserID(){
+QString Node::GetUserID(){
     return userID;
 }
 

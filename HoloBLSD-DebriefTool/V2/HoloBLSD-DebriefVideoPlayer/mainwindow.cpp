@@ -24,6 +24,7 @@ MainWindow::~MainWindow()
 void MainWindow::NewTab(QString _name,FileOpener* _fileOpener){
     TabWidget* newTab = new TabWidget(this,_name,_fileOpener);
     mainTab->addTab(newTab, _name);
+
 }
 
 void MainWindow::on_actionOpenVideo_triggered()
@@ -35,10 +36,12 @@ void MainWindow::on_actionOpenVideo_triggered()
 void MainWindow::on_actionOpenSingleUserFile_triggered()
 {
    QString filename = QFileDialog::getOpenFileName(this,"Open a Log file","","(*.*)"); // check goodness file  --> might use VLC embedded in QT (QTVLC) // open cv
-   fo = new FileOpener( 1);
-   NewTab("new User", fo);
+   QString userName = "Ugo User";// todo: leggere da log
+   fo = new FileOpener( userName);
+   NewTab(userName, fo);
    fo->OpenLog(filename);
-   emit userAdded("new User");
+
+   emit userAdded(userName);
    emit videoAdded(filename);
 }
 
