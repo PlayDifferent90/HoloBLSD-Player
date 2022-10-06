@@ -21,37 +21,23 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::NewTab(QString _name,FileOpener* _fileOpener){
-    TabWidget* newTab = new TabWidget(this,_name,_fileOpener);
-    mainTab->addTab(newTab, _name);
-
-}
-
-void MainWindow::on_actionOpenVideo_triggered()
-{
-    QString fileName = QFileDialog::getOpenFileName(this,"Open a file","","(*.*)"); // check goodness file  --> might use VLC embedded in QT (QTVLC) // open cv
-    emit videoAdded(fileName);
-}
 
 void MainWindow::on_actionOpenSingleUserFile_triggered()
 {
    QString filename = QFileDialog::getOpenFileName(this,"Open a Log file","","(*.*)"); // check goodness file  --> might use VLC embedded in QT (QTVLC) // open cv
    QString userName = "Ugo User";// todo: leggere da log
    fo = new FileOpener( userName);
-   NewTab(userName, fo);
+   files.append(fo);
+
+   TabWidget* newTab = new TabWidget(this,userName,fo,files.length());
+   mainTab->addTab(newTab, userName);
+
    fo->OpenLog(filename);
 
-   emit userAdded(userName);
-   emit videoAdded(filename);
+   emit userAdded(userName, files.length());
+   emit videoAdded(filename,files.length());
 }
 
-void MainWindow::on_actionAddActvity_triggered(){
-    emit addActivity("newAct");
-}
-
-void MainWindow::on_actionOpenFile_triggered()
-{
-}
 
 FileOpener* MainWindow::GetFileOpener(){
     return fo;

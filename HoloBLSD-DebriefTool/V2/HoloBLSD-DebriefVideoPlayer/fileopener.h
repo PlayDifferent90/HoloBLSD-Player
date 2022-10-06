@@ -17,8 +17,12 @@ public:
 
     //FileOpener(QString _fileName);
     FileOpener(QString _userID);
-    QList<Activity *> GetAtivities();
     void OpenLog(QString _fileName);
+    int GetErrors();
+    int GetWarnings();
+    QString GetUser();
+    QList<Activity *> GetActivities();
+    int GetDuration();
 private:
     QString userID;
     int durationTime;
@@ -29,9 +33,10 @@ private:
     QList<Activity*> activities;
 
     //void OpenLog(QUrl videoName);
-    void CreateActivity(int _time, QString _owner, QString _type, QString _msg, int war, int err);
+    //void CreateActivity(int _time, QString _owner, QString _type, QString _msg, int war, int err);
     bool DetectErr(QString _msg);
     bool DetectWar(QString _msg);
+    void CreateActivity(int _time, QString _owner, QString _type, QString _msg);
 signals:
     void FileRead();
 

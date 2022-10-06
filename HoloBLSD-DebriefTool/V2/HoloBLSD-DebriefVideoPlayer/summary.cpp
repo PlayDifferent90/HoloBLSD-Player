@@ -47,5 +47,5 @@ void Summary::SetText(FileOpener* _fo){
     summaryText->setText("User " + _fo->GetUser() + "\n" +
                         "This session lasted : "  + QDateTime::fromMSecsSinceEpoch(_fo->GetDuration()).toString("mm:ss") + "\n" +
                         "Total Errors : " + QString::number(_fo->GetErrors()) + "\n" +
-                        "Total Warning : " + QString::number(_fo->GetWarning()) + "\n");
+                        "Total Warning : " + QString::number(_fo->GetWarnings()) + "\n");
 }

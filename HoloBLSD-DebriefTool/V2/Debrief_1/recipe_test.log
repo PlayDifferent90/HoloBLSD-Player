@@ -1,275 +1,353 @@
 <?xml version="1.0" encoding="Windows-1252"?>
-<LogEntry time="00:00:00.0055071" owner="EvaluationManager" type="Event" msg="consciousness level = Unconscious" />
-<LogEntry time="00:00:00.0425683" owner="EvaluationManager" type="Event" msg="patient breathing = False" />
-<LogEntry time="00:00:04.2769924" owner="EvaluationManager" type="Event" msg="starting evaluation" />
-<LogEntry time="00:00:15.1088204" owner="InitNode" type="NodeCompleted" msg="activity completed correctly" />
-<LogEntry time="00:00:15.1433766" owner="ParallelAndNode" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:00:15.1488847" owner="SceneSafetyNode" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:00:15.1523930" owner="SceneSafetyNode" type="Event" msg="placed debris: 3" />
-<LogEntry time="00:00:15.1604041" owner="ConsciousnessEvaluationNode" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:00:15.1959647" owner="SequentialNode" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:00:15.1984667" owner="CallEmergencyNode" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:00:15.2019720" owner="VictimAlignmentNode" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:00:15.2069800" owner="CPRNode" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:00:16.1635008" owner="SceneSafetyNode" type="NodeTriggered" msg="activity triggered" />
-<LogEntry time="00:00:16.1755204" owner="SceneSafetyNode" type="Event" msg="debris removed: brokenBrick3" />
-<LogEntry time="00:00:20.4499646" owner="SceneSafetyNode" type="Event" msg="debris removed: bottle" />
-<LogEntry time="00:00:23.5496937" owner="SceneSafetyNode" type="Event" msg="debris removed: Knife_01" />
-<LogEntry time="00:00:23.5529618" owner="SceneSafetyNode" type="NodeCompleted" msg="activity completed correctly" />
-<LogEntry time="00:00:28.3769175" owner="ConsciousnessEvaluationNode" type="Event" msg="start voice detection" />
-<LogEntry time="00:00:28.3859329" owner="ConsciousnessEvaluationNode" type="Event" msg="start consciousness evaluation" />
-<LogEntry time="00:00:33.4417211" owner="ConsciousnessEvaluationNode" type="Event" msg="Patient observed" />
-<LogEntry time="00:00:33.4467271" owner="ConsciousnessEvaluationNode" type="NodeCompleted" msg="activity completed correctly" />
-<LogEntry time="00:00:38.2025402" owner="CallEmergencyNode" type="Event" msg="phone call started" />
-<LogEntry time="00:00:38.2048452" owner="CallEmergencyNode" type="NodeTriggered" msg="activity triggered" />
-<LogEntry time="00:00:42.8497269" owner="PhoneBox" type="Event" msg="operator picking up" />
-<LogEntry time="00:00:50.2132541" owner="PhoneBox" type="Event" msg="PickingUp completed " />
-<LogEntry time="00:00:55.8381297" owner="PhoneBox" type="Event" msg="HowOld completed " />
-<LogEntry time="00:01:00.7672803" owner="PhoneBox" type="Event" msg="Consciousness completed " />
-<LogEntry time="00:01:05.5300096" owner="PhoneBox" type="Event" msg="Consciousness completed " />
-<LogEntry time="00:01:05.5340142" owner="PhoneBox" type="Event" msg="Breath completed " />
-<LogEntry time="00:01:10.6930989" owner="PhoneBox" type="Event" msg="Breath completed " />
-<LogEntry time="00:01:10.7036169" owner="PhoneBox" type="Event" msg="EndCall completed " />
-<LogEntry time="00:01:15.6945237" owner="CallEmergencyNode" type="NodeCompleted" msg="activity completed correctly" />
-<LogEntry time="00:01:15.7215345" owner="SequentialNode" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:01:15.7250428" owner="AskDefibrillatorNode" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:01:21.5675690" owner="AskDefibrillatorNode" type="NodeTriggered" msg="activity triggered" />
-<LogEntry time="00:01:21.5715746" owner="AskDefibrillatorNode" type="Event" msg="requested attention of NPC" />
-<LogEntry time="00:01:27.2279933" owner="AskDefibrillatorNode" type="Event" msg="asked defibrillator to NPC" />
-<LogEntry time="00:01:30.6942135" owner="WalkingObserver" type="Event" msg="going to take the defibrillator" />
-<LogEntry time="00:01:30.6977228" owner="AskDefibrillatorNode" type="NodeCompleted" msg="activity completed correctly" />
-<LogEntry time="00:01:30.7257646" owner="WaitRandomNode" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:01:34.2881110" owner="VictimAlignmentNode" type="Event" msg="victim aligned" />
-<LogEntry time="00:01:34.2966263" owner="VictimAlignmentNode" type="NodeCompleted" msg="activity completed correctly" />
-<LogEntry time="00:01:43.7471817" owner="CPRNode" type="Event" msg="CPR triggered 86805.2533" />
-<LogEntry time="00:01:43.7521896" owner="CPRNode" type="NodeTriggered" msg="activity triggered" />
-<LogEntry time="00:01:44.3464889" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:44.9479849" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:45.6456782" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:46.2787411" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:46.8450016" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:47.5440261" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:48.1771126" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:48.7759945" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:49.3433055" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:49.9759687" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:50.6080272" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:51.2429305" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:51.8405155" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:52.4399320" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:53.0395179" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:53.6393400" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:54.2050244" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:54.8064693" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:55.4040426" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:56.0368534" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:56.7366715" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:57.4359905" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:57.9682864" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:58.6012972" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:59.2007934" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:01:59.8342620" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:02:00.4335594" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:02:01.0353183" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:02:01.6322447" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:02:02.2369467" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:02:02.8317088" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:02:03.4305965" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:02:03.9966965" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:02:04.5639701" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:02:05.1292892" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:02:05.7288140" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:02:05.7358228" owner="CPRNode" type="NodeCompleted" msg="activity completed correctly" />
-<LogEntry time="00:02:05.7443380" owner="WaitRandomNode" type="NodeCompleted" msg="activity completed correctly" />
-<LogEntry time="00:02:05.7668746" owner="DefibrillatorManagementNode" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:02:05.7733841" owner="DefibrillatorArrivesNode" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:02:05.8059366" owner="WalkingObserver" type="Event" msg="returning to place the defibrillator" />
-<LogEntry time="00:02:16.0078427" owner="DefibrillatorArrivesNode" type="Event" msg="defibrillator placed" />
-<LogEntry time="00:02:16.0253704" owner="DefibrillatorArrivesNode" type="NodeCompleted" msg="activity completed correctly" />
-<LogEntry time="00:02:16.0689421" owner="ParallelAndNode" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:02:16.0754516" owner="DefibrillatorTurnOnNode" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:02:16.0959855" owner="DefibrillationInitNode" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:02:21.4499094" owner="DefibrillatorTurnOnNode" type="Event" msg="defibrillator turned on" />
-<LogEntry time="00:02:24.9466527" owner="DefibrillatorTurnOnNode" type="NodeCompleted" msg="activity completed correctly" />
-<LogEntry time="00:02:29.3617903" owner="FibrillationTrigger" type="Event" msg="paddle in place" />
-<LogEntry time="00:02:29.3678016" owner="DefibrillationInitNode" type="NodeTriggered" msg="activity triggered" />
-<LogEntry time="00:02:35.8538417" owner="FibrillationTrigger" type="Event" msg="paddle in place" />
-<LogEntry time="00:03:00.9054787" owner="DefibrillationInitNode" type="Event" msg="ready to discharge" />
-<LogEntry time="00:03:00.9094872" owner="DefibrillationInitNode" type="NodeCompleted" msg="activity completed correctly" />
-<LogEntry time="00:03:00.9345268" owner="ParallelAndNode" type="NodeCompleted" msg="activity completed correctly" />
-<LogEntry time="00:03:00.9685119" owner="DefibrillatorManagementNode" type="NodeCompleted" msg="activity completed correctly" />
-<LogEntry time="00:03:01.0020530" owner="DefibrillatorDischarge" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:03:01.0050601" owner="ParallelAndNode" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:03:01.0145747" owner="DefibrillationSecurityProtocol" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:03:01.0270936" owner="DefibrillationNode" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:03:01.3702534" owner="DefibrillationSecurityProtocol" type="NodeTriggered" msg="activity triggered" />
-<LogEntry time="00:03:08.2329924" owner="DefibrillatorDischarge" type="NodeCompleted" msg="activity completed correctly" />
-<LogEntry time="00:03:08.2395019" owner="DefibrillationNode" type="Event" msg="ERROR: defibrillator discharged when user was in security area" />
-<LogEntry time="00:03:08.2450110" owner="DefibrillationNode" type="NodeCompleted" msg="activity completed correctly" />
-<LogEntry time="00:03:08.2585342" owner="CompressAndDischarge" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:03:08.2615876" owner="CPRNode" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:03:22.7310925" owner="CPRNode" type="Event" msg="CPR triggered 12605.348" />
-<LogEntry time="00:03:22.7340888" owner="CPRNode" type="NodeTriggered" msg="activity triggered" />
-<LogEntry time="00:03:23.3644626" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:23.9640465" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:24.5972896" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:25.1971561" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:25.7963432" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:26.3971668" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:26.9942880" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:27.5948585" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:28.2268630" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:28.7927148" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:29.3933178" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:29.9593133" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:30.5590676" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:31.0910051" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:31.6582069" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:32.2250355" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:32.8227879" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:33.4228700" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:33.9556938" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:34.5551713" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:35.0874574" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:35.6874056" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:36.2537508" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:36.8731300" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:37.4362701" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:38.0685699" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:38.6347240" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:39.2343404" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:39.9000690" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:40.4995298" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:41.0992762" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:41.7029345" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:42.2986891" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:42.8648087" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:43.4643759" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:44.0636388" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:44.7307804" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:45.2968793" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:45.8962594" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:46.4613658" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:03:47.0954104" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:09.9418230" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:10.4750062" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:11.0415009" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:11.5752995" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:12.1398004" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:12.6456378" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:13.2051820" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:13.7400184" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:14.2711899" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:14.8384842" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:15.4375964" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:16.0039799" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:16.5692252" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:17.1365973" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:17.7354043" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:18.3018479" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:18.9012437" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:19.4664259" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:20.0689145" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:20.6660122" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:21.1994247" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:21.7697291" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:22.3644626" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:22.8980091" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:23.4977407" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:24.0648292" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:24.6634639" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:25.2290351" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:25.7954865" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:26.3950832" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:26.9614028" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:27.5268243" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:28.0597987" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:28.6597646" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:29.2260447" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:29.8255469" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:30.3913298" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:30.9916059" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:31.5571180" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:32.1236186" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:32.6893680" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:33.2556629" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:33.8557313" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:34.4568217" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:35.0873383" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:35.7203500" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:36.3205641" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:36.9194045" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:37.5518895" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:38.1959529" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:38.8210372" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:39.4500640" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:40.0849771" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:40.6501298" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:41.2483007" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:41.8185894" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:42.4152390" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:42.9841688" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:43.5805122" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:44.1465590" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:44.7466145" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:45.3140496" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:45.9131373" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:46.5113417" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:47.1107394" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:47.7108314" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:48.2761348" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:48.8769278" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:49.4759071" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:50.0418751" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:50.6086023" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:51.1742207" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:51.8058756" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:52.3719647" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:52.9399827" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:53.5054800" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:54.1052037" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:54.7041870" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:55.2369802" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:55.7692339" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:56.3368108" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:56.8690221" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:57.4357128" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:58.0021573" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:58.6012400" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:59.1672514" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:04:59.7340543" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:05:00.3010139" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:05:00.8692909" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:05:01.4313262" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:05:01.9979923" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:05:02.5643886" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:05:03.1649365" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:05:03.7639246" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:05:04.2968468" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:05:04.8651051" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:05:05.4278317" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:05:05.9942447" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:05:06.5609000" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:05:07.1263658" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:05:07.6938078" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:05:08.2920811" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:05:08.8588506" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:05:21.0516802" owner="DefibrillationNode" type="Event" msg="defibrillator recharged" />
-<LogEntry time="00:05:21.0556828" owner="CompressAndDischarge" type="Event" msg="defibrillator recharged" />
-<LogEntry time="00:05:21.0591931" owner="CPRNode" type="NodeCompleted" msg="activity completed correctly" />
-<LogEntry time="00:05:21.0882383" owner="DefibrillatorDischarge" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:05:21.0922438" owner="ParallelAndNode" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:05:21.0942466" owner="DefibrillationSecurityProtocol" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:05:21.0972527" owner="DefibrillationNode" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:05:22.7478837" owner="DefibrillationSecurityProtocol" type="NodeTriggered" msg="activity triggered" />
-<LogEntry time="00:05:26.1294340" owner="DefibrillatorDischarge" type="NodeCompleted" msg="activity completed correctly" />
-<LogEntry time="00:05:26.1324401" owner="DefibrillationNode" type="Event" msg="ERROR: defibrillator discharged when user was in security area" />
-<LogEntry time="00:05:26.1339397" owner="DefibrillationNode" type="NodeCompleted" msg="activity completed correctly" />
-<LogEntry time="00:05:26.1434593" owner="CompressAndDischarge" type="NodeCompleted" msg="activity completed correctly" />
-<LogEntry time="00:05:26.7173970" owner="AmbulanceComing" type="NodeStarted" msg="activity started training mode False" />
-<LogEntry time="00:05:27.3974109" owner="AmbulanceComing" type="Event" msg="ambulance started" />
-<LogEntry time="00:05:37.4034744" owner="AmbulanceComing" type="Event" msg="ambulance arrived" />
-<LogEntry time="00:05:37.4089845" owner="ParallelAndNode" type="NodeCompleted" msg="activity completed correctly" />
-<LogEntry time="00:05:37.4124918" owner="AmbulanceComing" type="NodeCompleted" msg="activity completed correctly" />
-<LogEntry time="00:05:37.4350285" owner="SequentialNode" type="NodeCompleted" msg="activity completed correctly" />
-<LogEntry time="00:05:46.8312076" owner="EvaluationManager" type="NodeCompleted" msg="ending mode Evaluation" />
+<LogEntry time="00:00:00.0060103" owner="EvaluationManager" type="Event" msg="consciousness level = Unconscious" />
+<LogEntry time="00:00:00.0430715" owner="EvaluationManager" type="Event" msg="patient breathing = False" />
+<LogEntry time="00:00:04.0679378" owner="EvaluationManager" type="Event" msg="starting evaluation" />
+<LogEntry time="00:00:14.9864621" owner="InitNode" type="NodeCompleted" msg="activity completed correctly" />
+<LogEntry time="00:00:15.0250239" owner="ParallelAndNode" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:00:15.0315364" owner="SceneSafetyNode" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:00:15.0345405" owner="SceneSafetyNode" type="Event" msg="placed debris: 3" />
+<LogEntry time="00:00:15.0430105" owner="ConsciousnessEvaluationNode" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:00:15.0780669" owner="SequentialNode" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:00:15.0815742" owner="CallEmergencyNode" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:00:15.0847024" owner="VictimAlignmentNode" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:00:15.0885091" owner="CPRNode" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:00:17.2393956" owner="SceneSafetyNode" type="NodeTriggered" msg="activity triggered" />
+<LogEntry time="00:00:17.2514142" owner="SceneSafetyNode" type="Event" msg="debris removed: concreteDebris8" />
+<LogEntry time="00:00:18.9612787" owner="SceneSafetyNode" type="Event" msg="debris removed: conserv_8" />
+<LogEntry time="00:00:20.1613425" owner="SceneSafetyNode" type="Event" msg="debris removed: bottle" />
+<LogEntry time="00:00:20.1643487" owner="SceneSafetyNode" type="NodeCompleted" msg="activity completed correctly" />
+<LogEntry time="00:00:22.2941824" owner="ConsciousnessEvaluationNode" type="Event" msg="start voice detection" />
+<LogEntry time="00:00:22.2996925" owner="ConsciousnessEvaluationNode" type="Event" msg="start consciousness evaluation" />
+<LogEntry time="00:00:24.7569642" owner="ConsciousnessEvaluationNode" type="Event" msg="Patient observed" />
+<LogEntry time="00:00:24.7619731" owner="ConsciousnessEvaluationNode" type="NodeCompleted" msg="activity completed correctly" />
+<LogEntry time="00:00:32.4177430" owner="CallEmergencyNode" type="Event" msg="phone call started" />
+<LogEntry time="00:00:32.4207491" owner="CallEmergencyNode" type="NodeTriggered" msg="activity triggered" />
+<LogEntry time="00:00:37.0811971" owner="PhoneBox" type="Event" msg="operator picking up" />
+<LogEntry time="00:00:45.8428374" owner="PhoneBox" type="Event" msg="PickingUp completed " />
+<LogEntry time="00:00:51.3344516" owner="PhoneBox" type="Event" msg="HowOld completed " />
+<LogEntry time="00:00:55.9313789" owner="PhoneBox" type="Event" msg="Consciousness completed " />
+<LogEntry time="00:01:00.4293707" owner="PhoneBox" type="Event" msg="Consciousness completed " />
+<LogEntry time="00:01:00.4343786" owner="PhoneBox" type="Event" msg="Breath completed " />
+<LogEntry time="00:01:05.4574834" owner="PhoneBox" type="Event" msg="Breath completed " />
+<LogEntry time="00:01:05.4604876" owner="PhoneBox" type="Event" msg="EndCall completed " />
+<LogEntry time="00:01:10.4582386" owner="CallEmergencyNode" type="NodeCompleted" msg="activity completed correctly" />
+<LogEntry time="00:01:10.4852810" owner="SequentialNode" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:01:10.4897897" owner="AskDefibrillatorNode" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:01:12.4173363" owner="VictimAlignmentNode" type="Event" msg="victim aligned" />
+<LogEntry time="00:01:12.4253474" owner="VictimAlignmentNode" type="NodeCompleted" msg="activity completed correctly" />
+<LogEntry time="00:01:15.6350480" owner="AskDefibrillatorNode" type="NodeTriggered" msg="activity triggered" />
+<LogEntry time="00:01:15.6405611" owner="AskDefibrillatorNode" type="Event" msg="requested attention of NPC" />
+<LogEntry time="00:01:20.6591611" owner="AskDefibrillatorNode" type="Event" msg="asked defibrillator to NPC" />
+<LogEntry time="00:01:24.0949960" owner="WalkingObserver" type="Event" msg="going to take the defibrillator" />
+<LogEntry time="00:01:24.0985023" owner="AskDefibrillatorNode" type="NodeCompleted" msg="activity completed correctly" />
+<LogEntry time="00:01:24.1125217" owner="WaitRandomNode" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:01:32.4168283" owner="CPRNode" type="Event" msg="CPR triggered 75971.0395" />
+<LogEntry time="00:01:32.4243234" owner="CPRNode" type="NodeTriggered" msg="activity triggered" />
+<LogEntry time="00:01:32.8832168" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:33.3493129" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:33.7505768" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:34.2177934" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:34.6814082" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:35.1137053" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:35.6141587" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:36.0468417" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:36.5456931" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:37.0822448" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:37.5453790" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:38.0449739" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:38.5788108" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:39.0773363" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:39.5765451" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:40.0763447" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:40.5097013" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:41.0092863" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:41.4753479" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:42.0086974" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:42.4752583" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:43.2745486" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:43.7405885" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:44.2748282" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:44.7389875" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:45.2391721" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:45.7042373" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:46.1734330" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:46.6709571" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:47.2041777" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:47.7032674" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:48.3038655" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:48.9021723" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:49.4694686" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:49.9349601" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:51.3698999" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:01:51.3784132" owner="CPRNode" type="NodeCompleted" msg="activity completed correctly" />
+<LogEntry time="00:01:51.3944413" owner="WaitRandomNode" type="NodeCompleted" msg="activity completed correctly" />
+<LogEntry time="00:01:51.4084647" owner="DefibrillatorManagementNode" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:01:51.4129694" owner="DefibrillatorArrivesNode" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:01:51.4450227" owner="WalkingObserver" type="Event" msg="returning to place the defibrillator" />
+<LogEntry time="00:02:01.6784208" owner="DefibrillatorArrivesNode" type="Event" msg="defibrillator placed" />
+<LogEntry time="00:02:01.7023044" owner="DefibrillatorArrivesNode" type="NodeCompleted" msg="activity completed correctly" />
+<LogEntry time="00:02:01.7458771" owner="ParallelAndNode" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:02:01.7573866" owner="DefibrillatorTurnOnNode" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:02:01.7869300" owner="DefibrillationInitNode" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:02:04.1096072" owner="DefibrillatorTurnOnNode" type="Event" msg="defibrillator turned on" />
+<LogEntry time="00:02:07.6281968" owner="DefibrillatorTurnOnNode" type="NodeCompleted" msg="activity completed correctly" />
+<LogEntry time="00:02:13.6196816" owner="FibrillationTrigger" type="Event" msg="paddle in place" />
+<LogEntry time="00:02:13.6256899" owner="DefibrillationInitNode" type="NodeTriggered" msg="activity triggered" />
+<LogEntry time="00:02:20.0949467" owner="FibrillationTrigger" type="Event" msg="paddle in place" />
+<LogEntry time="00:02:32.9383236" owner="DefibrillationInitNode" type="Event" msg="ready to discharge" />
+<LogEntry time="00:02:32.9418319" owner="DefibrillationInitNode" type="NodeCompleted" msg="activity completed correctly" />
+<LogEntry time="00:02:32.9677144" owner="ParallelAndNode" type="NodeCompleted" msg="activity completed correctly" />
+<LogEntry time="00:02:32.9999410" owner="DefibrillatorManagementNode" type="NodeCompleted" msg="activity completed correctly" />
+<LogEntry time="00:02:33.0360027" owner="DefibrillatorDischarge" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:02:33.0380025" owner="ParallelAndNode" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:02:33.0465158" owner="DefibrillationSecurityProtocol" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:02:33.0580726" owner="DefibrillationNode" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:02:35.9093582" owner="DefibrillatorDischarge" type="NodeCompleted" msg="activity completed correctly" />
+<LogEntry time="00:02:35.9153695" owner="DefibrillationNode" type="Event" msg="ERROR: defibrillator discharged when user was in security area" />
+<LogEntry time="00:02:35.9208796" owner="DefibrillationNode" type="NodeCompleted" msg="activity completed correctly" />
+<LogEntry time="00:02:35.9364016" owner="CompressAndDischarge" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:02:35.9389065" owner="CPRNode" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:02:42.4266560" owner="CPRNode" type="Event" msg="CPR triggered 4846.901" />
+<LogEntry time="00:02:42.4346681" owner="CPRNode" type="NodeTriggered" msg="activity triggered" />
+<LogEntry time="00:02:42.9242629" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:43.3919777" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:43.8598905" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:44.2901907" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:44.7562011" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:45.1908298" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:45.6569801" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:46.1220364" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:46.5879385" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:47.0226883" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:47.4874305" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:47.9207555" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:48.3877782" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:48.8211288" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:49.2861969" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:49.7179859" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:50.1849416" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:50.6176227" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:51.0862158" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:51.5173865" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:51.9842959" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:52.4499794" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:52.9174028" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:53.3490982" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:53.8167146" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:54.3145725" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:54.7813077" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:55.2492057" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:55.7161052" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:56.1473054" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:56.6136910" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:57.0462874" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:57.5456518" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:58.0121506" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:58.4782240" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:58.9773000" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:59.4116549" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:02:59.8764621" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:00.3474696" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:00.8103568" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:01.2756602" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:01.7093545" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:02.1752025" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:02.6092128" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:03.1081814" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:03.5740973" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:04.0067862" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:04.5084823" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:08.3034509" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:08.7734236" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:09.2363934" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:09.7355333" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:14.5147712" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:14.9816757" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:15.4819135" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:15.9480155" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:37.5949492" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:38.0619118" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:38.5280916" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:39.0275328" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:39.4908955" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:39.9617701" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:40.4259195" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:40.8981766" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:41.3917965" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:41.8640349" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:42.3259354" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:42.7915697" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:43.2572187" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:43.7567929" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:44.2564675" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:44.6900180" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:45.1883534" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:03:45.6544594" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:00.2788308" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:00.8086189" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:01.2767364" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:01.7762052" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:02.2761289" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:02.8077671" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:03.1414605" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:14.8302595" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:15.3302019" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:15.8295968" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:16.1331964" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:20.1763643" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:20.6759523" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:21.1749947" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:21.6759582" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:22.1435687" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:22.6414748" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:23.1421527" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:23.6074227" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:24.0734469" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:24.6067984" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:25.0724702" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:25.5734543" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:26.0714530" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:26.5372675" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:27.0368781" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:27.5035915" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:28.0031933" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:28.5032016" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:28.9690929" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:29.4683500" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:29.9681811" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:30.4337701" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:30.9332330" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:31.4335781" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:31.9326934" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:32.4667874" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:36.3974671" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:36.8286752" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:37.3287091" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:37.8380677" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:38.3290301" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:38.7952759" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:39.2936232" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:39.7600865" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:40.2591359" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:40.7619554" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:41.2589616" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:45.1556493" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:45.6217976" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:46.1256461" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:46.6215189" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:47.1207189" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:47.6540645" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:48.1196880" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:48.6210374" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:50.5675257" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:51.0676227" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:51.6007281" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:52.1335252" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:52.6331959" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:53.1658985" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:53.6646396" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:54.1636003" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:54.7308582" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:55.2309700" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:55.7297594" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:56.2624738" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:56.7625787" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:57.2620228" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:57.7606419" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:58.2944956" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:58.7944114" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:59.2603332" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:04:59.7612140" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:00.2590472" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:00.7582098" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:01.2249361" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:01.7241863" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:02.2236964" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:02.7235748" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:03.2236314" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:03.7227004" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:04.2221416" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:04.7554400" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:05.2891381" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:05.8210550" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:06.3543395" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:06.8875020" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:07.3867601" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:07.8861875" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:08.4193342" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:08.9520565" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:09.4845100" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:10.0532351" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:10.5179999" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:11.0178655" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:11.5170349" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:12.0167922" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:12.5486215" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:13.0488356" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:13.5171058" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:14.0149056" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:14.5474882" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:15.0136965" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:15.5133258" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:16.0136689" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:16.5122023" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:17.0445239" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:35.4975852" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:38.0109030" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:38.5103423" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:39.0104078" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:39.4770169" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:40.0099243" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:40.5094285" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:40.9746857" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:41.4755291" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:41.9750402" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:42.4408527" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:42.9419343" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:43.4058002" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:43.9057574" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:44.4056555" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:44.9058903" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:45.4379322" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:45.9386289" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:46.4375354" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:46.9378628" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:47.4367556" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:47.9367797" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:48.4362308" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:48.9350241" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:49.4352126" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:49.9346036" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:50.4345775" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:50.9342177" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:51.4333635" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:51.9332881" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:52.4322124" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:54.3650761" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:54.8665654" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:55.3304825" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:55.7970473" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:56.2965614" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:58.3446555" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:58.8443626" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:06:00.9468615" owner="DefibrillationNode" type="Event" msg="defibrillator recharged" />
+<LogEntry time="00:06:00.9503688" owner="CompressAndDischarge" type="Event" msg="defibrillator recharged" />
+<LogEntry time="00:06:00.9528728" owner="CPRNode" type="NodeCompleted" msg="activity completed correctly" />
+<LogEntry time="00:06:00.9824182" owner="DefibrillatorDischarge" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:06:00.9899340" owner="ParallelAndNode" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:06:00.9929372" owner="DefibrillationSecurityProtocol" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:06:00.9954421" owner="DefibrillationNode" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:06:01.0159760" owner="DefibrillationSecurityProtocol" type="NodeTriggered" msg="activity triggered" />
+<LogEntry time="00:06:02.5087974" owner="DefibrillationSecurityProtocol" type="Event" msg="completed first warning message" />
+<LogEntry time="00:06:14.4007952" owner="DefibrillationSecurityProtocol" type="NodeCompleted" msg="activity completed correctly" />
+<LogEntry time="00:06:24.8382725" owner="DefibrillatorDischarge" type="NodeCompleted" msg="activity completed correctly" />
+<LogEntry time="00:06:24.8407765" owner="DefibrillationNode" type="Event" msg="ERROR: defibrillator discharged when user was in security area" />
+<LogEntry time="00:06:24.8422771" owner="DefibrillationNode" type="NodeCompleted" msg="activity completed correctly" />
+<LogEntry time="00:06:24.8603070" owner="CompressAndDischarge" type="NodeCompleted" msg="activity completed correctly" />
+<LogEntry time="00:06:25.4152134" owner="AmbulanceComing" type="NodeStarted" msg="activity started training mode False" />
+<LogEntry time="00:06:26.0908663" owner="AmbulanceComing" type="Event" msg="ambulance started" />
+<LogEntry time="00:06:36.0973818" owner="AmbulanceComing" type="Event" msg="ambulance arrived" />
+<LogEntry time="00:06:36.1018895" owner="ParallelAndNode" type="NodeCompleted" msg="activity completed correctly" />
+<LogEntry time="00:06:36.1043925" owner="AmbulanceComing" type="NodeCompleted" msg="activity completed correctly" />
+<LogEntry time="00:06:36.1289328" owner="SequentialNode" type="NodeCompleted" msg="activity completed correctly" />
+<LogEntry time="00:06:45.5242120" owner="EvaluationManager" type="NodeCompleted" msg="ending mode Evaluation" />

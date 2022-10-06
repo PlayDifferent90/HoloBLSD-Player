@@ -12,9 +12,9 @@ public:
     ~Timestamp();
     int GetTime();
 private:
-    int time;
-    QString type;
-    QString msg;
+    int time  = 0;
+    QString type = "timestamp TYPE init";
+    QString msg = "timestamp MSG init";
 signals:
 
 };

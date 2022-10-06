@@ -9,7 +9,7 @@ FileOpener::FileOpener(QString _userID)
     //OpenLog(_fileName);
 
 
-}
+ }
 void FileOpener::OpenLog(QString _fileName)
 {
 
@@ -26,9 +26,11 @@ void FileOpener::OpenLog(QString _fileName)
        qDebug()<<"reading file ...";
        while (!in.atEnd())
        {
+          qDebug()<<"Reading line ";
           QString line = in.readLine();
           QRegularExpressionMatch match = regEx.match(line);
           if(match.hasMatch()){
+              qDebug()<<"Matcha t line "<<i;
               i++;
               errors =0;
               warnings =0;
@@ -41,7 +43,7 @@ void FileOpener::OpenLog(QString _fileName)
               QString msg = match.captured("msg");
 
               int totMillis = millis/10000 + 1000*(ss + 60*(mm + 60*(hh)));
-              CreateActivity(totMillis, owner, type,msg,warnings,errors);
+              CreateActivity(totMillis, owner, type,msg);//,warnings,errors);
           }
        }
        inputFile.close();
@@ -72,9 +74,10 @@ bool FileOpener::DetectWar(QString _msg){
     return false;
 }
 
-void FileOpener::CreateActivity(int _time, QString _owner, QString _type, QString _msg, int war, int err)
+void FileOpener::CreateActivity(int _time, QString _owner, QString _type, QString _msg)//, int war, int err)
 {
 
+    qDebug()<< "time = " << _time << "own "<< _owner << "Type "<< _type;
     foreach (Activity* act, activities) {
         if(act->GetName() == _owner){
             if(_type=="Event"){
@@ -127,6 +130,22 @@ void FileOpener::CreateActivity(int _time, QString _owner, QString _type, QStrin
 
 }
 
-QList<Activity*> FileOpener::GetAtivities(){
+QList<Activity*> FileOpener::GetActivities(){
     return activities;
+}
+
+int FileOpener::GetDuration(){
+    return durationTime;
+}
+
+int FileOpener::GetErrors(){
+    return errors;
+}
+
+int FileOpener::GetWarnings(){
+    return warnings;
+}
+
+QString FileOpener::GetUser(){
+    return userID;
 }

@@ -25,9 +25,9 @@ class TabWidget : public QWidget
 public:
     TabWidget(MainWindow *mainWin, QString _name, FileOpener *_fileOpener= nullptr, int _tabNumber =0);
     ~TabWidget();
-    void OpenVideo(QString _fileName);
-    void AddUserToInspector(QString _userName);
     QString *GetName();
+    void OpenVideo(QString _fileName, int _fileNumber);
+    void AddUserToInspector(QString _userName, int _fileNum);
 private:
     QString name;
     QGridLayout* tabLayout;

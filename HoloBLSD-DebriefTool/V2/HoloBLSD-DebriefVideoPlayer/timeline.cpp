@@ -39,7 +39,7 @@ void Timeline::DrawActivity(Activity* _activity,int _actRow){
                 DrawNode(n, _actRow); //in caso di problemi di linea: prima era _actRow  <-- _activity->GetActID()
         }
     }
-    //  qDebug()<< "    drawing bg for " << _activity->GetName() << "at line "<< drawnNodes << " height (number of nodes) "<< _activity->GetUsersNumber();
+    qDebug()<< "    drawing bg for " << _activity->GetName() << "at line "<< drawnNodes << " height (number of nodes) "<< _activity->GetUsersNumber();
 
     if(_actRow%2!=0){  //in caso di problemi di linea: prima era _actRow  <-- _activity->GetActID()
        DrawBackgroundNode(drawnNodes, timelineLength, _activity->GetUsersNumber());
@@ -54,7 +54,7 @@ void Timeline::DrawBackgroundNode(int _posY, int _timeLineLength, int _numUsers)
     QGraphicsItem *itemBG = scene->addRect(*rect,theme->penLineTimeStop, theme->lineBGBrush);
     itemBG->setPos(0,(_posY+1)*timelineNodeHeight);
     itemBG->setZValue(5);
-    //delete rect; //todo: valutare if good
+    delete rect; //todo: valutare if good
 }
 void Timeline::DrawBackgroundNodeSibling(QString _name,int _posY, int _numUsers,int _actRow){
     if(_actRow%2!=0){

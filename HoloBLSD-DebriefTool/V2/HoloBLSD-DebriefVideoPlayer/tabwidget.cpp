@@ -69,8 +69,8 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name, FileOpener* _fileOpene
 
     //init
     timelineWid->GetToolBar()->PauseTriggered();
-    connect(mainWin->GetFileOpener(), &FileOpener::FileRead, timelineWid->GetTimeline(), &Timeline::UpdateTimeline);
     //connect(mainWin->GetFileOpener(), &FileOpener::FileRead, timelineWid->GetTimeline(), &Timeline::UpdateTimeline);
+    connect(mainWin->GetFileOpener(), &FileOpener::FileRead, timelineWid->GetTimeline(), &Timeline::UpdateTimeline);
     connect(mainWin->GetFileOpener(), &FileOpener::FileRead, this, &TabWidget::UpdateSummary);
     connect(videoPlayer->GetPlayer(),&QMediaPlayer::durationChanged,timelineWid->GetToolBar(), &TimelineToolBar::ZoomOutTriggered);
     connect(videoPlayer->GetPlayer(),&QMediaPlayer::durationChanged,timelineWid->GetToolBar(), &TimelineToolBar::VolumeUpTriggered);
@@ -92,17 +92,17 @@ void TabWidget::UpdateSummary(){
         summary->SetText(fo);
 }
 
-void TabWidget::OpenVideo(QString _fileName){//}, int _fileNumber){
-  //  if(tabNum==_fileNumber){
+void TabWidget::OpenVideo(QString _fileName, int _fileNum){
+    if(tabNum==_fileNum){
         videoPlayer->ShowVideo(_fileName);
-    //}
+    }
 
 }
 
-void TabWidget::AddUserToInspector(QString _userName){//, int _fileNum){
-    //if(tabNum==_fileNum){
+void TabWidget::AddUserToInspector(QString _userName, int _fileNum){
+    if(tabNum==_fileNum){
         inspector->AddUserTab(_userName);
-    //}
+    }
 }
 
 

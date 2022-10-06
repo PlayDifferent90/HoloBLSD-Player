@@ -21,26 +21,17 @@ public:
     FileOpener* GetFileOpener();
 
 private slots:
-    void on_actionOpenVideo_triggered();
-
     void on_actionOpenSingleUserFile_triggered();
-
-    void on_actionAddActvity_triggered();
-
-
-    void on_actionOpenFile_triggered();
-
 private:
     Ui::MainWindow *ui;
-    void NewTab(QString _name, FileOpener *_fileOpener);
     QString startUpTabName = "Empty";
     QTabWidget* mainTab;
     QAction* demoAction;
     QList<QString> users;
+    QList<FileOpener*> files;
     FileOpener* fo;
 signals:
-    void userAdded(QString _userName);
-    void videoAdded(QString _fileName);
-    void addActivity(QString actName);
+    void userAdded(QString _userName, int tabID);
+    void videoAdded(QString _fileName, int tabID);
 };
 #endif // MAINWINDOW_H
