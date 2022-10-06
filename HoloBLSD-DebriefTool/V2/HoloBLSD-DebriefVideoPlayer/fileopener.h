@@ -23,6 +23,7 @@ public:
     QString GetUser();
     QList<Activity *> GetActivities();
     int GetDuration();
+    void OpenLogMaster(QList<QString> _files);
 private:
     QString userID;
     int durationTime;
@@ -31,9 +32,6 @@ private:
     int activityID = 0;
     bool actFound=false;
     QList<Activity*> activities;
-
-    //void OpenLog(QUrl videoName);
-    //void CreateActivity(int _time, QString _owner, QString _type, QString _msg, int war, int err);
     bool DetectErr(QString _msg);
     bool DetectWar(QString _msg);
     void CreateActivity(int _time, QString _owner, QString _type, QString _msg);

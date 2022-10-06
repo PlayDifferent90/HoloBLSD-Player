@@ -28,8 +28,10 @@ private:
     QTabWidget* mainTab;
     QAction* demoAction;
     QList<QString> users;
-    QList<FileOpener*> files;
+    QList<QString> files;
     FileOpener* fo;
+    QString filename;
+    void CreateMasterTab();
 signals:
     void userAdded(QString _userName, int tabID);
     void videoAdded(QString _fileName, int tabID);

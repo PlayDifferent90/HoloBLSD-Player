@@ -33,13 +33,13 @@ Timeline::~Timeline()
 }
 
 void Timeline::DrawActivity(Activity* _activity,int _actRow){
-    qDebug()<< "drawing activity " << _activity->GetName();
+  // qDebug()<< "drawing activity " << _activity->GetName();
     if(!_activity->GetNodes().empty()){
         foreach (Node* n, _activity->GetNodes()) {
                 DrawNode(n, _actRow); //in caso di problemi di linea: prima era _actRow  <-- _activity->GetActID()
         }
     }
-    qDebug()<< "    drawing bg for " << _activity->GetName() << "at line "<< drawnNodes << " height (number of nodes) "<< _activity->GetUsersNumber();
+   // qDebug()<< "    drawing bg for " << _activity->GetName() << "at line "<< drawnNodes << " height (number of nodes) "<< _activity->GetUsersNumber();
 
     if(_actRow%2!=0){  //in caso di problemi di linea: prima era _actRow  <-- _activity->GetActID()
        DrawBackgroundNode(drawnNodes, timelineLength, _activity->GetUsersNumber());
@@ -72,6 +72,7 @@ void Timeline::DrawBackgroundNodeSibling(QString _name,int _posY, int _numUsers,
 void Timeline::DrawNode(Node* _node, int _actID)
 {
     int nodeLength = (_node->GetFinish()->GetTime() - _node->GetStart()->GetTime());
+    qDebug()<<"nodeLength"<< nodeLength<<  "videoLength"<< videoLength << "timelineLength"<< timelineLength;
 
     QRectF* rect = new QRectF(0,0,(float)nodeLength/(float)videoLength *(float)timelineLength,timelineNodeHeight);
     QGraphicsItem *item = scene->addRect(*rect,theme->penBlack,theme->nodeBrush); //#themetag
@@ -159,11 +160,11 @@ void Timeline::UpdateTimeline(){
     //qDebug()<< QTime::currentTime().toString() << "entering Update";
     FlushTimeLineElement();
     DrawTimeLineAxis();
-
-    int actRow=0;
+  int actRow=0;
     if(!fileOpener->GetActivities().empty()){
         foreach (Activity* act, fileOpener->GetActivities()) {
            if(act->GetVisibility()){
+               //qDebug()<<"activity "<<act->GetName() << "in tab" << fileOpener->GetUser();
                DrawActivity(act,actRow);
                actRow++;
            }

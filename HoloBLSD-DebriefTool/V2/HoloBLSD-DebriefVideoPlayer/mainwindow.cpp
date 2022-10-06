@@ -24,21 +24,45 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionOpenSingleUserFile_triggered()
 {
-   QString filename = QFileDialog::getOpenFileName(this,"Open a Log file","","(*.*)"); // check goodness file  --> might use VLC embedded in QT (QTVLC) // open cv
-   QString userName = "Ugo User";// todo: leggere da log
-   fo = new FileOpener( userName);
-   files.append(fo);
+   filename = QFileDialog::getOpenFileName(this,"Open a Log file","","(*.*)"); // check goodness file  --> might use VLC embedded in QT (QTVLC) // open cv
+   if(filename !=""){
 
-   TabWidget* newTab = new TabWidget(this,userName,fo,files.length());
-   mainTab->addTab(newTab, userName);
+       QString userName = "User" + QString::number( users.length()+1);// todo: leggere da log
+       fo = new FileOpener( userName);
+       files.append(filename);
+       users.append(userName);
+       TabWidget* newTab = new TabWidget(this,userName,fo,files.length());
+       mainTab->addTab(newTab, userName);
 
-   fo->OpenLog(filename);
+       fo->OpenLog(filename);
 
-   emit userAdded(userName, files.length());
-   emit videoAdded(filename,files.length());
+       emit userAdded(userName, files.length());
+       emit videoAdded(filename,files.length());
+
+       if(files.length()>1){
+           CreateMasterTab();
+       }
+   }
 }
 
 
 FileOpener* MainWindow::GetFileOpener(){
     return fo;
+}
+
+void MainWindow::CreateMasterTab(){
+    QString userName = "Master";// todo: leggere da log
+    fo = new FileOpener( userName);
+
+    TabWidget* newTab = new TabWidget(this,userName,fo,0);  //0= master
+    mainTab->addTab(newTab, userName);
+
+    fo->OpenLogMaster(files);
+
+    emit userAdded(userName,0);
+    emit videoAdded(filename, 0);  //todo: soluzione temporaneea, si dovranno poi associare più video e consenire di scegliere trai video
+    foreach (QString s, users) {
+        emit userAdded(s, 0);
+    }
+    mainTab->tabBar()->moveTab(files.length(),0);
 }
