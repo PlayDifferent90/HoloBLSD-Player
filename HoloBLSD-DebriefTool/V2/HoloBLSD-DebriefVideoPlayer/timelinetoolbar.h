@@ -25,14 +25,14 @@ public:
     void ZoomOutTriggered();
     void ZoomValue();
 
-    const QIcon playIcon = QIcon(":/VideoIcon/VideoPlay.png");
-    const QIcon pauseIcon = QIcon(":/VideoIcon/VideoPlay.png");
-    const QIcon stopIcon = QIcon(":/VideoIcon/VideoPlay.png");
-    const QIcon volumeUpIcon = QIcon(":/VideoIcon/VideoPlay.png");
-    const QIcon volumeDownIcon = QIcon(":/VideoIcon/VideoPlay.png");
-    const QIcon volumeMuteIcon = QIcon(":/VideoIcon/VideoPlay.png");
-    const QIcon zoomInIcon = QIcon(":/VideoIcon/VideoPlay.png");
-    const QIcon zoomOutIcon = QIcon(":/VideoIcon/VideoPlay.png");
+    const QIcon playIcon = QIcon(":/Icons/VideoIcon/VideoPlay.png");
+    const QIcon pauseIcon = QIcon(":/Icons/VideoIcon/VideoPause.png");
+    const QIcon stopIcon = QIcon(":/Icons/VideoIcon/VideoStop.png");
+    const QIcon volumeUpIcon = QIcon(":/Icons/VideoIcon/VolumeUp.png");
+    const QIcon volumeDownIcon = QIcon(":/Icons/VideoIcon/VolumeDown.png");
+    const QIcon volumeMuteIcon = QIcon(":/Icons/VideoIcon/VolumeMute.png");
+    const QIcon zoomInIcon = QIcon(":/Icons/VideoIcon/ZoomIn.png");
+    const QIcon zoomOutIcon = QIcon(":/Icons/VideoIcon/ZoomOut.png");
     QPushButton* playButton;
     QPushButton* pauseButton;
     QPushButton* stopButton;

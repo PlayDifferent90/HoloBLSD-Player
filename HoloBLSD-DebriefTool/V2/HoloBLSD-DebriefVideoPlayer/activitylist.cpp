@@ -25,8 +25,18 @@ ActivityList::ActivityList(QWidget *parent, int _width, int _height, FileOpener*
     //todo: connect(activityList, &QListWidget::itemClicked, parent, &TabWidget::ActivityTextInInspector);
 }
 
-void ActivityList::AddActivityItem(QString _text){
-        activityList->addItem(_text);
+void ActivityList::AddActivityItem(QString _text, bool _visib){
+    QIcon icon;
+    if(_visib){
+        icon = visible;
+        //qDebug()<< "setting visible icon" << _text;
+    }else{
+        icon = invisible;
+        //qDebug()<< "setting invisible icon" << _text;
+    }
+   QListWidgetItem* _itm = new QListWidgetItem(icon, _text);
+   activityList->addItem(_itm);
+
 
 }
 
@@ -38,8 +48,10 @@ ActivityList::~ActivityList(){
     delete this;
 }
 
-void ActivityList::AddActivityInList(QString _name){
-    this->AddActivityItem(_name);
+void ActivityList::AddActivityInList(QString _name,bool _visib){
+
+    this->AddActivityItem(_name,_visib);
+
 }
 
 void ActivityList::FlushActivities(){
@@ -54,7 +66,7 @@ void ActivityList::Switch(){
 }
 
 void ActivityList::SelectedItem(QListWidgetItem *item){
-    foreach(Activity*  act , fileOpener->GetAtivities()){
+    foreach(Activity*  act , fileOpener->GetActivities()){
         if(act->GetName()==item->text()){
             emit Clicked(act->GetName(),act->GetActID(),act->GetNodes(),act->GetVisibility());
             // todo: set timeline highlighted
@@ -62,12 +74,14 @@ void ActivityList::SelectedItem(QListWidgetItem *item){
     }
 }
 void ActivityList::SwitchItem(QListWidgetItem *item){
-    foreach(Activity*  act , fileOpener->GetAtivities()){
+    foreach(Activity*  act , fileOpener->GetActivities()){
         if(act->GetName()==item->text()){
             act->ActivitySwitch();
             emit Clicked(act->GetName(),act->GetActID(),act->GetNodes(),act->GetVisibility());
-            //todo: set and change icons
+
         }
     }
+
+
     emit DoubleClicked();
 }

@@ -1,4 +1,3 @@
-
 #include "timeline.h"
 #include "qapplication.h"
 
@@ -7,7 +6,7 @@ Timeline::Timeline(QWidget *parent) :
     QWidget(parent)
 {
 }
-Timeline::Timeline(QGraphicsView *_view, QWidget *_parent,FileOpener* _fileOpener, int _length)
+Timeline::Timeline(QGraphicsView *_view, QWidget *_parent,FileOpener* _fileOpener, int _length, QGraphicsScene* _sibling)
 {
     theme = new Theme();
     /*create scene*/
@@ -15,7 +14,8 @@ Timeline::Timeline(QGraphicsView *_view, QWidget *_parent,FileOpener* _fileOpene
     scene = view->scene();
     timelineLengthStart = _length;
     SetupTimeline(timelineLengthStart);
-    fileOpener=_fileOpener;
+    fileOpener = _fileOpener;
+    sibling = _sibling;
 
     videoCursor = new timelineCursor(scene->sceneRect().height()*2);// non chiaro perchè *2
 
@@ -38,13 +38,14 @@ void Timeline::DrawActivity(Activity* _activity,int _actRow){
         foreach (Node* n, _activity->GetNodes()) {
                 DrawNode(n, _actRow); //in caso di problemi di linea: prima era _actRow  <-- _activity->GetActID()
         }
-    }        qDebug()<< "    drawing bg for " << _activity->GetName() << "at line "<< drawnNodes << " height (number of nodes) "<< _activity->GetUsersNumber();
+    }
+    //  qDebug()<< "    drawing bg for " << _activity->GetName() << "at line "<< drawnNodes << " height (number of nodes) "<< _activity->GetUsersNumber();
 
     if(_actRow%2!=0){  //in caso di problemi di linea: prima era _actRow  <-- _activity->GetActID()
        DrawBackgroundNode(drawnNodes, timelineLength, _activity->GetUsersNumber());
-       //emit signal for left column;
     }
 
+    DrawBackgroundNodeSibling(_activity->GetName(), drawnNodes, _activity->GetUsersNumber(),_actRow);
     drawnNodes+=_activity->GetUsersNumber();
 }
 
@@ -52,10 +53,20 @@ void Timeline::DrawBackgroundNode(int _posY, int _timeLineLength, int _numUsers)
     QRect* rect= new QRect(0,0,_timeLineLength,_numUsers*timelineNodeHeight);
     QGraphicsItem *itemBG = scene->addRect(*rect,theme->penLineTimeStop, theme->lineBGBrush);
     itemBG->setPos(0,(_posY+1)*timelineNodeHeight);
-    itemBG->setZValue(10);
-
-    //draw rect in colonna sx too
-    delete rect; //todo: valutare if good
+    itemBG->setZValue(5);
+    //delete rect; //todo: valutare if good
+}
+void Timeline::DrawBackgroundNodeSibling(QString _name,int _posY, int _numUsers,int _actRow){
+    if(_actRow%2!=0){
+        QRect* rect= new QRect(0,0,500,_numUsers*timelineNodeHeight);
+        QGraphicsItem *itemBG = sibling->addRect(*rect,theme->penLineTimeStop, theme->lineBGBrush);
+        itemBG->setPos(0,(_posY+1)*timelineNodeHeight);
+        itemBG->setZValue(0);
+    }
+    QGraphicsTextItem  *itemText = sibling->addText(_name);
+    itemText->setDefaultTextColor(Qt::white);
+    itemText->setPos(40,(_posY+1)*timelineNodeHeight );  //long term : auto size font adjustment
+    itemText->setZValue(10);
 }
 
 void Timeline::DrawNode(Node* _node, int _actID)
@@ -66,7 +77,7 @@ void Timeline::DrawNode(Node* _node, int _actID)
     QGraphicsItem *item = scene->addRect(*rect,theme->penBlack,theme->nodeBrush); //#themetag
     item->setPos((float)_node->GetStart()->GetTime()/(float)videoLength *(float)timelineLength,timelineNodeHeight * (1+ drawnNodes));  //user id + actid
 
-    qDebug()<<"drawing :" << _node<< " at "<< (float)item->pos().x()<< " node Lenght = " << (float)nodeLength/(float)videoLength *(float)timelineLength << " , timeline length " << timelineLength;
+    //qDebug()<<"drawing :" << _node<< " at "<< (float)item->pos().x()<< " node Lenght = " << (float)nodeLength/(float)videoLength *(float)timelineLength << " , timeline length " << timelineLength;
     item->setZValue(90);
     if(!_node->GetEvents().empty()){
         foreach (Timestamp* t, _node->GetEvents()) {
@@ -97,6 +108,9 @@ void Timeline::FlushTimeLineElement(){
             scene->removeItem(itm);
         }
     }
+    foreach (QGraphicsItem *itmAct, sibling->items()) {
+            sibling->removeItem(itmAct);
+    }
     emit FlushedActivities();
 }
 
@@ -119,7 +133,7 @@ int nums=0;
         QGraphicsTextItem  *item = scene->addText(QDateTime::fromMSecsSinceEpoch(videoLength*posXPercentage).toString("mm:ss"));
         item->setDefaultTextColor(Qt::white);
         item->setPos(t,verNumberOffset);
-        scene->addRect(QRect(t,verTimelineOffset,1,scene->height()),theme->penLineTimeStop,theme->yellow)->setZValue(1);
+        scene->addRect(QRect(t,verTimelineOffset,1,scene->height()),theme->penLineTimeStop,theme->yellow)->setZValue(10);
         nums++;
     }
 //qDebug()<< "printed " << nums << "numbers";
@@ -147,13 +161,14 @@ void Timeline::UpdateTimeline(){
     DrawTimeLineAxis();
 
     int actRow=0;
-    if(!fileOpener->GetAtivities().empty()){
-        foreach (Activity* act, fileOpener->GetAtivities()) {
+    if(!fileOpener->GetActivities().empty()){
+        foreach (Activity* act, fileOpener->GetActivities()) {
            if(act->GetVisibility()){
-            DrawActivity(act,actRow);
-            actRow++;
+               DrawActivity(act,actRow);
+               actRow++;
            }
-           emit AddedActivity(act->GetName());
+           //qDebug()<<act->GetVisibility();
+           emit AddedActivity(act->GetName(),act->GetVisibility());
         }
     }
     //qDebug()<<QTime::currentTime().toString() << "Emitting TimelineDrawn";

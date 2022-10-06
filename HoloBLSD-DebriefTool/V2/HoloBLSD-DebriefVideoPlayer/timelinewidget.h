@@ -29,7 +29,6 @@ private:
     Timeline* timeline;
     TimelineToolBar* toolbar;
 
-    void DrawBackground(QGraphicsScene *_scene, int _height, int _width);
 signals:
 
 };

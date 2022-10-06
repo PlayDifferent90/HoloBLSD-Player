@@ -43,10 +43,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionOpenVideo"/>
    <addaction name="actionOpenSingleUserFile"/>
-   <addaction name="actionAddActvity"/>
-   <addaction name="actionOpenFile"/>
   </widget>
   <action name="actionOpenVideo">
    <property name="text">

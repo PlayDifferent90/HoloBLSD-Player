@@ -18,6 +18,7 @@
 #include <QBrush>
 #include <QGraphicsItem>
 #include <QPoint>
+#include <QGraphicsScene>
 //#include "graphics_view_zoom.h"
 #include "QVector"
 #include "timelinecursor.h"
@@ -35,7 +36,7 @@ public:
     void SetFrame(int _frame){if(_frame < maxFrame)frame=_frame;}
     Timeline(QWidget *parent);
     Timeline();
-    Timeline(QGraphicsView *_view, QWidget *_parent, FileOpener* _fileOpener, int _length);
+    Timeline(QGraphicsView *_view, QWidget *_parent, FileOpener* _fileOpener, int _length, QGraphicsScene *_sibling);
     void DrawNode(QPointF pos, QRect rect);
     void DrawTimeLineAxis();
     void FlushTimeLineElement();
@@ -44,6 +45,7 @@ public:
     void SetScale(float scale);
 //private:
     QGraphicsScene *scene;
+    QGraphicsScene *sibling;
     QGraphicsView *view;
     timelineCursor *videoCursor;
     Theme* theme;
@@ -82,10 +84,11 @@ public:
 signals:
     void TimelineDrawn();
     void VideoCursorMoved(int t);
-    void AddedActivity(QString name);
+    void AddedActivity(QString name, bool visibility);
     void FlushedActivities();
 private:
     void DrawActivity(Activity *_activity, int _actRow);
+    void DrawBackgroundNodeSibling(QString _name,int _posY, int _numUsers,int _actRow);
 };
 
 #endif // TIMELINE_H

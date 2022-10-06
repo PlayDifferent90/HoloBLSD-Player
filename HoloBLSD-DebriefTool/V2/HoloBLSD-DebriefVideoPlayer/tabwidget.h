@@ -23,11 +23,10 @@ class TabWidget : public QWidget
 {
     Q_OBJECT
 public:
-    TabWidget(MainWindow *mainWin, QString _name, FileOpener *_fileOpener);
+    TabWidget(MainWindow *mainWin, QString _name, FileOpener *_fileOpener= nullptr, int _tabNumber =0);
     ~TabWidget();
-    void OpenVideo(QString fileName);
+    void OpenVideo(QString _fileName);
     void AddUserToInspector(QString _userName);
-    void AddActivity(QString _text);
     QString *GetName();
 private:
     QString name;
@@ -45,6 +44,7 @@ private:
     QGraphicsScene* timelineScene;
     QGraphicsView* timelineView;
     QList<Activity*> activities;
+    FileOpener* fo;
 
     int leftColumnWidth = 350;
     int centralColumnWidth = 750;
@@ -52,6 +52,8 @@ private:
     int upperRowHeight = 720;
     int activityIDGenerator = 0;
     void SetWidgetDimention(MainWindow *_mainWin);
+    void UpdateSummary();
+    int tabNum;
 };
 
 #endif // TABWIDGET_H

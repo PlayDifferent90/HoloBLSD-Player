@@ -4,6 +4,8 @@
 #include "qboxlayout.h"
 #include "qlabel.h"
 #include "qscrollarea.h"
+#include "qdatetime.h"
+#include "fileopener.h"
 #include <QObject>
 #include <QWidget>
 
@@ -20,6 +22,7 @@ public:
     QBoxLayout *SummaryLayout();
     QWidget *SummaryWidget();
     ~Summary();
+    void SetText(FileOpener *_fo);
 private:
     QLabel* summaryLabel;
     QLabel* summaryText;

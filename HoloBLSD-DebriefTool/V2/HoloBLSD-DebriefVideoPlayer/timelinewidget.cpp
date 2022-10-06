@@ -8,9 +8,9 @@ TimelineWidget::TimelineWidget(QWidget *parent,FileOpener* _fileOpener ,int _wid
     toolbarArea = new QScrollArea(this);
     toolbarArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     toolbarArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    toolbarArea->setFixedSize(_width,_height/15);
+    toolbarArea->setFixedSize(_width,_height/13);
     toolbar = new TimelineToolBar(toolbarArea);
-    qDebug()<<toolbarArea->actions();
+    qDebug()<< "toolbar area cations" << toolbarArea->actions();
 
 
 
@@ -40,11 +40,6 @@ TimelineWidget::TimelineWidget(QWidget *parent,FileOpener* _fileOpener ,int _wid
     timelineView = new QGraphicsView(timelineScene);
     timelineView->setInteractive(true);
 
-    timelineScene->setBackgroundBrush(theme->BGTEst);
-    timelineScene->setSceneRect(0,0, 5*_width/6,1500);  // todo: connect this with the new timeline, ogni zoom deve allargare anche scene
-    timelineWidgetLayout->addWidget(timelineView);
-
-    timeline = new Timeline(timelineView,this, _fileOpener, 5*_width/6);
 
     activityScene = new QGraphicsScene();
     activityView = new QGraphicsView(activityScene);
@@ -52,7 +47,12 @@ TimelineWidget::TimelineWidget(QWidget *parent,FileOpener* _fileOpener ,int _wid
 
     activityScene->setBackgroundBrush(theme->BGTEst);
     activityScene->setSceneRect(0,0,_width/6,1000);
-    DrawBackground(activityScene, _width/6,timeline->timelineNodeHeight/* *num of nodes */);
+    timelineScene->setBackgroundBrush(theme->BGTEst);
+    timelineScene->setSceneRect(0,0, 5*_width/6,1500);  // todo: connect this with the new timeline, ogni zoom deve allargare anche scene
+    timelineWidgetLayout->addWidget(timelineView);
+
+    timeline = new Timeline(timelineView,this, _fileOpener, 5*_width/6,activityScene);
+
     activityScrollArea->setWidget(activityView);
 
     connect(activityScrollArea->verticalScrollBar(), &QScrollBar::valueChanged, timelineView->verticalScrollBar(), &QScrollBar::setValue);
@@ -60,12 +60,7 @@ TimelineWidget::TimelineWidget(QWidget *parent,FileOpener* _fileOpener ,int _wid
 
 }
 
-void TimelineWidget::DrawBackground(QGraphicsScene* _scene, int _width, int _height){
-    for (int i =1;i<100;i+=2){
-        _scene->addRect(0,_height*i,_width,_height);
-        //todo: add text
-    }
-}
+
 
 Timeline* TimelineWidget::GetTimeline(){
     return timeline;
