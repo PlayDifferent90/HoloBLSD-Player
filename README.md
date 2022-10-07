@@ -1,4 +1,5 @@
 # HoloBLSD-Player V2
+works with https://codecguide.com/download_kl.htm
 *COMING SOON*
 
 
@@ -13,11 +14,5 @@ Present Classes:
 - TimeLine - graphic representation of activities
 - MainWindow - container for video and timeline
 
-Soon-to-be Classes:
-- VideoPlayer - to have one obj for each user
-- User - to allow multi user debrief
 
-Issues:
-- Graphics artifact make te experince sub optimal
-- video Lag in first seconds of play
-- video no audio
+
