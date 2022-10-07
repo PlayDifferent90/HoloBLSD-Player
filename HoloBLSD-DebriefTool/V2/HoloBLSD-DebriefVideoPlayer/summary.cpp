@@ -8,11 +8,12 @@ Summary::Summary(QWidget *parent, int _width,int _height,QString _text)
     summaryLabel->setMaximumSize(_width,_height/8);
 
     summaryText= new QLabel(_text);
-    summaryText ->setMaximumWidth(_width-30);
+    summaryText ->setMinimumSize(200,100);
 
     summaryScroll = new QScrollArea(this);
     summaryScroll ->setMaximumSize(_width,_height/8*1*7);
     summaryScroll->setWidget(summaryText);
+    summaryScroll->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     localLayout = new QVBoxLayout(this);
     localLayout->addWidget(summaryLabel);
@@ -44,8 +45,8 @@ Summary::~Summary(){
 }
 
 void Summary::SetText(FileOpener* _fo){
-    summaryText->setText("User " + _fo->GetUser() + "\n" +
-                        "This session lasted : "  + QDateTime::fromMSecsSinceEpoch(_fo->GetDuration()).toString("mm:ss") + "\n" +
-                        "Total Errors : " + QString::number(_fo->GetErrors()) + "\n" +
-                        "Total Warning : " + QString::number(_fo->GetWarnings()) + "\n");
+    summaryText->setText("   User " + _fo->GetUser() + "\n" +
+                         "   This session lasted : "  + QDateTime::fromMSecsSinceEpoch(_fo->GetDuration()).toString("mm:ss") + "\n" +
+                         "   Total Errors : " + QString::number(_fo->GetErrors()) + "\n" +
+                         "   Total Warning : " + QString::number(_fo->GetWarnings()) + "\n");
 }

@@ -73,7 +73,7 @@ public:
 
     void DrawBackgroundNode(int posY, int timeLineLength, int numUsers);
     void DrawActivity(Activity *_activity);
-    void DrawNode(Node *_node, int _actID);
+    //void DrawNode(Node *_node, int _actID);
     timelineCursor *GetCursor();
 
     void UpdateTimeline();
@@ -89,6 +89,7 @@ signals:
 private:
     void DrawActivity(Activity *_activity, int _actRow);
     void DrawBackgroundNodeSibling(QString _name,int _posY, int _numUsers,int _actRow);
+    void DrawNode(Node *_node, int _actID, int _usersNumb);
 };
 
 #endif // TIMELINE_H

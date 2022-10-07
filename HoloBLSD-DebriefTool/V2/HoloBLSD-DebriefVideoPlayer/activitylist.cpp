@@ -38,6 +38,7 @@ void ActivityList::AddActivityItem(QString _text, bool _visib){
    activityList->addItem(_itm);
 
 
+
 }
 
 QWidget* ActivityList::ActivityWidget(){
@@ -51,7 +52,11 @@ ActivityList::~ActivityList(){
 void ActivityList::AddActivityInList(QString _name,bool _visib){
 
     this->AddActivityItem(_name,_visib);
-
+   // foreach(Activity*  act , fileOpener->GetActivities()){
+   //     if(act->GetName()==_name){
+   //         emit AddedActivityToList(act->GetName(),act->GetActID(),act->GetNodes(),act->GetVisibility());
+   //     }
+   // }
 }
 
 void ActivityList::FlushActivities(){

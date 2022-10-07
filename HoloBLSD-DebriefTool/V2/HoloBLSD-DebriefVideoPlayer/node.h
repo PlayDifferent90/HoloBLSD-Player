@@ -19,11 +19,14 @@ public:
     Timestamp *GetStart();
     Timestamp *GetFinish();
     QList<Timestamp *> GetEvents();
+    int GetErr();
+    int GetWar();
 private:
     Timestamp* tStart;
     Timestamp* tFinish=NULL;
     QList<Timestamp*> tEvents;
-    int errors, warning = 0;
+    int errors=0;
+    int warnings = 0;
     bool isVisible = true;
     QString userID = "Empty"; // todo: deve essere assegnato e incrementato da chi apre file per
 

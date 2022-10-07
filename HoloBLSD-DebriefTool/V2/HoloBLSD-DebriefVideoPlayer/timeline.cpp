@@ -34,13 +34,17 @@ Timeline::~Timeline()
 
 void Timeline::DrawActivity(Activity* _activity,int _actRow){
   // qDebug()<< "drawing activity " << _activity->GetName();
+    QList<QString>  users;
     if(!_activity->GetNodes().empty()){
+        users.empty();
         foreach (Node* n, _activity->GetNodes()) {
-                DrawNode(n, _actRow); //in caso di problemi di linea: prima era _actRow  <-- _activity->GetActID()
+                if(!users.contains(n->GetUserID())){
+                    users.append(n->GetUserID());
+                }
+                DrawNode(n, _actRow, users.count()); //in caso di problemi di linea: prima era _actRow  <-- _activity->GetActID()
         }
     }
    // qDebug()<< "    drawing bg for " << _activity->GetName() << "at line "<< drawnNodes << " height (number of nodes) "<< _activity->GetUsersNumber();
-
     if(_actRow%2!=0){  //in caso di problemi di linea: prima era _actRow  <-- _activity->GetActID()
        DrawBackgroundNode(drawnNodes, timelineLength, _activity->GetUsersNumber());
     }
@@ -69,14 +73,14 @@ void Timeline::DrawBackgroundNodeSibling(QString _name,int _posY, int _numUsers,
     itemText->setZValue(10);
 }
 
-void Timeline::DrawNode(Node* _node, int _actID)
+void Timeline::DrawNode(Node* _node, int _actID, int _usersNumb)
 {
     int nodeLength = (_node->GetFinish()->GetTime() - _node->GetStart()->GetTime());
     qDebug()<<"nodeLength"<< nodeLength<<  "videoLength"<< videoLength << "timelineLength"<< timelineLength;
 
     QRectF* rect = new QRectF(0,0,(float)nodeLength/(float)videoLength *(float)timelineLength,timelineNodeHeight);
     QGraphicsItem *item = scene->addRect(*rect,theme->penBlack,theme->nodeBrush); //#themetag
-    item->setPos((float)_node->GetStart()->GetTime()/(float)videoLength *(float)timelineLength,timelineNodeHeight * (1+ drawnNodes));  //user id + actid
+    item->setPos((float)_node->GetStart()->GetTime()/(float)videoLength *(float)timelineLength,timelineNodeHeight * (_usersNumb+ drawnNodes));  //user id + actid
 
     //qDebug()<<"drawing :" << _node<< " at "<< (float)item->pos().x()<< " node Lenght = " << (float)nodeLength/(float)videoLength *(float)timelineLength << " , timeline length " << timelineLength;
     item->setZValue(90);
@@ -84,7 +88,7 @@ void Timeline::DrawNode(Node* _node, int _actID)
         foreach (Timestamp* t, _node->GetEvents()) {
             QRectF* rect = new QRectF(0,0,10,timelineNodeHeight);
             QGraphicsItem *itemE = scene->addRect(*rect,theme->penBlack,theme->eventBrush); //#themetag
-            itemE->setPos((float)t->GetTime()/(float)videoLength *(float)timelineLength,timelineNodeHeight *(1+ drawnNodes));
+            itemE->setPos((float)t->GetTime()/(float)videoLength *(float)timelineLength,timelineNodeHeight *(_usersNumb+ drawnNodes));
             itemE->setZValue(95);
         }
     }

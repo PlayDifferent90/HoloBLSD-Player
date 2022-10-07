@@ -37,6 +37,7 @@ private:
 signals:
     void DoubleClicked();
     void Clicked(QString name, int ID, QList<Node*> nodes,bool visibility);
+   // void AddedActivityToList();
 };
 
 #endif // ACTIVITYLIST_H

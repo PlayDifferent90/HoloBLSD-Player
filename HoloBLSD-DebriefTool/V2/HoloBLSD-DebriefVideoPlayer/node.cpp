@@ -21,9 +21,17 @@ QString Node::GetUserID(){
 
 void Node::AddEvent(Timestamp* _tEvent, bool _isError, bool _isWarning){
     tEvents.append(_tEvent);
-   // if(tFinish!=NULL){
-   //     qDebug()<<"Error detected : Event at time " << _tEvent->GetTime() << " is happening after Node Finished";
-   // }
+
+    if(_isError){
+        errors++;//chenge color
+    }
+    else if(_isWarning){
+        warnings++; //chenge color
+    }
+
+    if(tFinish!=NULL){
+        qDebug()<<"Error detected : Event at time " << _tEvent->GetTime() << " is happening after Node Finished";
+    }
 }
 void Node::SetFinish(Timestamp* _tFinish){
     tFinish=_tFinish;
@@ -43,4 +51,11 @@ Timestamp* Node::GetFinish(){
 
 QList<Timestamp*> Node::GetEvents(){
     return tEvents;
+}
+
+int Node::GetErr(){
+    return  errors;
+}
+int Node::GetWar(){
+    return  warnings;
 }

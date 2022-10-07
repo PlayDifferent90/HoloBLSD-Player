@@ -4,12 +4,8 @@
 
 FileOpener::FileOpener(QString _userID)
 {
-    //one for each file
     userID=_userID;
-    //OpenLog(_fileName);
-
-
- }
+}
 void FileOpener::OpenLog(QString _fileName)
 {
 
@@ -32,8 +28,6 @@ void FileOpener::OpenLog(QString _fileName)
           if(match.hasMatch()){
              // qDebug()<<"Matcha t line "<<i;
               i++;
-              errors =0;
-              warnings =0;
               int hh = match.captured("hh").toInt();
               int mm = match.captured("mm").toInt();
               int ss = match.captured("ss").toInt();
@@ -57,52 +51,17 @@ void FileOpener::OpenLog(QString _fileName)
 
 void FileOpener::OpenLogMaster(QList<QString> _files)
 {
-
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
+    QString userSwap = userID;
+    int userNodeID =0;
     foreach (QString f, _files) {
-
-        //  todo: assegnare userID corretto a ogni file e ai nodi da essi generati
-       // qDebug()<< "Opening file : " << f;
-        QFile inputFile(f);  // change path #URL
-        //QFile inputFile("D:\\0_PHD\\Holo-BLSD\\HoloBLSD-DP\\HoloBLSD-DebriefTool\\V2\\Debrief_1\\recipe_test.log");  // change path #URL
-        QRegularExpression regEx("^<LogEntry time=\"(?<hh>[0-9]+):(?<mm>[0-9]+):(?<ss>[0-9]+)\\.(?<millis>[0-9]+)\" owner=\"(?<owner>[^\"]*)\" type=\"(?<type>[^\"]*)\" msg=\"(?<msg>[^\"]*)\" />$");
-        if (inputFile.open(QIODevice::ReadOnly))
-        {
-            int i =0;
-           QTextStream in(&inputFile);
-
-          // qDebug()<<"reading file ...";
-           while (!in.atEnd())
-           {
-             // qDebug()<<"Reading line ";
-              QString line = in.readLine();
-              QRegularExpressionMatch match = regEx.match(line);
-              if(match.hasMatch()){
-                 // qDebug()<<"Matcha t line "<<i;
-                  i++;
-                  errors =0;
-                  warnings =0;
-                  int hh = match.captured("hh").toInt();
-                  int mm = match.captured("mm").toInt();
-                  int ss = match.captured("ss").toInt();
-                  int millis = match.captured("millis").toInt();
-                  QString owner = match.captured("owner");
-                  QString type = match.captured("type");
-                  QString msg = match.captured("msg");
-
-                  int totMillis = millis/10000 + 1000*(ss + 60*(mm + 60*(hh)));
-                  CreateActivity(totMillis, owner, type,msg);//,warnings,errors);
-              }
-           }
-           inputFile.close();
-
-        }
+        userID = userSwap + QString::number(userNodeID);
+        OpenLog(f);
+        userNodeID++;
     }
-    qDebug()<<"activities master: \n" << activities.length();
-
+    userID=userSwap;
     emit FileRead();
-    qDebug()<<"emitting FileRead";
 
     QApplication::restoreOverrideCursor();
 }
@@ -111,6 +70,7 @@ bool FileOpener::DetectErr(QString _msg){
     QRegularExpression exp("(?<log>[a-zA-Z]+): ([a-zA-Z]+( [a-zA-Z]+)+)", QRegularExpression::CaseInsensitiveOption);
     QRegularExpressionMatch match= exp.match(_msg);
     if(match.captured("log") == "ERROR"){
+        qDebug()<<"     Error found ";
         errors++;
         return true;
     }
@@ -162,6 +122,7 @@ void FileOpener::CreateActivity(int _time, QString _owner, QString _type, QStrin
                 return;
             }else if((_type=="NodeTriggered" )){  // todo: check and finish
                 Timestamp* timestampTriggered = new Timestamp{_time, _type, _msg};
+                qDebug()<< "creating user ID: " << userID;
                 Node* node = new Node{timestampTriggered,userID};
                 act->AddNode(node);
                 actFound =true;

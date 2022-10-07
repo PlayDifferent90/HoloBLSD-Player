@@ -269,7 +269,7 @@
 <LogEntry time="00:05:04.2221416" owner="CPRNode" type="Event" msg="push detected" />
 <LogEntry time="00:05:04.7554400" owner="CPRNode" type="Event" msg="push detected" />
 <LogEntry time="00:05:05.2891381" owner="CPRNode" type="Event" msg="push detected" />
-<LogEntry time="00:05:05.8210550" owner="CPRNode" type="Event" msg="push detected" />
+<LogEntry time="00:05:05.8210550" owner="CPRNode" type="Event" msg="ERROR: push detected" />
 <LogEntry time="00:05:06.3543395" owner="CPRNode" type="Event" msg="push detected" />
 <LogEntry time="00:05:06.8875020" owner="CPRNode" type="Event" msg="push detected" />
 <LogEntry time="00:05:07.3867601" owner="CPRNode" type="Event" msg="push detected" />

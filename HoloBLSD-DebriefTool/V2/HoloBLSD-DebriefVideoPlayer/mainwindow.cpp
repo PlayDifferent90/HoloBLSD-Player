@@ -24,7 +24,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionOpenSingleUserFile_triggered()
 {
-   filename = QFileDialog::getOpenFileName(this,"Open a Log file","","(*.*)"); // check goodness file  --> might use VLC embedded in QT (QTVLC) // open cv
+   filename = QFileDialog::getOpenFileName(this,"Open a Log file","","(*.log *.txt)"); // check goodness file  --> might use VLC embedded in QT (QTVLC) // open cv
    if(filename !=""){
 
        QString userName = "User" + QString::number( users.length()+1);// todo: leggere da log
@@ -41,6 +41,7 @@ void MainWindow::on_actionOpenSingleUserFile_triggered()
 
        if(files.length()>1){
            CreateMasterTab();
+           //do it once, then repopulate
        }
    }
 }

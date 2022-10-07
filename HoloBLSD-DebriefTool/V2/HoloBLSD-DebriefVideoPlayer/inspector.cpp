@@ -41,19 +41,21 @@ void Inspector::AddUserTab(QString _userName){
 void Inspector::UpdateInspector(QString _name, int _ID, QList<Node*> _nodes,bool _visibility){
 
     QList<QString> _users;
-    int _numUsers  =0;
-    QString visibility;
-
+    
     foreach (Node* n, _nodes) {
         if( !_users.contains(n->GetUserID())){
             _users.append(n->GetUserID());
         }
     }
+    int _numUsers  =0;
+    _numUsers = _users.count();
 
+    QString visibility;
     if(_visibility) visibility= "true";
     else visibility = "false";
-    _numUsers = _users.count();
-    inspectorText->clear();
+
+
+    //inspectorText->clear();
     inspectorText->setText("Activity: " + _name + "\n"+"ID : "+ QString::number(_ID) +  "\n" +
                            "Is visible in timeline : " +  visibility + "\n"+
                            "\n" +
@@ -65,9 +67,9 @@ void Inspector::UpdateInspector(QString _name, int _ID, QList<Node*> _nodes,bool
         foreach (Node* nn, _nodes) {
             if(nn->GetUserID()==u){
                 inspectorText->setText(inspectorText->text() +
-                                       "Activity started at: " + QDateTime::fromMSecsSinceEpoch(nn->GetStart()->GetTime()).toString("mm:ss")+" , finished at: " + QDateTime::fromMSecsSinceEpoch(nn->GetFinish()->GetTime()).toString("mm:ss") +"\n" );
+                                       "Activity started at: " + QDateTime::fromMSecsSinceEpoch(nn->GetStart()->GetTime()).toString("mm:ss")+" , finished at: " + QDateTime::fromMSecsSinceEpoch(nn->GetFinish()->GetTime()).toString("mm:ss") +"\n" +
+                                       "Errors: " + QString::number( nn->GetErr()) + "; Warning " + QString::number(nn->GetWar()) + "\n");
             }
         }
     }
-
 }
