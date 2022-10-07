@@ -48,7 +48,7 @@ TimelineWidget::TimelineWidget(QWidget *parent,FileOpener* _fileOpener ,int _wid
     activityScene->setBackgroundBrush(theme->BGTEst);
     activityScene->setSceneRect(0,0,_width/6,1000);
     timelineScene->setBackgroundBrush(theme->BGTEst);
-    timelineScene->setSceneRect(0,0, 5*_width/6,1500);  // todo: connect this with the new timeline, ogni zoom deve allargare anche scene
+    timelineScene->setSceneRect(0,0, 5*_width/6,1000);
     timelineWidgetLayout->addWidget(timelineView);
 
     timeline = new Timeline(timelineView,this, _fileOpener, 5*_width/6,activityScene);
@@ -57,10 +57,12 @@ TimelineWidget::TimelineWidget(QWidget *parent,FileOpener* _fileOpener ,int _wid
 
     connect(activityScrollArea->verticalScrollBar(), &QScrollBar::valueChanged, timelineView->verticalScrollBar(), &QScrollBar::setValue);
     connect(timelineView->verticalScrollBar(),&QScrollBar::valueChanged, activityScrollArea->verticalScrollBar(), &QScrollBar::setValue);
-
+    connect(timeline, &Timeline::TimelineDrawn, this, &TimelineWidget::ChangeSceneRect);
 }
 
-
+void TimelineWidget::ChangeSceneRect(){
+    timelineScene->setSceneRect(0,0, timeline->GetTimelineLength(),1000);
+}
 
 Timeline* TimelineWidget::GetTimeline(){
     return timeline;

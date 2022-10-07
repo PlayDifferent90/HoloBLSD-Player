@@ -3,12 +3,11 @@
 Summary::Summary(QWidget *parent, int _width,int _height,QString _text)
     : QWidget{parent}
 {
-    //todo: delegare proporzioni a chiamata
     summaryLabel= new QLabel("Summary");
     summaryLabel->setMaximumSize(_width,_height/8);
 
     summaryText= new QLabel(_text);
-    summaryText ->setMinimumSize(200,100);
+    summaryText ->setMinimumSize(200,100);  // should be dynamic
 
     summaryScroll = new QScrollArea(this);
     summaryScroll ->setMaximumSize(_width,_height/8*1*7);

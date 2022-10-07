@@ -29,6 +29,7 @@ private:
     Timeline* timeline;
     TimelineToolBar* toolbar;
 
+    void ChangeSceneRect();
 signals:
 
 };

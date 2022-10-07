@@ -81,6 +81,7 @@ public:
     void SetupTimeline(int _length);
     void SetVideoLength(int _videolength);
     void RetrieveVideoCursorX(float x);
+    int GetTimelineLength();
 signals:
     void TimelineDrawn();
     void VideoCursorMoved(int t);

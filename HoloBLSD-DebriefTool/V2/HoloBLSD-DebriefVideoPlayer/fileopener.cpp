@@ -120,7 +120,7 @@ void FileOpener::CreateActivity(int _time, QString _owner, QString _type, QStrin
                 }
                 actFound =true;
                 return;
-            }else if((_type=="NodeTriggered" )){  // todo: check and finish
+            }else if((_type=="NodeTriggered" )){
                 Timestamp* timestampTriggered = new Timestamp{_time, _type, _msg};
                 qDebug()<< "creating user ID: " << userID;
                 Node* node = new Node{timestampTriggered,userID};
@@ -131,7 +131,7 @@ void FileOpener::CreateActivity(int _time, QString _owner, QString _type, QStrin
         }
         actFound = false;
     }
-    if((_type=="NodeTriggered" && !actFound)){  // todo: check and finish
+    if((_type=="NodeTriggered" && !actFound)){
         activityID++;
         Activity* activity = new Activity{_owner, (int)activityID};
         Timestamp* timestampTriggered = new Timestamp{_time, _type, _msg};

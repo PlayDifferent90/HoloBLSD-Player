@@ -28,7 +28,7 @@ private:
     int errors=0;
     int warnings = 0;
     bool isVisible = true;
-    QString userID = "Empty"; // todo: deve essere assegnato e incrementato da chi apre file per
+    QString userID = "Empty";
 
 signals:
 

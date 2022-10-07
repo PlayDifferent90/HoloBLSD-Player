@@ -3,7 +3,6 @@
 VideoPlayer::VideoPlayer(QWidget *parent, QString _name, int _width, int _height)
     : QWidget{parent}
 {
-    //todo set window larger
     videoArea = new QVideoWidget(this);
     videoArea->setMinimumSize(_width, _height/5*4.5);
     videoArea->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
@@ -34,7 +33,7 @@ VideoPlayer::VideoPlayer(QWidget *parent, QString _name, int _width, int _height
     // riproduzione video -> scorrimento barra
     connect(player,&QMediaPlayer::positionChanged,videoSlider,&QSlider::setValue);
     //scorrimento barra -> riproduzione video
-    connect(videoSlider,&QSlider::sliderMoved,player,&QMediaPlayer::setPosition); // todo: works with int64, better to calcualte percentage outside
+    connect(videoSlider,&QSlider::sliderMoved,player,&QMediaPlayer::setPosition);
 
 }
 
@@ -47,7 +46,7 @@ void VideoPlayer::SetVideoLabel(QString _title){
 }
 
 void VideoPlayer::ShowVideo(QString _fileName){
-    player->setMedia(QUrl::fromLocalFile(_fileName.left(_fileName.lastIndexOf("."))+ extention));
+    player->setMedia(QUrl::fromLocalFile(_fileName.left(_fileName.lastIndexOf("."))+ extention));  // todo: valutare uso di vlc
 
     player->play();
     player->pause();

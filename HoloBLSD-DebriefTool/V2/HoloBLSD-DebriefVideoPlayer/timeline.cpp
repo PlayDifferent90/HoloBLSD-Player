@@ -58,7 +58,7 @@ void Timeline::DrawBackgroundNode(int _posY, int _timeLineLength, int _numUsers)
     QGraphicsItem *itemBG = scene->addRect(*rect,theme->penLineTimeStop, theme->lineBGBrush);
     itemBG->setPos(0,(_posY+1)*timelineNodeHeight);
     itemBG->setZValue(5);
-    delete rect; //todo: valutare if good
+    delete rect;
 }
 void Timeline::DrawBackgroundNodeSibling(QString _name,int _posY, int _numUsers,int _actRow){
     if(_actRow%2!=0){
@@ -179,6 +179,7 @@ void Timeline::UpdateTimeline(){
     //qDebug()<<QTime::currentTime().toString() << "Emitting TimelineDrawn";
     emit TimelineDrawn();
     QApplication::restoreOverrideCursor();
+
 }
 
 void Timeline::SetFileOpener(FileOpener* _fileopener){
@@ -196,4 +197,8 @@ void Timeline::SetVideoLength(int _videolength){
     //qDebug()<<"("<< videoLength<<"/"<<maxMillisResolution << "*"<< timeMarkerDistance << ")/" << timelineLengthStart;
    // qDebug()<< "max zoom scale = "<< maxZoomScale;
 
+}
+
+int Timeline::GetTimelineLength(){
+    return timelineLength;
 }

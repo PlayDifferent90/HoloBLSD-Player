@@ -22,7 +22,6 @@ ActivityList::ActivityList(QWidget *parent, int _width, int _height, FileOpener*
 
     connect(activityList, &QListWidget::itemClicked, this, &ActivityList::SelectedItem);
     connect(activityList, &QListWidget::itemDoubleClicked, this, &ActivityList::SwitchItem);
-    //todo: connect(activityList, &QListWidget::itemClicked, parent, &TabWidget::ActivityTextInInspector);
 }
 
 void ActivityList::AddActivityItem(QString _text, bool _visib){

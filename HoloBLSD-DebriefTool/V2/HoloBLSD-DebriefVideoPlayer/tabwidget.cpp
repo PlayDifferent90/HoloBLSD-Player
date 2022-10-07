@@ -62,7 +62,7 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name, FileOpener* _fileOpene
     //scorrimento barra -> scorriemnto timeline
     connect(videoPlayer->GetSlider(), &QSlider::sliderMoved,timelineWid->GetTimeline(),&Timeline::UpdateVideoCursorX);
     //scorrimento timeline -> scorrimento barra
-    connect(timelineWid->GetTimeline(),&Timeline::VideoCursorMoved, videoPlayer->GetSlider(), &QSlider::setValue); //todo, catch this signal in timeline e send back correct value
+    connect(timelineWid->GetTimeline(),&Timeline::VideoCursorMoved, videoPlayer->GetSlider(), &QSlider::setValue);
     //scorrimento timeline -> riproduzione video
     connect(timelineWid->GetTimeline()->GetCursor(),&timelineCursor::CursorMoved, videoPlayer->GetPlayer(), &QMediaPlayer::setPosition);
 

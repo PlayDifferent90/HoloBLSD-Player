@@ -35,7 +35,7 @@ void Inspector::AddUserTab(QString _userName){
     inspectorText= new QLabel( _userName + " infos will be displayed here;");
     inspectorTabs->addTab(userInspectorTab,_userName);
     inspectorLayout = new QGridLayout(userInspectorTab);
-    inspectorLayout->addWidget(inspectorText,0,0,0,0); //todo: move upper
+    inspectorLayout->addWidget(inspectorText,0,0,0,0);
 }
 
 void Inspector::UpdateInspector(QString _name, int _ID, QList<Node*> _nodes,bool _visibility){
@@ -55,7 +55,7 @@ void Inspector::UpdateInspector(QString _name, int _ID, QList<Node*> _nodes,bool
     else visibility = "false";
 
 
-    //inspectorText->clear();
+    inspectorText->clear();
     inspectorText->setText("Activity: " + _name + "\n"+"ID : "+ QString::number(_ID) +  "\n" +
                            "Is visible in timeline : " +  visibility + "\n"+
                            "\n" +

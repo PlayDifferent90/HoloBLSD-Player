@@ -52,7 +52,7 @@ FileOpener* MainWindow::GetFileOpener(){
 }
 
 void MainWindow::CreateMasterTab(){
-    QString userName = "Master";// todo: leggere da log
+    QString userName = "Master";
     fo = new FileOpener( userName);
 
     TabWidget* newTab = new TabWidget(this,userName,fo,0);  //0= master
