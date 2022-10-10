@@ -73,6 +73,8 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name, FileOpener* _fileOpene
     connect(mainWin->GetFileOpener(), &FileOpener::FileRead, this, &TabWidget::UpdateSummary);
     connect(mainWin->GetFileOpener(), &FileOpener::FileRead, inspector, &Inspector::PopulateInspector);
 
+    connect(mainWin->GetFileOpener(), &FileOpener::MasterFileRead, inspector, &Inspector::PopulateMasterInspector);
+
     connect(videoPlayer->GetPlayer(),&QMediaPlayer::durationChanged,timelineWid->GetToolBar(), &TimelineToolBar::ZoomOutTriggered);
     connect(videoPlayer->GetPlayer(),&QMediaPlayer::durationChanged,timelineWid->GetToolBar(), &TimelineToolBar::VolumeUpTriggered);
 

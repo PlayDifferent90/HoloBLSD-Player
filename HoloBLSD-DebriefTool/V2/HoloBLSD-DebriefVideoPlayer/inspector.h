@@ -25,6 +25,7 @@ public:
     void SelectText(QString _actListText);
     void PopulateInspector();
     QWidget *GetInspectorLayout();
+    void PopulateMasterInspector();
 private:
     QWidget* userInspectorTab;
      QTabWidget* inspectorTabs;

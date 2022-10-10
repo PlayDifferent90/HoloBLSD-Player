@@ -37,6 +37,7 @@ private:
     void CreateActivity(int _time, QString _owner, QString _type, QString _msg);
 signals:
     void FileRead();
+    void MasterFileRead();
 
 };
 

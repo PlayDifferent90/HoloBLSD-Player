@@ -54,14 +54,14 @@ void FileOpener::OpenLogMaster(QList<QString> _files)
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
     QString userSwap = userID;
-    int userNodeID =0;
+    int userNodeID =1;
     foreach (QString f, _files) {
         userID = userSwap + QString::number(userNodeID);
         OpenLog(f);
         userNodeID++;
     }
     userID=userSwap;
-    emit FileRead();
+    emit MasterFileRead();
 
     QApplication::restoreOverrideCursor();
 }

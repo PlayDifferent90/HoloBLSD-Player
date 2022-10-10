@@ -31,6 +31,8 @@ void MainWindow::on_actionOpenSingleUserFile_triggered()
        fo = new FileOpener( userName);
        files.append(filename);
        users.append(userName);
+       QApplication::setOverrideCursor(Qt::WaitCursor);
+
        TabWidget* newTab = new TabWidget(this,userName,fo,files.length());
        mainTab->addTab(newTab, userName);
 
@@ -43,6 +45,8 @@ void MainWindow::on_actionOpenSingleUserFile_triggered()
            CreateMasterTab();
            //todo:  it once, then repopulate
        }
+
+       QApplication::restoreOverrideCursor();
    }
 }
 
