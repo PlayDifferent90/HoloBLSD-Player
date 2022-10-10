@@ -101,15 +101,21 @@ void Inspector::PopulateMasterInspector(){
 }
 
 void Inspector::SelectText(QString  _actListText){
-    int i =0;
+    int item =0;
     foreach (Activity* act, fo->GetActivities()) {
-        if(inspectorTabs->currentWidget()->layout()->itemAt(i)==nullptr)
-            return;
-       inspectorTabs->currentWidget()->layout()->itemAt(i)->widget()->hide();
-        if(act->GetName() ==_actListText){
-            inspectorTabs->currentWidget()->layout()->itemAt(i)->widget()->show();
+
+        //foreach (QTabBar* tab, inspectorTabs->tabBar()) {
+        for( int tab =0;tab<inspectorTabs->tabBar()->count(); tab++){
+
+            if(inspectorTabs->widget(tab)->layout()->itemAt(item)==nullptr)
+                return;
+            inspectorTabs->widget(tab)->layout()->itemAt(item)->widget()->hide();
+
+            if(act->GetName() ==_actListText){
+                inspectorTabs->widget(tab)->layout()->itemAt(item)->widget()->show();
+            }
         }
-        i++;
+        item++;
     }
 
 }
