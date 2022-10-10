@@ -1,7 +1,6 @@
 #include "inspector.h"
-#include "qdebug.h"
-
-Inspector::Inspector(QWidget *parent, int _width, int _height)
+#include "qapplication.h"
+Inspector::Inspector(QWidget *parent, int _width, int _height, FileOpener* _fileOpener)
     : QWidget{parent}
 {
     //inspector
@@ -19,6 +18,8 @@ Inspector::Inspector(QWidget *parent, int _width, int _height)
     localWidget = new QWidget(this);
     localWidget->setLayout(localLayout);
     localWidget->setMaximumSize(_width,_height);
+
+    fo=_fileOpener;
 }
 
 Inspector::~Inspector(){
@@ -29,47 +30,50 @@ QWidget* Inspector::InspectorWidget(){
     return localWidget;
 }
 
-void Inspector::AddUserTab(QString _userName){
-    QWidget* userInspectorTab = new  QWidget(this);
-    users.append(userInspectorTab);
-    inspectorText= new QLabel( _userName + " infos will be displayed here;");
-    inspectorTabs->addTab(userInspectorTab,_userName);
+//todo: quando si apre il masterlog si deve creare una tab per ciascun file
+void Inspector::PopulateInspector(){
+
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    userInspectorTab = new  QWidget(this);
     inspectorLayout = new QGridLayout(userInspectorTab);
-    inspectorLayout->addWidget(inspectorText,0,0,0,0);
-}
+    inspectorTabs->addTab(userInspectorTab,fo->GetUser());
 
-void Inspector::UpdateInspector(QString _name, int _ID, QList<Node*> _nodes,bool _visibility){
+    int i=0;
+    QString vis = "";
+    foreach (Activity* act , fo->GetActivities()) {
+        i++;
+        if(act->GetVisibility())
+            vis="true";
+        else
+            vis="false";
 
-    QList<QString> _users;
-    
-    foreach (Node* n, _nodes) {
-        if( !_users.contains(n->GetUserID())){
-            _users.append(n->GetUserID());
-        }
-    }
-    int _numUsers  =0;
-    _numUsers = _users.count();
-
-    QString visibility;
-    if(_visibility) visibility= "true";
-    else visibility = "false";
-
-
-    inspectorText->clear();
-    inspectorText->setText("Activity: " + _name + "\n"+"ID : "+ QString::number(_ID) +  "\n" +
-                           "Is visible in timeline : " +  visibility + "\n"+
-                           "\n" +
-                           "this activity has been performed by " + QString::number(_numUsers) +" users  : \n \n" );
-
-    foreach (QString  u, _users){
-        inspectorText->setText(inspectorText->text() +
-                               "User "  +  u + ":\n" );
-        foreach (Node* nn, _nodes) {
-            if(nn->GetUserID()==u){
+        QLabel* inspectorText= new QLabel(" infos will be displayed here;");
+        inspectorText->setText("Activity: " + act->GetName() + "\n"+"ID : "+ QString::number(act->GetActID()) +  "\n" +
+                               "Is visible in timeline : " +  vis + "\n"+
+                               "\n" );
+        foreach (Node* nn, act->GetNodesByUser(fo->GetUser())) {
                 inspectorText->setText(inspectorText->text() +
                                        "Activity started at: " + QDateTime::fromMSecsSinceEpoch(nn->GetStart()->GetTime()).toString("mm:ss")+" , finished at: " + QDateTime::fromMSecsSinceEpoch(nn->GetFinish()->GetTime()).toString("mm:ss") +"\n" +
                                        "Errors: " + QString::number( nn->GetErr()) + "; Warning " + QString::number(nn->GetWar()) + "\n");
             }
-        }
+        inspectorLayout->addWidget(inspectorText,i,0,1,1);
     }
+
+    SelectText(""); // empty inspector on start
+
+    QApplication::restoreOverrideCursor();
+}
+
+void Inspector::SelectText(QString  _actListText){
+    int i =0;
+    foreach (Activity* act, fo->GetActivities()) {
+        qDebug()<<"current Widget is "<<  inspectorTabs->currentWidget()->layout();
+       inspectorTabs->currentWidget()->layout()->itemAt(i)->widget()->hide();
+        if(act->GetName() ==_actListText){
+            //todo: controllare indici di masterlog
+            inspectorTabs->currentWidget()->layout()->itemAt(i)->widget()->show();
+        }
+        i++;
+    }
+
 }

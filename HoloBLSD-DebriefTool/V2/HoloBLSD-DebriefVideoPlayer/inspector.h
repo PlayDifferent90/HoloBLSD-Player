@@ -6,6 +6,9 @@
 #include "qtabwidget.h"
 #include "QDateTime"
 #include "node.h"
+#include "fileopener.h"
+#include "qdebug.h"
+#include "qscrollarea.h"
 #include <QObject>
 #include <QWidget>
 
@@ -15,22 +18,25 @@ class Inspector : public QWidget
 public:
     explicit Inspector(QWidget *parent = nullptr);
 
-    Inspector(QWidget *parent, int _width, int _height);
+    Inspector(QWidget *parent, int _width, int _height, FileOpener *_fileOpener);
     QWidget *InspectorWidget();
     ~Inspector();
-    void AddUserTab(QString _userName);
+    void SelectActivityText(int _selected = -1);
+    void SelectText(QString _actListText);
+    void PopulateInspector();
+    QWidget *GetInspectorLayout();
 private:
-     QLabel* inspectorText;
+    QWidget* userInspectorTab;
      QTabWidget* inspectorTabs;
      QGridLayout* inspectorLayout;
-     //QWidget* userInspectorTab;
      QBoxLayout* localLayout;
      QWidget* localWidget;
      QLabel* inspectorLabel;
      QList<QWidget*> users;
+     FileOpener* fo;
 
-public slots:
-     void UpdateInspector(QString name, int ID, QList<Node *> nodes, bool visibility);
+
+     void CurrentTabUpdate(int _i);
 signals:
 
 };

@@ -36,7 +36,7 @@ private:
     const QIcon invisible = QIcon(":/Icons/VideoIcon/InvisibilityClosed_gold.png");
 signals:
     void DoubleClicked();
-    void Clicked(QString name, int ID, QList<Node*> nodes,bool visibility);
+    void Clicked(QString name);//, int ID, QList<Node*> nodes,bool visibility);
    // void AddedActivityToList();
 };
 

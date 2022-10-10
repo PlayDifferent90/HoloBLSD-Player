@@ -41,7 +41,7 @@ void MainWindow::on_actionOpenSingleUserFile_triggered()
 
        if(files.length()>1){
            CreateMasterTab();
-           //do it once, then repopulate
+           //todo:  it once, then repopulate
        }
    }
 }

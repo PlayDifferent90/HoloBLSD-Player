@@ -1,5 +1,6 @@
 #include "tabwidget.h"
 #include "mainwindow.h"
+#include "qapplication.h"
 
 TabWidget::TabWidget( MainWindow* mainWin, QString _name, FileOpener* _fileOpener, int _tabNumber)
 {
@@ -24,7 +25,7 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name, FileOpener* _fileOpene
     leftColumn->addWidget(activity->ActivityWidget());
 
     //inspector
-    inspector = new Inspector(this,centralColumnWidth, upperRowHeight);
+    inspector = new Inspector(this,centralColumnWidth, upperRowHeight,_fileOpener);
 
     QVBoxLayout* centralColumn = new QVBoxLayout(this);
     centralColumn -> addWidget(inspector->InspectorWidget());
@@ -43,8 +44,6 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name, FileOpener* _fileOpene
     layout->addWidget(timelineWid,1,0,2,4);
 
 
-   //connect only in tab masterafter the first user is added, create the master user and connect it to the signal
-   //connect(mainWin, &MainWindow::userAdded, this, &TabWidget::AddUserToInspector);
     //Actions
     connect(mainWin, &MainWindow::videoAdded, this, &TabWidget::OpenVideo);
     //video
@@ -72,16 +71,19 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name, FileOpener* _fileOpene
     //connect(mainWin->GetFileOpener(), &FileOpener::FileRead, timelineWid->GetTimeline(), &Timeline::UpdateTimeline);
     connect(mainWin->GetFileOpener(), &FileOpener::FileRead, timelineWid->GetTimeline(), &Timeline::UpdateTimeline);
     connect(mainWin->GetFileOpener(), &FileOpener::FileRead, this, &TabWidget::UpdateSummary);
+    connect(mainWin->GetFileOpener(), &FileOpener::FileRead, inspector, &Inspector::PopulateInspector);
+
     connect(videoPlayer->GetPlayer(),&QMediaPlayer::durationChanged,timelineWid->GetToolBar(), &TimelineToolBar::ZoomOutTriggered);
     connect(videoPlayer->GetPlayer(),&QMediaPlayer::durationChanged,timelineWid->GetToolBar(), &TimelineToolBar::VolumeUpTriggered);
 
-    connect(mainWin, &MainWindow::userAdded, this, &TabWidget::AddUserToInspector);
 
     //populate activity list
     connect(timelineWid->GetTimeline(), &Timeline::AddedActivity, activity, &ActivityList::AddActivityInList);
     connect(timelineWid->GetTimeline(), &Timeline::FlushedActivities, activity, &ActivityList::FlushActivities);
     connect(activity, &ActivityList::DoubleClicked, timelineWid->GetTimeline(), &Timeline::UpdateTimeline);
-    connect(activity, &ActivityList::Clicked , inspector, &Inspector::UpdateInspector);
+   //connect(activity, &ActivityList::Clicked , inspector, &Inspector::UpdateInspector);
+    connect(activity, &ActivityList::Clicked , inspector, &Inspector::SelectText);
+
 
 }
 
@@ -90,7 +92,11 @@ TabWidget::~TabWidget(){
 }
 
 void TabWidget::UpdateSummary(){
+
+    QApplication::setOverrideCursor(Qt::WaitCursor);
         summary->SetText(fo);
+
+        QApplication::restoreOverrideCursor();
 }
 
 void TabWidget::OpenVideo(QString _fileName, int _fileNum){
@@ -99,14 +105,6 @@ void TabWidget::OpenVideo(QString _fileName, int _fileNum){
     }
 
 }
-
-void TabWidget::AddUserToInspector(QString _userName, int _fileNum){
-    if(tabNum==_fileNum){
-        inspector->AddUserTab(_userName);
-    }
-}
-
-
 
 
 QString* TabWidget::GetName(){

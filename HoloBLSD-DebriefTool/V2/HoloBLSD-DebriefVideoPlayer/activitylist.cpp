@@ -51,11 +51,6 @@ ActivityList::~ActivityList(){
 void ActivityList::AddActivityInList(QString _name,bool _visib){
 
     this->AddActivityItem(_name,_visib);
-   // foreach(Activity*  act , fileOpener->GetActivities()){
-   //     if(act->GetName()==_name){
-   //         emit AddedActivityToList(act->GetName(),act->GetActID(),act->GetNodes(),act->GetVisibility());
-   //     }
-   // }
 }
 
 void ActivityList::FlushActivities(){
@@ -70,22 +65,14 @@ void ActivityList::Switch(){
 }
 
 void ActivityList::SelectedItem(QListWidgetItem *item){
-    foreach(Activity*  act , fileOpener->GetActivities()){
-        if(act->GetName()==item->text()){
-            emit Clicked(act->GetName(),act->GetActID(),act->GetNodes(),act->GetVisibility());
-            // todo: set timeline highlighted
-        }
-    }
+    emit Clicked(item->text());
 }
 void ActivityList::SwitchItem(QListWidgetItem *item){
     foreach(Activity*  act , fileOpener->GetActivities()){
         if(act->GetName()==item->text()){
             act->ActivitySwitch();
-            emit Clicked(act->GetName(),act->GetActID(),act->GetNodes(),act->GetVisibility());
-
-        }
+           }
     }
-
-
+    emit Clicked(item->text());
     emit DoubleClicked();
 }
