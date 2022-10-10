@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/Icons">
+        <file>VideoIcon/Invisibility.png</file>
+        <file>VideoIcon/Invisibility_gold.png</file>
+        <file>VideoIcon/Invisibility_lightgrey.png</file>
+        <file>VideoIcon/InvisibilityClosed_gold.png</file>
+        <file>VideoIcon/resources.qrc</file>
+        <file>VideoIcon/VideoPause.png</file>
+        <file>VideoIcon/VideoPlay.png</file>
+        <file>VideoIcon/VideoPlayFullBoy.png</file>
+        <file>VideoIcon/videoSearch.png</file>
+        <file>VideoIcon/VideoStop.png</file>
+        <file>VideoIcon/Visibility.png</file>
+        <file>VideoIcon/Visibility_gold.png</file>
+        <file>VideoIcon/VolumeDown.png</file>
+        <file>VideoIcon/VolumeMute.png</file>
+        <file>VideoIcon/VolumeUp.png</file>
+        <file>VideoIcon/ZoomIn.png</file>
+        <file>VideoIcon/ZoomOut.png</file>
+        <file>VideoIcon/master.png</file>
+    </qresource>
+</RCC>
