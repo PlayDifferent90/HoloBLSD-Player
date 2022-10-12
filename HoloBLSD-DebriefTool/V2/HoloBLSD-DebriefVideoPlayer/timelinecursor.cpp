@@ -83,7 +83,7 @@ QVariant timelineCursor::itemChange(GraphicsItemChange change, const QVariant &v
 {
     if (change == ItemPositionChange && scene()) {
         QPointF newPos = value.toPointF();
-        qDebug()<< "cursor moved to : " << (float)newPos.x()*tlScale;
+       // qDebug()<< "cursor moved to : " << (float)newPos.x()*tlScale;
         newPos.setY(y());
         if(newPos.x() < 0){
             newPos.setX(0);
@@ -96,5 +96,5 @@ QVariant timelineCursor::itemChange(GraphicsItemChange change, const QVariant &v
 
 void timelineCursor::setMovementScale(float _vcScale){
     tlScale = _vcScale;
-    qDebug()<<"set vursor scale to " << _vcScale;
+  //  qDebug()<<"set vursor scale to " << _vcScale;
 }

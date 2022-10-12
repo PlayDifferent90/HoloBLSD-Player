@@ -91,39 +91,39 @@ TimelineToolBar::TimelineToolBar(QWidget *parent, FileOpener* _fo, MainWindow* m
 
 
 void TimelineToolBar::PlayTriggered(){
-    qDebug()<<"play";
+   // qDebug()<<"play";
     emit Play();
 }
 
 void TimelineToolBar::PauseTriggered(){
-    qDebug()<<"pause";
+   // qDebug()<<"pause";
     emit Pause();
 }
 void TimelineToolBar::StopTriggered(){
-    qDebug()<<"stop";
+   // qDebug()<<"stop";
     emit Stop();
 }
 
 void TimelineToolBar::VolumeUpTriggered(){
     volume = SliderValueCheck(volume +5);
-    qDebug()<<"volumeUp : " + QString::number(volume);
+   // qDebug()<<"volumeUp : " + QString::number(volume);
     volumeSlider->setSliderPosition(volume);
     VolumeValue();
 }
 void TimelineToolBar::VolumeDownTriggered(){
     volume = SliderValueCheck(volume -5);
-    qDebug()<<"volumeDown : " + QString::number(volume);
+   //qDebug()<<"volumeDown : " + QString::number(volume);
     volumeSlider->setSliderPosition(volume);
     VolumeValue();
 }
 void TimelineToolBar::VolumeMuteTriggered(){
     volume =0;
-    qDebug()<<"volumeMute : " + QString::number(volume);
+   // qDebug()<<"volumeMute : " + QString::number(volume);
     volumeSlider->setSliderPosition(volume);
     VolumeValue();
 }
 void TimelineToolBar::VolumeValue(){
-    qDebug()<<"volume Value : " + QString::number(volume);
+   // qDebug()<<"volume Value : " + QString::number(volume);
     volume = volumeSlider->sliderPosition();
     emit Volume(volume);
 }
@@ -132,7 +132,7 @@ void TimelineToolBar::ZoomInTriggered(){
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
     zoom = SliderValueCheck(zoom +5);
-    qDebug()<<"zoomIn : " + QString::number(zoom);
+   // qDebug()<<"zoomIn : " + QString::number(zoom);
     zoomSlider->setSliderPosition(zoom);
     ZoomValue();
     QApplication::restoreOverrideCursor();
@@ -141,14 +141,14 @@ void TimelineToolBar::ZoomOutTriggered(){
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
     zoom = SliderValueCheck(zoom -5);
-    qDebug()<<"zoomOut : " + QString::number(zoom);
+    //qDebug()<<"zoomOut : " + QString::number(zoom);
     zoomSlider->setSliderPosition(zoom);
     ZoomValue();
     QApplication::restoreOverrideCursor();
 }
 
 void TimelineToolBar::ZoomValue(){
-    qDebug()<<"zoom Value : " + QString::number(zoom);
+   // qDebug()<<"zoom Value : " + QString::number(zoom);
     zoom = zoomSlider->sliderPosition();
     emit Zoom(zoom);
 }

@@ -138,7 +138,7 @@ void Timeline::RetrieveVideoCursorX(float x){ // todo: this must become %
 
 void Timeline::SetNumbers(){
 int nums=0;
-    for (int t=0; t<timelineLength; t+=(float)timeMarkerDistance*(float)tlScale/((float)tlScale) ){
+    for (int t=0; t<timelineLength; t+=(float)timeMarkerDistance*(float)tlScale/(tlScale) ){
         float posXPercentage = (float)t/(float)timelineLength;
         //qDebug()<<"drawing verical line at % : "<< posXPercentage << " with video length : " << videoLength<<"  ; video millisec = " << videoLength*posXPercentage<< " ; to string mm:ss : " << QDateTime::fromMSecsSinceEpoch(videoLength*posXPercentage).toString("mm:ss");
         QGraphicsTextItem  *item = scene->addText(QDateTime::fromMSecsSinceEpoch(videoLength*posXPercentage).toString("mm:ss"));
@@ -153,7 +153,7 @@ int nums=0;
 
 void Timeline::SetScale(float _scale){
     tlScale= 1 + (maxZoomScale-1)*(_scale/100);
-    //qDebug()<<"Scale value : "<< tlScale;
+    //qDebug()<<"maxZoomScale value : "<< maxZoomScale <<"_scale value : "<< tlScale;
 
     SetupTimeline(timelineLengthStart);
     videoCursor->setMovementScale((float)videoLength/(float)timelineLength);
@@ -193,14 +193,14 @@ void Timeline::SetFileOpener(FileOpener* _fileopener){
 }
 void Timeline::SetupTimeline(int _length){
     timelineLength=_length*tlScale;
-    //qDebug()<< "timelinelength = "<< timelineLength;
+    //qDebug()<< "timelinelength = "<< timelineLength << "length " << _length <<" scale"<<tlScale;
     //UpdateTimeline();
 }
 void Timeline::SetVideoLength(int _videolength){
     videoLength = _videolength;
-
+    maxMillisResolution= _videolength*0.01;
     maxZoomScale = (((float)videoLength/(float)maxMillisResolution)*(float)timeMarkerDistance)/(float)timelineLengthStart;
-    //qDebug()<<"("<< videoLength<<"/"<<maxMillisResolution << "*"<< timeMarkerDistance << ")/" << timelineLengthStart;
+    qDebug()<<"("<< videoLength<<"/"<<maxMillisResolution << "*"<< timeMarkerDistance << ")/" << timelineLengthStart;
    // qDebug()<< "max zoom scale = "<< maxZoomScale;
 
 }
