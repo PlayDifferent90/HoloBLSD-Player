@@ -35,22 +35,23 @@ Timeline::~Timeline()
 void Timeline::DrawActivity(Activity* _activity,int _actRow){
   // qDebug()<< "drawing activity " << _activity->GetName();
     QList<QString>  users;
-    if(!_activity->GetNodes().empty()){
+    if(!_activity->GetVisibleNodes().empty()){
         users.empty();
-        foreach (Node* n, _activity->GetNodes()) {
-                if(!users.contains(n->GetUserID())){
-                    users.append(n->GetUserID());
-                }
-                DrawNode(n, _actRow, users.count()); //in caso di problemi di linea: prima era _actRow  <-- _activity->GetActID()
+        foreach (Node* n, _activity->GetVisibleNodes()) {
+             if(!users.contains(n->GetUserID())){
+                 users.append(n->GetUserID());
+             }
+             DrawNode(n, _actRow, users.count(), n->GetUserID());
         }
     }
-   // qDebug()<< "    drawing bg for " << _activity->GetName() << "at line "<< drawnNodes << " height (number of nodes) "<< _activity->GetUsersNumber();
-    if(_actRow%2!=0){  //in caso di problemi di linea: prima era _actRow  <-- _activity->GetActID()
-       DrawBackgroundNode(drawnNodes, timelineLength, _activity->GetUsersNumber());
+   // qDebug()<< "    drawing bg for " << _activity->GetName() << "at line "<< drawnNodes << " height (number of nodes) "<< _activity->GetUsersNumber(false);
+    if(_actRow%2!=0){
+       DrawBackgroundNode(drawnNodes, timelineLength, _activity->GetUsersNumber(false));
     }
 
-    DrawBackgroundNodeSibling(_activity->GetName(), drawnNodes, _activity->GetUsersNumber(),_actRow);
-    drawnNodes+=_activity->GetUsersNumber();
+    //todo: drawsibling solo se activity ha nodi attivi
+    DrawBackgroundNodeSibling(_activity->GetName(), drawnNodes, _activity->GetUsersNumber(false),_actRow);
+    drawnNodes+=_activity->GetUsersNumber(false);
 }
 
 void Timeline::DrawBackgroundNode(int _posY, int _timeLineLength, int _numUsers){
@@ -60,6 +61,7 @@ void Timeline::DrawBackgroundNode(int _posY, int _timeLineLength, int _numUsers)
     itemBG->setZValue(5);
     delete rect;
 }
+
 void Timeline::DrawBackgroundNodeSibling(QString _name,int _posY, int _numUsers,int _actRow){
     if(_actRow%2!=0){
         QRect* rect= new QRect(0,0,500,_numUsers*timelineNodeHeight);
@@ -73,13 +75,15 @@ void Timeline::DrawBackgroundNodeSibling(QString _name,int _posY, int _numUsers,
     itemText->setZValue(10);
 }
 
-void Timeline::DrawNode(Node* _node, int _actID, int _usersNumb)
+
+void Timeline::DrawNode(Node* _node, int _actID, int _usersNumb, QString _userID)
 {
+       // qDebug()<< "UserId "<< _userID;
     int nodeLength = (_node->GetFinish()->GetTime() - _node->GetStart()->GetTime());
-    qDebug()<<"nodeLength"<< nodeLength<<  "videoLength"<< videoLength << "timelineLength"<< timelineLength;
+   // qDebug()<<"nodeLength"<< nodeLength<<  "videoLength"<< videoLength << "timelineLength"<< timelineLength;
 
     QRectF* rect = new QRectF(0,0,(float)nodeLength/(float)videoLength *(float)timelineLength,timelineNodeHeight);
-    QGraphicsItem *item = scene->addRect(*rect,theme->penBlack,theme->nodeBrush); //#themetag
+    QGraphicsItem *item = scene->addRect(*rect,theme->penBlack,theme->RandomUserColor(_userID)); //#themetag
     item->setPos((float)_node->GetStart()->GetTime()/(float)videoLength *(float)timelineLength,timelineNodeHeight * (_usersNumb+ drawnNodes));  //user id + actid
 
     //qDebug()<<"drawing :" << _node<< " at "<< (float)item->pos().x()<< " node Lenght = " << (float)nodeLength/(float)videoLength *(float)timelineLength << " , timeline length " << timelineLength;

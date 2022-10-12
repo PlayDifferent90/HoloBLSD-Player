@@ -1,8 +1,10 @@
 #ifndef TIMELINETOOLBAR_H
 #define TIMELINETOOLBAR_H
 
+#include "fileopener.h"
 #include "qicon.h"
 #include "qaction.h"
+#include "qlabel.h"
 #include "qpushbutton.h"
 #include "qslider.h"
 #include <QObject>
@@ -13,7 +15,7 @@ class TimelineToolBar : public QWidget
     Q_OBJECT
 public:
     explicit TimelineToolBar(QObject *parent = nullptr);
-    TimelineToolBar(QWidget *parent);
+    TimelineToolBar(QWidget *parent, FileOpener *_fo);
     void PlayTriggered();
     void PauseTriggered();
     void StopTriggered();
@@ -33,6 +35,7 @@ public:
     const QIcon volumeMuteIcon = QIcon(":/Icons/VideoIcon/VolumeMute.png");
     const QIcon zoomInIcon = QIcon(":/Icons/VideoIcon/ZoomIn.png");
     const QIcon zoomOutIcon = QIcon(":/Icons/VideoIcon/ZoomOut.png");
+    const QIcon visibilityIcon = QIcon(":/Icons/VideoIcon/Invisibility_lightgrey.png");
     QPushButton* playButton;
     QPushButton* pauseButton;
     QPushButton* stopButton;
@@ -41,11 +44,12 @@ public:
     QPushButton* volumeMuteButton;
     QPushButton* zoomInButton;
     QPushButton* zoomOutButton;
+    QLabel* userVisiblity;
     QSlider* volumeSlider;
     QSlider* zoomSlider;
+    FileOpener* fileOpener;
     int volume=0;
     int zoom=0;
-
 
 signals:
     void Play();
@@ -54,8 +58,10 @@ signals:
     void Volume(int _vol);
     void VolumeMute();
     void Zoom(int _zoom);
+    void VisibilitySwitch();
 private:
     int SliderValueCheck(int _value);
+    void NodeVisibilitySwitch(QString _name);
 };
 
 #endif // TIMELINETOOLBAR_H

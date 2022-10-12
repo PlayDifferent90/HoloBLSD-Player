@@ -104,7 +104,6 @@ void Inspector::SelectText(QString  _actListText){
     int item =0;
     foreach (Activity* act, fo->GetActivities()) {
 
-        //foreach (QTabBar* tab, inspectorTabs->tabBar()) {
         for( int tab =0;tab<inspectorTabs->tabBar()->count(); tab++){
 
             if(inspectorTabs->widget(tab)->layout()->itemAt(item)==nullptr)

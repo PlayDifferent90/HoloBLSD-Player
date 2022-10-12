@@ -44,19 +44,29 @@ QList<Node*> Activity::GetNodesByUser(QString _user){
     return usersNodes;
 }
 
+QList<Node*> Activity::GetVisibleNodes(){
+    QList<Node*> visibleNodes;
+    foreach (Node* n, nodes){
+        if(n->IsVisible()){
+            visibleNodes.append(n);
+        }
+    }
+    return visibleNodes;
+}
+
 QString Activity::GetName(){
     return actName;
 }
 
-int Activity::GetUsersNumber(){
+int Activity::GetUsersNumber(bool _getAll){
     QList<QString> countingUsers;
     foreach(Node* n, nodes){
-        if(!countingUsers.contains(n->GetUserID())){
+        if(!countingUsers.contains(n->GetUserID()) && (n->IsVisible() || _getAll)){
             countingUsers.append(n->GetUserID());
         }
     }
 
-    qDebug()<<" users per activity " <<this <<countingUsers.count();
+   // qDebug()<<" users per activity " <<this <<countingUsers.count();
     return countingUsers.count();
 }
 

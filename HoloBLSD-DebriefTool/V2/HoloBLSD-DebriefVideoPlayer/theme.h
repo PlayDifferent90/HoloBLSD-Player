@@ -39,6 +39,7 @@ public:
     QBrush lineBGBrush{red};
     QBrush videoCursorBrush{Qt::black};
 
+    QBrush RandomUserColor(QString _user);
 };
 
 #endif // THEME_H

@@ -68,12 +68,13 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name, FileOpener* _fileOpene
 
     //init
     timelineWid->GetToolBar()->PauseTriggered();
-    //connect(mainWin->GetFileOpener(), &FileOpener::FileRead, timelineWid->GetTimeline(), &Timeline::UpdateTimeline);
+
     connect(mainWin->GetFileOpener(), &FileOpener::FileRead, timelineWid->GetTimeline(), &Timeline::UpdateTimeline);
     connect(mainWin->GetFileOpener(), &FileOpener::FileRead, this, &TabWidget::UpdateSummary);
     connect(mainWin->GetFileOpener(), &FileOpener::FileRead, inspector, &Inspector::PopulateInspector);
 
     connect(mainWin->GetFileOpener(), &FileOpener::MasterFileRead, inspector, &Inspector::PopulateMasterInspector);
+    connect(mainWin->GetFileOpener(), &FileOpener::MasterFileRead, this, &TabWidget::UpdateSummary);
 
     connect(videoPlayer->GetPlayer(),&QMediaPlayer::durationChanged,timelineWid->GetToolBar(), &TimelineToolBar::ZoomOutTriggered);
     connect(videoPlayer->GetPlayer(),&QMediaPlayer::durationChanged,timelineWid->GetToolBar(), &TimelineToolBar::VolumeUpTriggered);
@@ -83,8 +84,9 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name, FileOpener* _fileOpene
     connect(timelineWid->GetTimeline(), &Timeline::AddedActivity, activity, &ActivityList::AddActivityInList);
     connect(timelineWid->GetTimeline(), &Timeline::FlushedActivities, activity, &ActivityList::FlushActivities);
     connect(activity, &ActivityList::DoubleClicked, timelineWid->GetTimeline(), &Timeline::UpdateTimeline);
-   //connect(activity, &ActivityList::Clicked , inspector, &Inspector::UpdateInspector);
     connect(activity, &ActivityList::Clicked , inspector, &Inspector::SelectText);
+    //control visibility nodes in timeline
+    connect(timelineWid->GetToolBar(), &TimelineToolBar::VisibilitySwitch, timelineWid->GetTimeline(), &Timeline::UpdateTimeline);
 
 
 }

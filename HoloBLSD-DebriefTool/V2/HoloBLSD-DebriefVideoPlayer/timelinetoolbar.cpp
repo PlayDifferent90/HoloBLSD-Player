@@ -1,29 +1,30 @@
 #include "timelinetoolbar.h"
 #include "qapplication.h"
+#include "uservisibilitybutton.h"
 #include "qboxlayout.h"
 #include "qdebug.h"
 
-TimelineToolBar::TimelineToolBar(QWidget *parent)
+TimelineToolBar::TimelineToolBar(QWidget *parent, FileOpener* _fo)
     : QWidget{parent}
 {
+    fileOpener=_fo;
 
-    //Todo: add dinamically generated button for user visibility
     QHBoxLayout* layout = new QHBoxLayout(parent);
+    layout->setMargin(0);;
+
     //play, pause, stop
     playButton = new QPushButton(playIcon,"Play",this);
     connect(playButton, &QPushButton::pressed, this, &TimelineToolBar::PlayTriggered);
 
-
     pauseButton = new QPushButton(pauseIcon,"Pause",this);
     connect(pauseButton, &QPushButton::pressed, this, &TimelineToolBar::PauseTriggered);
-
 
     stopButton = new QPushButton(stopIcon,"Stop",this);
     connect(stopButton, &QPushButton::pressed, this, &TimelineToolBar::StopTriggered);
 
+    //volume
     volumeUpButton = new QPushButton(volumeUpIcon,"volumeUp",this);
     connect(volumeUpButton, &QPushButton::pressed, this, &TimelineToolBar::VolumeUpTriggered);
-
 
     volumeDownButton = new QPushButton(volumeDownIcon,"volumeDown",this);
     connect(volumeDownButton, &QPushButton::pressed, this, &TimelineToolBar::VolumeDownTriggered);
@@ -31,22 +32,32 @@ TimelineToolBar::TimelineToolBar(QWidget *parent)
     volumeMuteButton = new QPushButton(volumeMuteIcon,"volumeMute",this);
     connect(volumeMuteButton, &QPushButton::pressed, this, &TimelineToolBar::VolumeMuteTriggered);
 
+    volumeSlider = new QSlider(Qt::Horizontal, this);
+    connect(volumeSlider, &QSlider::sliderMoved,this, &TimelineToolBar::VolumeValue);
+
+    //zoom
     zoomInButton = new QPushButton(zoomInIcon,"zoomIn",this);
     connect(zoomInButton, &QPushButton::pressed, this, &TimelineToolBar::ZoomInTriggered);
 
     zoomOutButton = new QPushButton(zoomOutIcon,"zoomOut",this);
     connect(zoomOutButton, &QPushButton::pressed, this, &TimelineToolBar::ZoomOutTriggered);
 
-    volumeSlider = new QSlider(Qt::Horizontal, this);
-    connect(volumeSlider, &QSlider::sliderMoved,this, &TimelineToolBar::VolumeValue);
-
     zoomSlider = new QSlider(Qt::Horizontal, this);
     connect(zoomSlider, &QSlider::sliderMoved,this, &TimelineToolBar::ZoomValue);
     zoomSlider->setSliderPosition(100);
-    //volume
 
-
-    layout->addSpacing(400);
+    //visibility
+    QList<QString> users = _fo->GetUsersList();
+    if(users.length()>0){
+        //textitem
+        foreach(QString user, users ){
+            qDebug()<<"creating button visibility";
+            UserVisibilityButton* UB = new UserVisibilityButton(fileOpener,user,this);
+            layout->addWidget(UB);
+            connect(UB, &UserVisibilityButton::VisibilityPressed, this, &TimelineToolBar::VisibilitySwitch);
+        }
+    }
+    layout->addSpacing(420);
     layout->addWidget(playButton);
     layout->addWidget(pauseButton);
     layout->addWidget(stopButton);
@@ -61,6 +72,7 @@ TimelineToolBar::TimelineToolBar(QWidget *parent)
     layout->addWidget(zoomInButton);
 
 }
+
 
 void TimelineToolBar::PlayTriggered(){
     qDebug()<<"play";

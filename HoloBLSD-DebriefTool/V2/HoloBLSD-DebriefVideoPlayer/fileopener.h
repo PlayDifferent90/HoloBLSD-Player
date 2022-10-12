@@ -24,6 +24,9 @@ public:
     QList<Activity *> GetActivities();
     int GetDuration();
     void OpenLogMaster(QList<QString> _files);
+    int GetUserNodeID();
+    void SetUsersList(QList<QString> _u);
+    QList<QString> GetUsersList();
 private:
     QString userID;
     int durationTime;
@@ -35,9 +38,11 @@ private:
     bool DetectErr(QString _msg);
     bool DetectWar(QString _msg);
     void CreateActivity(int _time, QString _owner, QString _type, QString _msg);
+    int userNodeID =0;
+    QList<QString> usersList;
 signals:
     void FileRead();
-    void MasterFileRead();
+    void MasterFileRead(int users);
 
 };
 

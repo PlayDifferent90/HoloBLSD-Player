@@ -26,11 +26,13 @@
 #include "qboxlayout.h"
 #include "qdatetime.h"
 #include "fileopener.h"
+#include "QLabel"
 
 class Timeline : public QWidget
 {
     Q_OBJECT
 public:
+    //todo: privatize
     ~Timeline();
     QGraphicsItem* ItemAt(QPointF position){return scene->itemAt(position,QTransform());}
     void SetFrame(int _frame){if(_frame < maxFrame)frame=_frame;}
@@ -43,7 +45,11 @@ public:
     void UpdateVideoCursorX(float x);
     void SetNumbers();
     void SetScale(float scale);
-//private:
+    timelineCursor *GetCursor();
+    void UpdateTimeline();
+    void SetVideoLength(int _videolength);
+    int GetTimelineLength();
+private:
     QGraphicsScene *scene;
     QGraphicsScene *sibling;
     QGraphicsView *view;
@@ -58,7 +64,6 @@ public:
     int frame;
     int minFrame,maxFrame;
     float tlScale =1;
-
     int timelineLength = 1000;
     int timelineLengthStart = 1000;
     int videoLength = 1000;
@@ -73,24 +78,17 @@ public:
 
     void DrawBackgroundNode(int posY, int timeLineLength, int numUsers);
     void DrawActivity(Activity *_activity);
-    //void DrawNode(Node *_node, int _actID);
-    timelineCursor *GetCursor();
-
-    void UpdateTimeline();
     void SetFileOpener(FileOpener *_fileopener);
     void SetupTimeline(int _length);
-    void SetVideoLength(int _videolength);
     void RetrieveVideoCursorX(float x);
-    int GetTimelineLength();
+    void DrawActivity(Activity *_activity, int _actRow);
+    void DrawBackgroundNodeSibling(QString _name,int _posY, int _numUsers,int _actRow);
+    void DrawNode(Node *_node, int _actID, int _usersNumb, QString _userID);
 signals:
     void TimelineDrawn();
     void VideoCursorMoved(int t);
     void AddedActivity(QString name, bool visibility);
     void FlushedActivities();
-private:
-    void DrawActivity(Activity *_activity, int _actRow);
-    void DrawBackgroundNodeSibling(QString _name,int _posY, int _numUsers,int _actRow);
-    void DrawNode(Node *_node, int _actID, int _usersNumb);
 };
 
 #endif // TIMELINE_H

@@ -59,3 +59,7 @@ int Node::GetErr(){
 int Node::GetWar(){
     return  warnings;
 }
+
+bool Node::IsVisible(){
+    return isVisible;
+}

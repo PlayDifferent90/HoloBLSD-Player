@@ -32,6 +32,7 @@ private:
     FileOpener* fo;
     QString filename;
     void CreateMasterTab();
+    void UpdateMasterTab();
 signals:
     void userAdded(QString _userName, int tabID);
     void videoAdded(QString _fileName, int tabID);

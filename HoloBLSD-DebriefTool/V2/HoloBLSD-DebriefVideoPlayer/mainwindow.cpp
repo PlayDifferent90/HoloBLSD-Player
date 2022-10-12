@@ -25,9 +25,10 @@ MainWindow::~MainWindow()
 void MainWindow::on_actionOpenSingleUserFile_triggered()
 {
    filename = QFileDialog::getOpenFileName(this,"Open a Log file","","(*.log *.txt)"); // check goodness file  --> might use VLC embedded in QT (QTVLC) // open cv
+   QFileInfo fileInfo(filename);
    if(filename !=""){
 
-       QString userName = "User" + QString::number( users.length()+1);// todo: leggere da log
+       QString userName = fileInfo.baseName();// + QString::number( users.length()+1);// todo: leggere da log
        fo = new FileOpener( userName);
        files.append(filename);
        users.append(userName);
@@ -41,9 +42,12 @@ void MainWindow::on_actionOpenSingleUserFile_triggered()
        emit userAdded(userName, files.length());
        emit videoAdded(filename,files.length());
 
+
        if(files.length()>1){
+           if(files.length()>2){
+               mainTab->removeTab(0);
+           }
            CreateMasterTab();
-           //todo:  it once, then repopulate
        }
 
        QApplication::restoreOverrideCursor();
@@ -58,11 +62,15 @@ FileOpener* MainWindow::GetFileOpener(){
 void MainWindow::CreateMasterTab(){
     QString userName = "Master";
     fo = new FileOpener( userName);
+    fo->SetUsersList(users);
 
     TabWidget* newTab = new TabWidget(this,userName,fo,0);  //0= master
-    mainTab->addTab(newTab, userName);
+
 
     fo->OpenLogMaster(files);
+
+    mainTab->addTab(newTab, userName);
+
 
     emit userAdded(userName,0);
     emit videoAdded(filename, 0);  //todo: soluzione temporaneea, si dovranno poi associare più video e consenire di scegliere trai video

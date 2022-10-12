@@ -21,6 +21,7 @@ public:
     QList<Timestamp *> GetEvents();
     int GetErr();
     int GetWar();
+    bool IsVisible();
 private:
     Timestamp* tStart;
     Timestamp* tFinish=NULL;

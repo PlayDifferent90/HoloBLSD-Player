@@ -1,6 +1,7 @@
 #include "fileopener.h"
 #include "qapplication.h"
 #include "qdebug.h"
+#include "qfileinfo.h"
 
 FileOpener::FileOpener(QString _userID)
 {
@@ -54,14 +55,15 @@ void FileOpener::OpenLogMaster(QList<QString> _files)
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
     QString userSwap = userID;
-    int userNodeID =1;
+    userNodeID =1;
     foreach (QString f, _files) {
-        userID = userSwap + QString::number(userNodeID);
+        QFileInfo fileInfo(f);
+        userID = fileInfo.baseName();
         OpenLog(f);
         userNodeID++;
     }
     userID=userSwap;
-    emit MasterFileRead();
+    emit MasterFileRead(_files.length());
 
     QApplication::restoreOverrideCursor();
 }
@@ -122,7 +124,7 @@ void FileOpener::CreateActivity(int _time, QString _owner, QString _type, QStrin
                 return;
             }else if((_type=="NodeTriggered" )){
                 Timestamp* timestampTriggered = new Timestamp{_time, _type, _msg};
-                qDebug()<< "creating user ID: " << userID;
+               // qDebug()<< "creating user ID: " << userID;
                 Node* node = new Node{timestampTriggered,userID};
                 act->AddNode(node);
                 actFound =true;
@@ -161,4 +163,13 @@ int FileOpener::GetWarnings(){
 
 QString FileOpener::GetUser(){
     return userID;
+}
+
+
+
+void FileOpener::SetUsersList(QList<QString> _u){
+    usersList=_u;
+}
+QList<QString> FileOpener::GetUsersList(){
+    return usersList;
 }
