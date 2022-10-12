@@ -139,7 +139,7 @@ void Timeline::RetrieveVideoCursorX(float x){ // todo: this must become %
 
 void Timeline::SetNumbers(){
 int nums=0;
-    for (int t=0; t<timelineLength; t+=(float)timeMarkerDistance*tlScale/((int)tlScale) ){
+    for (int t=0; t<timelineLength; t+=(float)timeMarkerDistance*(float)tlScale/((float)tlScale) ){
         float posXPercentage = (float)t/(float)timelineLength;
         //qDebug()<<"drawing verical line at % : "<< posXPercentage << " with video length : " << videoLength<<"  ; video millisec = " << videoLength*posXPercentage<< " ; to string mm:ss : " << QDateTime::fromMSecsSinceEpoch(videoLength*posXPercentage).toString("mm:ss");
         QGraphicsTextItem  *item = scene->addText(QDateTime::fromMSecsSinceEpoch(videoLength*posXPercentage).toString("mm:ss"));
