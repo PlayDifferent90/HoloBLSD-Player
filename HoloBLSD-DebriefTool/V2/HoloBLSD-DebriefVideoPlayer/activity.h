@@ -20,6 +20,7 @@ public:
     int GetUsersNumber(bool _getAll=true);
     bool GetVisibility();
     QList<Node *> GetVisibleNodes();
+    Node *GetLongerNode();
 private:
     QString actName;
     QList<Node*> nodes;

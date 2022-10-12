@@ -43,8 +43,7 @@ void FileOpener::OpenLog(QString _fileName)
        }
        inputFile.close();
 
-    //  qDebug()<<"emitting FileRead";
-        emit FileRead();
+       emit FileRead();
 
        QApplication::restoreOverrideCursor();
     }
@@ -115,6 +114,8 @@ void FileOpener::CreateActivity(int _time, QString _owner, QString _type, QStrin
                     foreach (Node* n, nodes) {
                         if(n->GetFinish()==NULL){
                             n->SetFinish(timestampEvent);
+                            if(n->GetFinish()->GetTime()>durationTime)
+                                durationTime=n->GetFinish()->GetTime();
                         }
                     }
                 }else{
