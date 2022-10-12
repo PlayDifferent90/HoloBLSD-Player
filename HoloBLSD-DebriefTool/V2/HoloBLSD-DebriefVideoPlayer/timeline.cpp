@@ -35,6 +35,7 @@ Timeline::~Timeline()
 void Timeline::DrawActivity(Activity* _activity,int _actRow){
   // qDebug()<< "drawing activity " << _activity->GetName();
     QList<QString>  users;
+    int nn =0;
     if(!_activity->GetVisibleNodes().empty()){
         users.empty();
         foreach (Node* n, _activity->GetVisibleNodes()) {
@@ -42,15 +43,17 @@ void Timeline::DrawActivity(Activity* _activity,int _actRow){
                  users.append(n->GetUserID());
              }
              DrawNode(n, _actRow, users.count(), n->GetUserID());
+             nn++;
+
         }
     }
    // qDebug()<< "    drawing bg for " << _activity->GetName() << "at line "<< drawnNodes << " height (number of nodes) "<< _activity->GetUsersNumber(false);
     if(_actRow%2!=0){
        DrawBackgroundNode(drawnNodes, timelineLength, _activity->GetUsersNumber(false));
     }
-
-    //todo: drawsibling solo se activity ha nodi attivi
-    DrawBackgroundNodeSibling(_activity->GetName(), drawnNodes, _activity->GetUsersNumber(false),_actRow);
+    if(nn>0){
+        DrawBackgroundNodeSibling(_activity->GetName(), drawnNodes, _activity->GetUsersNumber(false),_actRow);
+    }
     drawnNodes+=_activity->GetUsersNumber(false);
 }
 

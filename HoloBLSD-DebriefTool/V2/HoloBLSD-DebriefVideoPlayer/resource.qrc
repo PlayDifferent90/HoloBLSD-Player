@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/Icons">
-        <file>VideoIcon/Invisibility.png</file>
         <file>VideoIcon/Invisibility_gold.png</file>
         <file>VideoIcon/Invisibility_lightgrey.png</file>
         <file>VideoIcon/InvisibilityClosed_gold.png</file>
@@ -18,5 +17,7 @@
         <file>VideoIcon/ZoomIn.png</file>
         <file>VideoIcon/ZoomOut.png</file>
         <file>VideoIcon/master.png</file>
+        <file>VideoIcon/EyeOpen.png</file>
+        <file>VideoIcon/EyeClosed.png</file>
     </qresource>
 </RCC>
