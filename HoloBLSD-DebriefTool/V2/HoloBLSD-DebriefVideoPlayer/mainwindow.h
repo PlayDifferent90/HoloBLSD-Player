@@ -55,6 +55,7 @@ private:
     QString filename;
     void CreateMasterTab();
     void UpdateMasterTab();
+    const QIcon masterIcon = QIcon(":/Icons/VideoIcon/master_white.png");
 signals:
     void userAdded(QString _userName, int tabID);
     void videoAdded(QString _fileName, int tabID);

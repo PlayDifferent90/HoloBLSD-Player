@@ -28,6 +28,7 @@
         <file>VideoIcon/VolumeUp_white.png</file>
         <file>VideoIcon/ZoomIn_white.png</file>
         <file>VideoIcon/ZoomOut_white.png</file>
+        <file>VideoIcon/master_white.png</file>
     </qresource>
     <qresource prefix="/Styles">
         <file>Combinear.qss</file>

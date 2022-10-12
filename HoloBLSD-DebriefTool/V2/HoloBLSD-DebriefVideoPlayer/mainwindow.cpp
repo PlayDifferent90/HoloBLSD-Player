@@ -78,6 +78,7 @@ void MainWindow::CreateMasterTab(){
         emit userAdded(s, 0);
     }
     mainTab->tabBar()->moveTab(files.length(),0);
+    mainTab->setTabIcon(0,masterIcon);
 }
 
 void MainWindow::on_actionOpen_File_triggered()
