@@ -10,7 +10,7 @@ TimelineToolBar::TimelineToolBar(QWidget *parent, FileOpener* _fo)
     fileOpener=_fo;
 
     QHBoxLayout* layout = new QHBoxLayout(parent);
-    layout->setMargin(0);;
+    layout->setMargin(5);;
 
     //play, pause, stop
     playButton = new QPushButton(playIcon,"Play",this);
@@ -49,15 +49,19 @@ TimelineToolBar::TimelineToolBar(QWidget *parent, FileOpener* _fo)
     //visibility
     QList<QString> users = _fo->GetUsersList();
     if(users.length()>0){
-        //textitem
+        QLabel* userText = new QLabel("User:");
+        userText->minimumWidth(); //= 640
+        layout->addWidget(userText);
+        layout->addSpacing(420 - 50 - users.length()*100);
         foreach(QString user, users ){
-            qDebug()<<"creating button visibility";
             UserVisibilityButton* UB = new UserVisibilityButton(fileOpener,user,this);
-            layout->addWidget(UB);
+            layout->addWidget(UB->GetButton());
             connect(UB, &UserVisibilityButton::VisibilityPressed, this, &TimelineToolBar::VisibilitySwitch);
         }
+        layout->addSpacing(50);
+    }else{
+        layout->addSpacing(420);
     }
-    layout->addSpacing(420);
     layout->addWidget(playButton);
     layout->addWidget(pauseButton);
     layout->addWidget(stopButton);
