@@ -44,7 +44,6 @@ void Timeline::DrawActivity(Activity* _activity,int _actRow){
              }
              DrawNode(n, _actRow, users.count(), n->GetUserID());
              nn++;
-
         }
     }
    // qDebug()<< "    drawing bg for " << _activity->GetName() << "at line "<< drawnNodes << " height (number of nodes) "<< _activity->GetUsersNumber(false);

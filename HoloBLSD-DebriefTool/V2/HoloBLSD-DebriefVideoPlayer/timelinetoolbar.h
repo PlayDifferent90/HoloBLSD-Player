@@ -2,6 +2,7 @@
 #define TIMELINETOOLBAR_H
 
 #include "fileopener.h"
+#include "mainwindow.h"
 #include "qicon.h"
 #include "qaction.h"
 #include "qlabel.h"
@@ -15,7 +16,7 @@ class TimelineToolBar : public QWidget
     Q_OBJECT
 public:
     explicit TimelineToolBar(QObject *parent = nullptr);
-    TimelineToolBar(QWidget *parent, FileOpener *_fo);
+    TimelineToolBar(QWidget *parent, FileOpener *_fo, MainWindow* mainwin);
     void PlayTriggered();
     void PauseTriggered();
     void StopTriggered();

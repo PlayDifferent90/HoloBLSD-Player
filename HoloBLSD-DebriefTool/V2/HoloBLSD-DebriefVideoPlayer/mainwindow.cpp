@@ -79,3 +79,70 @@ void MainWindow::CreateMasterTab(){
     }
     mainTab->tabBar()->moveTab(files.length(),0);
 }
+
+void MainWindow::on_actionOpen_File_triggered()
+{
+    on_actionOpenSingleUserFile_triggered();
+}
+
+
+void MainWindow::on_actionOpen_Session_triggered()
+{
+    //Apre salvataggio
+}
+
+
+
+void MainWindow::on_actionSave_Session_triggered()
+{
+    // salva sessione
+}
+
+
+void MainWindow::on_actionPlay_triggered()
+{
+    emit Play();
+}
+
+
+void MainWindow::on_actionPause_triggered()
+{
+    emit Pause();
+}
+
+
+void MainWindow::on_actionStop_triggered()
+{
+    emit Stop();
+}
+
+
+void MainWindow::on_actionVolume_Down_triggered()
+{
+    emit VolumeD();
+}
+
+
+void MainWindow::on_actionVolume_Up_triggered()
+{
+    emit VolumeU();
+}
+
+
+void MainWindow::on_actionVolume_Mute_triggered()
+{
+    emit VolumeM();
+}
+
+
+void MainWindow::on_actionZoomIn_triggered()
+{
+    emit ZoomI();
+}
+
+
+void MainWindow::on_actionZoomOut_triggered()
+{
+    emit ZoomO();
+}
+

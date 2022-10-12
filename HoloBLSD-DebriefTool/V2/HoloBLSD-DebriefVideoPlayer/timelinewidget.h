@@ -1,6 +1,7 @@
 #ifndef TIMELINEWIDGET_H
 #define TIMELINEWIDGET_H
 
+#include "mainwindow.h"
 #include "qgraphicsscene.h"
 #include "qgraphicsview.h"
 #include <QObject>
@@ -16,7 +17,7 @@ class TimelineWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit TimelineWidget(QWidget *parent= nullptr, FileOpener *_fileOpener=nullptr, int _Width=0, int Height=0);
+    explicit TimelineWidget(MainWindow *_mw, QWidget *parent= nullptr, FileOpener *_fileOpener=nullptr, int _Width=0, int Height=0);
 
     Timeline *GetTimeline();
     TimelineToolBar *GetToolBar();

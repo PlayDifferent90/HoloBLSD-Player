@@ -4,7 +4,7 @@
 #include "qboxlayout.h"
 #include "qdebug.h"
 
-TimelineToolBar::TimelineToolBar(QWidget *parent, FileOpener* _fo)
+TimelineToolBar::TimelineToolBar(QWidget *parent, FileOpener* _fo, MainWindow* mainWin)
     : QWidget{parent}
 {
     fileOpener=_fo;
@@ -74,6 +74,18 @@ TimelineToolBar::TimelineToolBar(QWidget *parent, FileOpener* _fo)
     layout->addWidget(zoomOutButton);
     layout->addWidget(zoomSlider);
     layout->addWidget(zoomInButton);
+
+    connect(mainWin, &MainWindow::ZoomI, this, &TimelineToolBar::ZoomInTriggered);
+    connect(mainWin, &MainWindow::ZoomO, this, &TimelineToolBar::ZoomOutTriggered);
+
+    connect(mainWin, &MainWindow::Play, this, &TimelineToolBar::PlayTriggered);
+    connect(mainWin, &MainWindow::Pause, this, &TimelineToolBar::PauseTriggered);
+    connect(mainWin, &MainWindow::Stop, this, &TimelineToolBar::StopTriggered);
+
+
+    connect(mainWin, &MainWindow::VolumeD, this, &TimelineToolBar::VolumeDownTriggered);
+    connect(mainWin, &MainWindow::VolumeU, this, &TimelineToolBar::VolumeUpTriggered);
+    connect(mainWin, &MainWindow::VolumeM, this, &TimelineToolBar::VolumeMuteTriggered);
 
 }
 

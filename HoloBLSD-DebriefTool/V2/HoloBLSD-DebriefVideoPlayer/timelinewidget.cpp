@@ -1,6 +1,7 @@
 #include "timelinewidget.h"
+#include "mainwindow.h"
 
-TimelineWidget::TimelineWidget(QWidget *parent,FileOpener* _fileOpener ,int _width, int _height)
+TimelineWidget::TimelineWidget( MainWindow* _mw,QWidget *parent,FileOpener* _fileOpener ,int _width, int _height)
     : QWidget{parent}
 {
     Theme* theme = new Theme();
@@ -9,7 +10,7 @@ TimelineWidget::TimelineWidget(QWidget *parent,FileOpener* _fileOpener ,int _wid
     toolbarArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     toolbarArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     toolbarArea->setFixedSize(_width,_height/13);
-    toolbar = new TimelineToolBar(toolbarArea, _fileOpener);
+    toolbar = new TimelineToolBar(toolbarArea, _fileOpener,_mw);
     qDebug()<< "toolbar area cations" << toolbarArea->actions();
 
 
