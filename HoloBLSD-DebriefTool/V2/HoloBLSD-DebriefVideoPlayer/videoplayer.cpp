@@ -46,8 +46,7 @@ void VideoPlayer::SetVideoLabel(QString _title){
 }
 
 void VideoPlayer::ShowVideo(QString _fileName){
-    player->setMedia(QUrl::fromLocalFile(_fileName.left(_fileName.lastIndexOf("."))+ extention));  // todo: valutare uso di vlc
-
+    player->setMedia(QUrl::fromLocalFile(_fileName.left(_fileName.lastIndexOf("."))+ extention));
     player->play();
     player->pause();
 }

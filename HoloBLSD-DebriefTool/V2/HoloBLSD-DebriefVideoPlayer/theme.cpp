@@ -3,14 +3,17 @@
 
 Theme::Theme()
 {
-
 }
 
 QBrush Theme::RandomUserColor(QString _user)
 {
-    int userRand =  _user.length();
-   // qDebug()<<"_userRand value"<< userRand;
-    QColor userRandom{(255)/userRand , (255)/_user.length(), 255};
+    float userRand=0;
+    for(const auto character: _user){
+        userRand += character.unicode();
+    }
+    userRand = (float)userRand/(1000.0f);
+    qDebug()<<"unicode "<< userRand;
+    QColor userRandom{(int)((float)48/userRand) , (int)((float)196/userRand), (int)((float)214/userRand)};  //29,98,107
     QBrush userBrush{userRandom};
     return userBrush;
 }

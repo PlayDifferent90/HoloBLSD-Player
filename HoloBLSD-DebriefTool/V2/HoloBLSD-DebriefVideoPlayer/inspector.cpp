@@ -31,7 +31,6 @@ QWidget* Inspector::InspectorWidget(){
     return localWidget;
 }
 
-//todo: quando si apre il masterlog si deve creare una tab per ciascun file
 void Inspector::PopulateInspector(){
 
     QApplication::setOverrideCursor(Qt::WaitCursor);

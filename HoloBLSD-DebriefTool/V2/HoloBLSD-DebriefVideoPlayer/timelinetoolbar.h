@@ -28,15 +28,14 @@ public:
     void ZoomOutTriggered();
     void ZoomValue();
 
-    const QIcon playIcon = QIcon(":/Icons/VideoIcon/VideoPlay.png");
-    const QIcon pauseIcon = QIcon(":/Icons/VideoIcon/VideoPause.png");
-    const QIcon stopIcon = QIcon(":/Icons/VideoIcon/VideoStop.png");
-    const QIcon volumeUpIcon = QIcon(":/Icons/VideoIcon/VolumeUp.png");
-    const QIcon volumeDownIcon = QIcon(":/Icons/VideoIcon/VolumeDown.png");
-    const QIcon volumeMuteIcon = QIcon(":/Icons/VideoIcon/VolumeMute.png");
-    const QIcon zoomInIcon = QIcon(":/Icons/VideoIcon/ZoomIn.png");
-    const QIcon zoomOutIcon = QIcon(":/Icons/VideoIcon/ZoomOut.png");
-    const QIcon visibilityIcon = QIcon(":/Icons/VideoIcon/Invisibility_lightgrey.png");
+    const QIcon playIcon = QIcon(":/Icons/VideoIcon/VideoPlay_white.png");
+    const QIcon pauseIcon = QIcon(":/Icons/VideoIcon/VideoPause_white.png");
+    const QIcon stopIcon = QIcon(":/Icons/VideoIcon/VideoStop_white.png");
+    const QIcon volumeUpIcon = QIcon(":/Icons/VideoIcon/VolumeUp_white.png");
+    const QIcon volumeDownIcon = QIcon(":/Icons/VideoIcon/VolumeDown_white.png");
+    const QIcon volumeMuteIcon = QIcon(":/Icons/VideoIcon/VolumeMute_white.png");
+    const QIcon zoomInIcon = QIcon(":/Icons/VideoIcon/ZoomIn_white.png");
+    const QIcon zoomOutIcon = QIcon(":/Icons/VideoIcon/ZoomOut_white.png");
     QPushButton* playButton;
     QPushButton* pauseButton;
     QPushButton* stopButton;

@@ -116,7 +116,7 @@ QString* TabWidget::GetName(){
 }
 
 void TabWidget::SetWidgetDimention(MainWindow* _mainWin){
-    //todo: on resize di window chiamare la funzione per aggiornare dimensione dei widget
+    //todo-debug: on resize di window chiamare la funzione per aggiornare dimensione dei widget
     int  colWidth=  _mainWin->size().width()*0.98;
     int  rowHeight= _mainWin->size().height();
 

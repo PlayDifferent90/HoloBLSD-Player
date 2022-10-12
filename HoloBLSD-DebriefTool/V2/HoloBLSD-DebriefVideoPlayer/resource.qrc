@@ -19,5 +19,17 @@
         <file>VideoIcon/master.png</file>
         <file>VideoIcon/EyeOpen.png</file>
         <file>VideoIcon/EyeClosed.png</file>
+        <file>VideoIcon/EyeClosed_white.png</file>
+        <file>VideoIcon/VideoPause_white.png</file>
+        <file>VideoIcon/VideoPlay_white.png</file>
+        <file>VideoIcon/VideoStop_white.png</file>
+        <file>VideoIcon/VolumeDown_white.png</file>
+        <file>VideoIcon/VolumeMute_white.png</file>
+        <file>VideoIcon/VolumeUp_white.png</file>
+        <file>VideoIcon/ZoomIn_white.png</file>
+        <file>VideoIcon/ZoomOut_white.png</file>
+    </qresource>
+    <qresource prefix="/Styles">
+        <file>Combinear.qss</file>
     </qresource>
 </RCC>

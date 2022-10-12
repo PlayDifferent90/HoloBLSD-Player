@@ -28,7 +28,7 @@ void MainWindow::on_actionOpenSingleUserFile_triggered()
    QFileInfo fileInfo(filename);
    if(filename !=""){
 
-       QString userName = fileInfo.baseName();// + QString::number( users.length()+1);// todo: leggere da log
+       QString userName = fileInfo.baseName();
        fo = new FileOpener( userName);
        files.append(filename);
        users.append(userName);

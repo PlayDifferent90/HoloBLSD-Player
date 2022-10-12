@@ -32,7 +32,6 @@ class Timeline : public QWidget
 {
     Q_OBJECT
 public:
-    //todo: privatize
     ~Timeline();
     QGraphicsItem* ItemAt(QPointF position){return scene->itemAt(position,QTransform());}
     void SetFrame(int _frame){if(_frame < maxFrame)frame=_frame;}

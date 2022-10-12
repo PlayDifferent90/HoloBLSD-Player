@@ -46,9 +46,9 @@ TimelineWidget::TimelineWidget( MainWindow* _mw,QWidget *parent,FileOpener* _fil
     activityView = new QGraphicsView(activityScene);
     activityView->setInteractive(true);
 
-    activityScene->setBackgroundBrush(theme->BGTEst);
+    activityScene->setBackgroundBrush(theme->TimelineBG);
     activityScene->setSceneRect(0,0,_width/6,1000);
-    timelineScene->setBackgroundBrush(theme->BGTEst);
+    timelineScene->setBackgroundBrush(theme->TimelineBG);
     timelineScene->setSceneRect(0,0, 5*_width/6,1000);
     timelineWidgetLayout->addWidget(timelineView);
 

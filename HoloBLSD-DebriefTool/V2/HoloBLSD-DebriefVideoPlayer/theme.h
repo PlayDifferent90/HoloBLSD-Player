@@ -12,32 +12,23 @@ class Theme: public QObject
 public:
     Theme();
 
-    qreal outlineSize = 1;
+    //combinear color
+    QColor blackA{0,0,0,100};
+    QColor darkgrey{46,46,46};
+    QColor grey{58,58,58};
+    QColor lightGrey{70,70,70};
+    QColor yellow{183,134,32};
+    QColor whiteA{255,255,255,100};
 
-    QColor cursorPenColor = QColor(183,134,32);
+    //pens
+    QPen timelineNodeBorders {blackA,1};
+    QPen penLineTimeStop{lightGrey,1};
 
-
-    QColor bluedimmed{45,114,178};
-    QColor blue{57,92,107};
-    QColor skyblue{74,123,157};
-    QColor lightblue{118,152,179};
-    QColor greyBlue{78,128,152};
-    QColor lightgreen{166,211,160};
-    QColor red{219,84,97};
-    QColor orange{255,127,00};
-    QColor yellow{243,255,185};
-    QColor verticalLineColor{70,70,70};
-    QColor gold{183,134,32};
-
-    QPen penBlue {blue,outlineSize};
-    QPen penBlack {Qt::black,outlineSize};
-    QPen penLineTimeStop{verticalLineColor,1};
-
-    QBrush nodeBrush {lightgreen};
-    QBrush eventBrush {skyblue};
-    QBrush BGTEst{orange};
-    QBrush lineBGBrush{red};
-    QBrush videoCursorBrush{Qt::black};
+    //brushes
+    QBrush eventBrush {whiteA};  //set alpha
+    QBrush TimelineBG{darkgrey};
+    QBrush TimelineBGRow{grey};
+    QBrush videoCursorBrush{yellow};
 
     QBrush RandomUserColor(QString _user);
 };
