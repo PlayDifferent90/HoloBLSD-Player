@@ -1,7 +1,9 @@
 # HoloBLSD-Player V2
 
 Proj kit:
+
 Desktop Qt 5.15.2 MinGW 64-bit
+
 Desktop Qt 6.3.1  MinGW 64-bit
 
 ```
