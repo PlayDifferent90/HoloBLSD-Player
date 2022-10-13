@@ -118,9 +118,12 @@ void MainWindow::on_actionSave_Session_triggered()
         out.setVersion(QDataStream::Qt_4_5);
         out << QString::number(scale)<<",";
         out << QString::number(volume)<<",";
-        out << QString::number(videoCursor)<<";\n";
+        out << QString::number(videoCursor)<<"\n";
         foreach (QString s, files) {
             out << s <<"\n";
+        }
+        foreach(Activity* a, fo->GetActivities()){
+            out<< QString::number(a->GetActID()) <<","<<QString::number(a->GetVisibility())<<"\n";
         }
         file.flush();
     }
