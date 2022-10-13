@@ -20,6 +20,7 @@ public:
     ~MainWindow();
     FileOpener* GetFileOpener();
 
+    void SaveTimelineValues(float _scale, float _volume, float _videoC);
 private slots:
     void on_actionOpenSingleUserFile_triggered();
     void on_actionOpen_File_triggered();
@@ -53,9 +54,11 @@ private:
     QList<QString> files;
     FileOpener* fo;
     QString filename;
+    float videoCursor,scale,volume;
+    const QIcon masterIcon = QIcon(":/Icons/VideoIcon/master_white.png");
     void CreateMasterTab();
     void UpdateMasterTab();
-    const QIcon masterIcon = QIcon(":/Icons/VideoIcon/master_white.png");
+
 signals:
     void userAdded(QString _userName, int tabID);
     void videoAdded(QString _fileName, int tabID);
@@ -67,5 +70,6 @@ signals:
     void VolumeM();
     void ZoomI();
     void ZoomO();
+    void SaveSession();
 };
 #endif // MAINWINDOW_H

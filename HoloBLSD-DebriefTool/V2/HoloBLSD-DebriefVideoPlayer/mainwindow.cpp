@@ -86,6 +86,11 @@ void MainWindow::on_actionOpen_File_triggered()
     on_actionOpenSingleUserFile_triggered();
 }
 
+void MainWindow::SaveTimelineValues(float _scale, float _volume, float _videoC){
+    scale=_scale;
+    volume=_volume;
+    videoCursor=_videoC;
+}
 
 void MainWindow::on_actionOpen_Session_triggered()
 {
@@ -96,7 +101,29 @@ void MainWindow::on_actionOpen_Session_triggered()
 
 void MainWindow::on_actionSave_Session_triggered()
 {
-    // salva sessione
+    emit SaveSession();
+
+    QString sessionName = QFileDialog::getSaveFileName(this,
+        tr("Save Debrief Session"), "",
+        tr("Debrief Session (*.txt);;All Files (*)"));
+
+    if (sessionName.isEmpty())
+         return;
+     else {QFile file(sessionName);
+        if(!file.open(QIODevice::OpenModeFlag::ReadWrite)){
+            qCritical()<<"can't open file";
+            return;
+        }
+        QDataStream out(&file);
+        out.setVersion(QDataStream::Qt_4_5);
+        out << QString::number(scale)<<",";
+        out << QString::number(volume)<<",";
+        out << QString::number(videoCursor)<<";\n";
+        foreach (QString s, files) {
+            out << s <<"\n";
+        }
+        file.flush();
+    }
 }
 
 

@@ -29,8 +29,10 @@ private:
     QGraphicsView* activityView;
     Timeline* timeline;
     TimelineToolBar* toolbar;
+    MainWindow* mainWindow;
 
     void ChangeSceneRect();
+    void SaveData();
 signals:
 
 };

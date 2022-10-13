@@ -4,6 +4,7 @@
 TimelineWidget::TimelineWidget( MainWindow* _mw,QWidget *parent,FileOpener* _fileOpener ,int _width, int _height)
     : QWidget{parent}
 {
+    mainWindow=_mw;
     Theme* theme = new Theme();
 
     toolbarArea = new QScrollArea(this);
@@ -59,6 +60,7 @@ TimelineWidget::TimelineWidget( MainWindow* _mw,QWidget *parent,FileOpener* _fil
     connect(activityScrollArea->verticalScrollBar(), &QScrollBar::valueChanged, timelineView->verticalScrollBar(), &QScrollBar::setValue);
     connect(timelineView->verticalScrollBar(),&QScrollBar::valueChanged, activityScrollArea->verticalScrollBar(), &QScrollBar::setValue);
     connect(timeline, &Timeline::TimelineDrawn, this, &TimelineWidget::ChangeSceneRect);
+    connect(mainWindow, &MainWindow::SaveSession, this, &TimelineWidget::SaveData);
 }
 
 void TimelineWidget::ChangeSceneRect(){
@@ -73,3 +75,6 @@ TimelineToolBar* TimelineWidget::GetToolBar(){
     return toolbar;
 }
 
+void TimelineWidget::SaveData(){
+    mainWindow->SaveTimelineValues(toolbar->zoom ,toolbar->volume ,timeline->GetCursor()->x() );
+}
