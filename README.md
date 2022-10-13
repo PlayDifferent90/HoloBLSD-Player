@@ -24,7 +24,7 @@ Main - runs app
           
              ↳Timeline  - graohic representation of log file              -A BIT OF A MESS
              
-                  ↳TimelineCursor - moves with video and controls it      -ISSUED
+                  ↳TimelineCursor - moves with video and controls it      
                   
               ↳TimelineToolbar  - all actions the user can perform      
               
