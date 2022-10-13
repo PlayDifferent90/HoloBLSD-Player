@@ -42,14 +42,9 @@ void Inspector::PopulateInspector(){
     QString vis = "";
     foreach (Activity* act , fo->GetActivities()) {
         i++;
-        if(act->GetVisibility())
-            vis="true";
-        else
-            vis="false";
 
         QLabel* inspectorText= new QLabel(" infos will be displayed here;");
         inspectorText->setText("Activity: " + act->GetName() + "\n"+"ID : "+ QString::number(act->GetActID()) +  "\n" +
-                               "Is visible in timeline : " +  vis + "\n"+
                                "\n" );
 
         foreach (Node* nn, act->GetNodesByUser(fo->GetUser())) {
@@ -74,15 +69,9 @@ void Inspector::PopulateMasterInspector(){
     QString vis = "";
     foreach (Activity* act , fo->GetActivities()) {
         i++;
-        if(act->GetVisibility())
-            vis="true";
-        else
-            vis="false";
-
         QLabel* inspectorText= new QLabel(" infos will be displayed here;");
         inspectorText->setText("Activity: " + act->GetName() + "\n"+"ID : "+ QString::number(act->GetActID()) +  "\n" +
                                "Executed by " + QString::number(act->GetUsersNumber()) + " users;\n"+
-                               "Is visible in timeline : " +  vis + "\n"+
                                "\n" );
         foreach (Node* nn, act->GetNodes()) {
                 inspectorText->setText(inspectorText->text() +
@@ -102,18 +91,16 @@ void Inspector::PopulateMasterInspector(){
 void Inspector::SelectText(QString  _actListText){
     int item =0;
     foreach (Activity* act, fo->GetActivities()) {
-
         for( int tab =0;tab<inspectorTabs->tabBar()->count(); tab++){
+            if(inspectorTabs->widget(tab)->layout()->itemAt(item)==nullptr){
 
-            if(inspectorTabs->widget(tab)->layout()->itemAt(item)==nullptr)
-                return;
-            inspectorTabs->widget(tab)->layout()->itemAt(item)->widget()->hide();
-
-            if(act->GetName() ==_actListText){
-                inspectorTabs->widget(tab)->layout()->itemAt(item)->widget()->show();
+            }else{
+                inspectorTabs->widget(tab)->layout()->itemAt(item)->widget()->hide();
+                if(act->GetName() ==_actListText){
+                    inspectorTabs->widget(tab)->layout()->itemAt(item)->widget()->show();
+                }
             }
         }
         item++;
     }
-
 }

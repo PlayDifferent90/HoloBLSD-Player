@@ -194,7 +194,7 @@ void Timeline::SetVideoLength(int _videolength){
     videoLength = _videolength;
     maxMillisResolution= _videolength*0.01;
     maxZoomScale = (((float)videoLength/(float)maxMillisResolution)*(float)timeMarkerDistance)/(float)timelineLengthStart;
-    qDebug()<<"("<< videoLength<<"/"<<maxMillisResolution << "*"<< timeMarkerDistance << ")/" << timelineLengthStart;
+    //qDebug()<<"("<< videoLength<<"/"<<maxMillisResolution << "*"<< timeMarkerDistance << ")/" << timelineLengthStart;
    // qDebug()<< "max zoom scale = "<< maxZoomScale;
 }
 
