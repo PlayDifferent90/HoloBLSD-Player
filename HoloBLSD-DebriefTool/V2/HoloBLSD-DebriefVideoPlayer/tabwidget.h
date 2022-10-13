@@ -54,6 +54,9 @@ private:
     void SetWidgetDimention(MainWindow *_mainWin);
     void UpdateSummary();
     int tabNum;
+    void ZoomVideoCoord();
+signals:
+    void ZoomVideoCoordinator(float videoPos);
 };
 
 #endif // TABWIDGET_H

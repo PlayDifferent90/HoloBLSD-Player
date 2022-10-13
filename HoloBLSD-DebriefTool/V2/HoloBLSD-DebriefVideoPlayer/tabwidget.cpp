@@ -64,7 +64,9 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name, FileOpener* _fileOpene
     connect(timelineWid->GetTimeline(),&Timeline::VideoCursorMoved, videoPlayer->GetSlider(), &QSlider::setValue);
     //scorrimento timeline -> riproduzione video
     connect(timelineWid->GetTimeline()->GetCursor(),&timelineCursor::CursorMoved, videoPlayer->GetPlayer(), &QMediaPlayer::setPosition);
-
+    //Scaling timeline whikle playing video
+    connect(timelineWid->GetToolBar(), &TimelineToolBar::Zoom, this, &TabWidget::ZoomVideoCoord);
+    connect(this, &TabWidget::ZoomVideoCoordinator, timelineWid->GetTimeline(),&Timeline::UpdateVideoCursorX);
 
     //init
     timelineWid->GetToolBar()->PauseTriggered();
@@ -110,6 +112,10 @@ void TabWidget::OpenVideo(QString _fileName, int _fileNum){
 
 }
 
+void TabWidget::ZoomVideoCoord(){
+    float videoPosition = videoPlayer->GetPlayer()->position();
+    emit ZoomVideoCoordinator(videoPosition);
+}
 
 QString* TabWidget::GetName(){
     return &tabName;
