@@ -11,7 +11,7 @@ VideoPlayer::VideoPlayer(QWidget *parent, QString _name, int _width, int _height
     player->setVideoOutput(videoArea);
     player->setNotifyInterval(1500);
 
-    videoLabel = new QLabel(this);
+    videoLabel = new QLabel(this);  //todo: --> diventare combobox
     videoLabel->setMaximumHeight(_height/50);
     SetVideoLabel(_name);
 

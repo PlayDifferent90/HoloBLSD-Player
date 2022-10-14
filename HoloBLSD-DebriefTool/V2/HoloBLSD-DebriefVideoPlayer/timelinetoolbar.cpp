@@ -49,7 +49,8 @@ TimelineToolBar::TimelineToolBar(QWidget *parent, FileOpener* _fo, MainWindow* m
     //visibility
     QList<QString> users = _fo->GetUsersList();
     if(users.length()>0){
-        QLabel* userText = new QLabel("     User Visibility:");
+        QLabel* userText = new QLabel("     User Visibility:");  //todo: diventare combo box
+
         userText->minimumWidth(); //= 640
         layout->addWidget(userText);
         layout->addSpacing(420 - 50 - users.length()*100);

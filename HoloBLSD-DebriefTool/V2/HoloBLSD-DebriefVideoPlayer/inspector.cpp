@@ -47,6 +47,7 @@ void Inspector::PopulateInspector(){
         inspectorText->setText("Activity: " + act->GetName() + "\n"+"ID : "+ QString::number(act->GetActID()) +  "\n" +
                                "\n" );
 
+        auto nodes = act->GetNodes().count();
         foreach (Node* nn, act->GetNodesByUser(fo->GetUser())) {
                 inspectorText->setText(inspectorText->text() +
                                        "Activity started at: " + QDateTime::fromMSecsSinceEpoch(nn->GetStart()->GetTime()).toString("mm:ss")+" , finished at: " + QDateTime::fromMSecsSinceEpoch(nn->GetFinish()->GetTime()).toString("mm:ss") +"\n" +
@@ -73,6 +74,7 @@ void Inspector::PopulateMasterInspector(){
         inspectorText->setText("Activity: " + act->GetName() + "\n"+"ID : "+ QString::number(act->GetActID()) +  "\n" +
                                "Executed by " + QString::number(act->GetUsersNumber()) + " users;\n"+
                                "\n" );
+
         foreach (Node* nn, act->GetNodes()) {
                 inspectorText->setText(inspectorText->text() +
                                        nn->GetUserID()+ ":\n"+
@@ -93,7 +95,7 @@ void Inspector::SelectText(QString  _actListText){
     foreach (Activity* act, fo->GetActivities()) {
         for( int tab =0;tab<inspectorTabs->tabBar()->count(); tab++){
             if(inspectorTabs->widget(tab)->layout()->itemAt(item)==nullptr){
-
+                inspectorTabs->widget(tab)->layout()->addWidget(new QLabel("Player did not execute this activity"));
             }else{
                 inspectorTabs->widget(tab)->layout()->itemAt(item)->widget()->hide();
                 if(act->GetName() ==_actListText){

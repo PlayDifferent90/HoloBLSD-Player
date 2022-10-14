@@ -72,8 +72,9 @@ void Timeline::DrawBackgroundNodeSibling(QString _name,int _posY, int _numUsers,
         itemBG->setZValue(0);
     }
     QGraphicsTextItem  *itemText = sibling->addText(_name);
+    itemText->setScale(1.5);
     itemText->setDefaultTextColor(Qt::white);
-    itemText->setPos(40,(_posY+1)*timelineNodeHeight );  //long term : auto size font adjustment
+    itemText->setPos(40,(_posY+((float)(_numUsers+1)/(float)2))*timelineNodeHeight );
     itemText->setZValue(10);
 }
 
