@@ -1,10 +1,21 @@
 # HoloBLSD-Player V2
 
+this software is made for HOlo-BLSD debrief using logs and recordings. It allows the user to visualize her performance on a timeline and compare it with multiple other uers, while being able to access all details fro each activity. 
+
+Required: https://codecguide.com/download_kl.htm
+
 Proj kit:
 
 Desktop Qt 5.15.2 MinGW 64-bit
 
 Desktop Qt 6.3.1  MinGW 64-bit
+
+TODO:
+- open saved fiels;
+- formatting and theme tweaks
+- multiple video selector in master tab
+- digital ciack
+
 
 ```
 Main - runs app
