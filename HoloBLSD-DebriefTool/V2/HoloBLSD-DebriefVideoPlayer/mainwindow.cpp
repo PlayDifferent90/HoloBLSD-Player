@@ -73,7 +73,13 @@ void MainWindow::CreateMasterTab(){
 
 
     emit userAdded(userName,0);
-    emit videoAdded(filename, 0);  //todo: soluzione temporaneea, si dovranno poi associare più video e consenire di scegliere trai video
+    //emit videoAdded(filename, 0);
+    int i=0;
+    foreach(QString f, files){
+        i++;
+        emit videoAdded(f,0);
+    }
+
     foreach (QString s, users) {
         emit userAdded(s, 0);
     }

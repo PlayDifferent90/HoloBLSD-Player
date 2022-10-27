@@ -8,6 +8,8 @@
 #include <QWidget>
 #include <QMediaPlayer>
 #include <QVideoWidget>
+#include "fileopener.h"
+#include "QComboBox.h"
 
 class VideoPlayer : public QWidget
 {
@@ -15,18 +17,19 @@ class VideoPlayer : public QWidget
 public:
     explicit VideoPlayer(QWidget *parent = nullptr);
 
-    void SetVideoLabel(QString _title);
-    VideoPlayer(QWidget *parent, QString _name, int _width, int _height);
+    VideoPlayer(QWidget *parent, FileOpener* _fo, int _width, int _height);
     ~VideoPlayer();
     void ShowVideo(QString _fileName);
     QMediaPlayer *GetPlayer();
     QSlider *GetSlider();
+    void AddVideoInCombo(QString _fileName);
 private:
-
+    FileOpener* fo;
     QBoxLayout* localLayout;
     QWidget* localWidget;
     QMediaPlayer* player;
     QVideoWidget* videoArea;
+    QComboBox* videoCombo;
     QLabel* videoLabel;
     QSlider* videoSlider;
     QString extention = ".mp4";

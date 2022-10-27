@@ -31,7 +31,7 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name, FileOpener* _fileOpene
     centralColumn -> addWidget(inspector->InspectorWidget());
 
     //video
-    videoPlayer = new VideoPlayer(this, "Video - " + _name, rightColumnMinWidth, upperRowHeight );
+    videoPlayer = new VideoPlayer(this, fo, rightColumnMinWidth, upperRowHeight );
 
     QVBoxLayout* rightColumn = new QVBoxLayout(this);
     rightColumn -> addWidget(videoPlayer);
@@ -107,7 +107,7 @@ void TabWidget::UpdateSummary(){
 
 void TabWidget::OpenVideo(QString _fileName, int _fileNum){
     if(tabNum==_fileNum){
-        videoPlayer->ShowVideo(_fileName);
+        videoPlayer->AddVideoInCombo(_fileName);
     }
 
 }

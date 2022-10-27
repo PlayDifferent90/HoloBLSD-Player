@@ -1,26 +1,27 @@
 #include "videoplayer.h"
 
-VideoPlayer::VideoPlayer(QWidget *parent, QString _name, int _width, int _height)
+VideoPlayer::VideoPlayer(QWidget *parent, FileOpener* _fo, int _width, int _height)
     : QWidget{parent}
 {
     videoArea = new QVideoWidget(this);
     videoArea->setMinimumSize(_width, _height/5*4.5);
+    videoArea->setMaximumSize(_width, _height/5*4.5);
     videoArea->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
 
     player = new QMediaPlayer(this);
     player->setVideoOutput(videoArea);
-    player->setNotifyInterval(1500);
+    player->setNotifyInterval(500);
 
-    videoLabel = new QLabel(this);  //todo: --> diventare combobox
-    videoLabel->setMaximumHeight(_height/50);
-    SetVideoLabel(_name);
+    videoCombo = new QComboBox(this);
+    videoCombo->setMaximumWidth(_width*0.95);
+    connect(videoCombo, &QComboBox::currentTextChanged, this, &VideoPlayer::ShowVideo);
 
     videoSlider = new QSlider(this);
     videoSlider->setOrientation(Qt::Horizontal);
     videoSlider->setMaximumHeight(_height/30);
 
     localLayout = new QVBoxLayout(this);
-    localLayout->addWidget(videoLabel);
+    localLayout->addWidget(videoCombo);
     localLayout->addWidget(videoArea);
     localLayout->addWidget(videoSlider);
 
@@ -41,8 +42,8 @@ VideoPlayer::~VideoPlayer(){
     delete this;
 }
 
-void VideoPlayer::SetVideoLabel(QString _title){
-    videoLabel->setText(_title);
+void VideoPlayer::AddVideoInCombo(QString _fileName){
+    videoCombo->addItem(_fileName);
 }
 
 void VideoPlayer::ShowVideo(QString _fileName){
