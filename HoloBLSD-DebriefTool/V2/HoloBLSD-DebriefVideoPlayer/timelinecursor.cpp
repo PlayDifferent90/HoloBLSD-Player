@@ -68,7 +68,7 @@ void timelineCursor::paint(QPainter *painter, const QStyleOptionGraphicsItem *op
 }
 
 
-void timelineCursor::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+void timelineCursor::mouseMoveEvent(QGraphicsSceneMouseEvent *event)  // get mouse pressed event
 {
     QPointF pos = event->scenePos();
     if(pressed){
@@ -88,7 +88,7 @@ QVariant timelineCursor::itemChange(GraphicsItemChange change, const QVariant &v
         if(newPos.x() < 0){
             newPos.setX(0);
         }
-        emit CursorMoved ((float) newPos.x()*tlScale);
+       // emit CursorMoved ((float) newPos.x()*tlScale);  //todo: only if curusor clicked
         return newPos;
     }
     return QGraphicsItem::itemChange(change, value);

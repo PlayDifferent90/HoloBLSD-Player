@@ -79,13 +79,11 @@ private:
     void DrawActivity(Activity *_activity);
     void SetFileOpener(FileOpener *_fileopener);
     void SetupTimeline(int _length);
-    void RetrieveVideoCursorX(float x);
     void DrawActivity(Activity *_activity, int _actRow);
     void DrawBackgroundNodeSibling(QString _name,int _posY, int _numUsers,int _actRow);
     void DrawNode(Node *_node, int _actID, int _usersNumb, QString _userID);
 signals:
     void TimelineDrawn();
-    void VideoCursorMoved(int t);
     void AddedActivity(QString name, bool visibility);
     void FlushedActivities();
 };

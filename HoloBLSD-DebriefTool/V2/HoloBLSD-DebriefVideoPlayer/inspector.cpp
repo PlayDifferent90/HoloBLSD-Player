@@ -85,6 +85,7 @@ void Inspector::PopulateMasterInspector(){
     }
 
     inspectorTabs->tabBar()->moveTab(inspectorTabs->count()-1,0);
+    inspectorTabs->tabBar()->setTabIcon(0,masterIcon);
     inspectorTabs->setCurrentIndex(0);
 
     QApplication::restoreOverrideCursor();

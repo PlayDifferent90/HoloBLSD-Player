@@ -27,6 +27,7 @@ public:
     QWidget *GetInspectorLayout();
     void PopulateMasterInspector();
 private:
+    const QIcon masterIcon = QIcon(":/Icons/VideoIcon/master_white.png");
     QWidget* userInspectorTab;
      QTabWidget* inspectorTabs;
      QGridLayout* inspectorLayout;

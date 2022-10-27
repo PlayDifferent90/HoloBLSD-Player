@@ -19,7 +19,7 @@ Timeline::Timeline(QGraphicsView *_view, QWidget *_parent,FileOpener* _fileOpene
 
     videoCursor = new timelineCursor(scene->sceneRect().height()*2);// non chiaro perchè *2
 
-    connect(videoCursor,&timelineCursor::CursorMoved, this, &Timeline::RetrieveVideoCursorX);
+    //connect(videoCursor,&timelineCursor::CursorMoved, this, &Timeline::RetrieveVideoCursorX);
     DrawTimeLineAxis();
     scene->addItem(videoCursor);
     videoCursor->setZValue(101);
@@ -129,11 +129,7 @@ void Timeline::FlushTimeLineElement(){
 void Timeline::UpdateVideoCursorX(float x){
    // qDebug()<< "video cursor X input pos : " << x;
     videoCursor->setHeight(height()*2);
-    videoCursor->setX((float)x*(float)timelineLength/(float)videoLength);
-}
-
-void Timeline::RetrieveVideoCursorX(float x){
-    emit VideoCursorMoved(x);
+    videoCursor->setX(x*(float)timelineLength/(float)videoLength);
 }
 
 void Timeline::SetNumbers(){

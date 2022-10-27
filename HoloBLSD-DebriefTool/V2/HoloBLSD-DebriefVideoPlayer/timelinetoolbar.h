@@ -10,6 +10,7 @@
 #include "qslider.h"
 #include <QObject>
 #include <QWidget>
+#include <QComboBox>
 
 class TimelineToolBar : public QWidget
 {
@@ -27,6 +28,7 @@ public:
     void ZoomInTriggered();
     void ZoomOutTriggered();
     void ZoomValue();
+    void VisibilitySwitch(QString selected);
 
     const QIcon playIcon = QIcon(":/Icons/VideoIcon/VideoPlay_white.png");
     const QIcon pauseIcon = QIcon(":/Icons/VideoIcon/VideoPause_white.png");
@@ -36,6 +38,8 @@ public:
     const QIcon volumeMuteIcon = QIcon(":/Icons/VideoIcon/VolumeMute_white.png");
     const QIcon zoomInIcon = QIcon(":/Icons/VideoIcon/ZoomIn_white.png");
     const QIcon zoomOutIcon = QIcon(":/Icons/VideoIcon/ZoomOut_white.png");
+    const QIcon visible = QIcon(":/Icons/VideoIcon/Visibility_gold.png");
+    const QIcon invisible = QIcon(":/Icons/VideoIcon/InvisibilityClosed_gold.png");
     QPushButton* playButton;
     QPushButton* pauseButton;
     QPushButton* stopButton;
@@ -44,12 +48,15 @@ public:
     QPushButton* volumeMuteButton;
     QPushButton* zoomInButton;
     QPushButton* zoomOutButton;
+    QComboBox* userCombo;
     QLabel* userVisiblity;
     QSlider* volumeSlider;
     QSlider* zoomSlider;
     FileOpener* fileOpener;
     int volume=0;
     int zoom=0;
+    int selectedNumber = 0;
+    QString placeHolder = " Select User..."; // tohave better visualization in mmenuu
 
 signals:
     void Play();
@@ -58,10 +65,9 @@ signals:
     void Volume(int _vol);
     void VolumeMute();
     void Zoom(int _zoom);
-    void VisibilitySwitch();
+  //  void NodeVisibilitySwitch(QString _name);
 private:
     int SliderValueCheck(int _value);
-    void NodeVisibilitySwitch(QString _name);
 };
 
 #endif // TIMELINETOOLBAR_H

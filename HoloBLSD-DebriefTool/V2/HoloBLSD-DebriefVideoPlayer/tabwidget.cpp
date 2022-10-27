@@ -57,11 +57,11 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name, FileOpener* _fileOpene
     //durata video -> lunghezza timeline
     connect(videoPlayer->GetPlayer(),&QMediaPlayer::durationChanged,timelineWid->GetTimeline(),&Timeline::SetVideoLength);
     // riproduzione video -> scorrimento timeline
-    connect(videoPlayer->GetPlayer(),&QMediaPlayer::positionChanged,timelineWid->GetTimeline(),&Timeline::UpdateVideoCursorX);
+    connect(videoPlayer->GetPlayer(),&QMediaPlayer::positionChanged,timelineWid->GetTimeline(),&Timeline::UpdateVideoCursorX); //issue
     //scorrimento barra -> scorriemnto timeline
     connect(videoPlayer->GetSlider(), &QSlider::sliderMoved,timelineWid->GetTimeline(),&Timeline::UpdateVideoCursorX);
     //scorrimento timeline -> scorrimento barra
-    connect(timelineWid->GetTimeline(),&Timeline::VideoCursorMoved, videoPlayer->GetSlider(), &QSlider::setValue);
+    connect(timelineWid->GetTimeline()->GetCursor(),&timelineCursor::CursorMoved, videoPlayer->GetSlider(), &QSlider::setValue);
     //scorrimento timeline -> riproduzione video
     connect(timelineWid->GetTimeline()->GetCursor(),&timelineCursor::CursorMoved, videoPlayer->GetPlayer(), &QMediaPlayer::setPosition);
     //Scaling timeline whikle playing video

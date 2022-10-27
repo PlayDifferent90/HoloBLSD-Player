@@ -25,7 +25,7 @@ SOURCES += \
     timelinewidget.cpp \
     timestamp.cpp \
     #user.cpp \
-    uservisibilitybutton.cpp \
+    #uservisibilitybutton.cpp \
     videoplayer.cpp
 
 HEADERS += \
@@ -44,7 +44,7 @@ HEADERS += \
     timelinewidget.h \
     timestamp.h \
     #user.h \
-    uservisibilitybutton.h \
+    #uservisibilitybutton.h \
     videoplayer.h
 
 FORMS += \

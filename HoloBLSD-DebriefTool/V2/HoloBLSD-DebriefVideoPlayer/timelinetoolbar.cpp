@@ -49,17 +49,16 @@ TimelineToolBar::TimelineToolBar(QWidget *parent, FileOpener* _fo, MainWindow* m
     //visibility
     QList<QString> users = _fo->GetUsersList();
     if(users.length()>0){
-        QLabel* userText = new QLabel("     User Visibility:");  //todo: diventare combo box
+        userCombo = new QComboBox(this);
+        userCombo->setMinimumSize(420,30);
+        userCombo->setMaximumSize(420,40);
+        layout->addWidget(userCombo);
 
-        userText->minimumWidth(); //= 640
-        layout->addWidget(userText);
-        layout->addSpacing(420 - 50 - users.length()*100);
+        userCombo->addItem(placeHolder);
         foreach(QString user, users ){
-            UserVisibilityButton* UB = new UserVisibilityButton(fileOpener,user,this);
-            layout->addWidget(UB->GetButton());
-            connect(UB, &UserVisibilityButton::VisibilityPressed, this, &TimelineToolBar::VisibilitySwitch);
-        }
-        layout->addSpacing(50);
+                    userCombo->addItem(visible, user);
+                }
+       connect(userCombo, &QComboBox::currentTextChanged, this, &TimelineToolBar::VisibilitySwitch);
     }else{
         layout->addSpacing(420);
     }
@@ -88,8 +87,31 @@ TimelineToolBar::TimelineToolBar(QWidget *parent, FileOpener* _fo, MainWindow* m
     connect(mainWin, &MainWindow::VolumeU, this, &TimelineToolBar::VolumeUpTriggered);
     connect(mainWin, &MainWindow::VolumeM, this, &TimelineToolBar::VolumeMuteTriggered);
 
-}
+ }
 
+void TimelineToolBar::VisibilitySwitch(QString selected){
+   if(selected!=placeHolder){
+       foreach(Activity* act, fileOpener->GetActivities()){
+           foreach(Node* n, act->GetNodes()){
+               if(n->GetUserID()==selected){
+                   n->NodeSwitch();
+                   if(n->IsVisible()){
+                       //cambiare icona conta come cambio testo -> loop infinito
+                       userCombo->blockSignals(true);
+                       userCombo->setItemIcon(userCombo->currentIndex(),visible);
+                       userCombo->blockSignals(false);
+                   } else{
+                       userCombo->blockSignals(true);
+                       userCombo->setItemIcon(userCombo->currentIndex(),invisible);
+                       userCombo->blockSignals(false);
+                   }
+                   emit Zoom(zoom);
+               }
+           }
+       }
+       userCombo->setCurrentIndex(0);
+   }
+}
 
 void TimelineToolBar::PlayTriggered(){
    // qDebug()<<"play";
