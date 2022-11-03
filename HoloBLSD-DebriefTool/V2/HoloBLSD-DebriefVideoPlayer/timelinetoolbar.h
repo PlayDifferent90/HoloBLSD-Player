@@ -58,6 +58,8 @@ public:
     int selectedNumber = 0;
     QString placeHolder = " Select User..."; // tohave better visualization in mmenuu
 
+    void SetZoom(int _zoom);
+    void SetVolume(int _volume);
 signals:
     void Play();
     void Pause();

@@ -33,6 +33,7 @@ private:
 
     void ChangeSceneRect();
     void SaveData();
+    void LoadData();
 signals:
 
 };

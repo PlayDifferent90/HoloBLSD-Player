@@ -61,6 +61,8 @@ TimelineWidget::TimelineWidget( MainWindow* _mw,QWidget *parent,FileOpener* _fil
     connect(timelineView->verticalScrollBar(),&QScrollBar::valueChanged, activityScrollArea->verticalScrollBar(), &QScrollBar::setValue);
     connect(timeline, &Timeline::TimelineDrawn, this, &TimelineWidget::ChangeSceneRect);
     connect(mainWindow, &MainWindow::SaveSession, this, &TimelineWidget::SaveData);
+    connect(mainWindow, &MainWindow::OpenSession, this, &TimelineWidget::LoadData);
+
 }
 
 void TimelineWidget::ChangeSceneRect(){
@@ -77,4 +79,9 @@ TimelineToolBar* TimelineWidget::GetToolBar(){
 
 void TimelineWidget::SaveData(){
     mainWindow->SaveTimelineValues(toolbar->zoom ,toolbar->volume ,timeline->GetCursor()->x() );
+}
+void TimelineWidget::LoadData(){
+     toolbar->SetZoom(mainWindow->GetScale());
+     toolbar->SetVolume(mainWindow->GetVolume());
+     timeline->UpdateVideoCursorX(mainWindow->GetVC());
 }

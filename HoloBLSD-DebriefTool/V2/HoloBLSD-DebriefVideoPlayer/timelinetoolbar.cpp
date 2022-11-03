@@ -113,6 +113,14 @@ void TimelineToolBar::VisibilitySwitch(QString selected){
    }
 }
 
+void TimelineToolBar::SetZoom(int _zoom){
+    zoom=_zoom;
+}
+
+void TimelineToolBar::SetVolume(int _volume){
+    volume=_volume;
+}
+
 void TimelineToolBar::PlayTriggered(){
    // qDebug()<<"play";
     emit Play();
@@ -122,6 +130,7 @@ void TimelineToolBar::PauseTriggered(){
    // qDebug()<<"pause";
     emit Pause();
 }
+
 void TimelineToolBar::StopTriggered(){
    // qDebug()<<"stop";
     emit Stop();

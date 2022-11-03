@@ -20,7 +20,10 @@ public:
     ~MainWindow();
     FileOpener* GetFileOpener();
 
-    void SaveTimelineValues(float _scale, float _volume, float _videoC);
+    void SaveTimelineValues(int _scale, int _volume, int _videoC);
+    int GetScale();
+    int GetVolume();
+    int GetVC();
 private slots:
     void on_actionOpenSingleUserFile_triggered();
     void on_actionOpen_File_triggered();
@@ -45,20 +48,25 @@ private slots:
 
     void on_actionZoomOut_triggered();
 
+    void on_actionNew_Session_triggered();
+
 private:
     Ui::MainWindow *ui;
     QString startUpTabName = "Empty";
     QTabWidget* mainTab;
-    QAction* demoAction;
     QList<QString> users;
     QList<QString> files;
     FileOpener* fo;
     QString filename;
-    float videoCursor,scale,volume;
+    int videoCursor,scale,volume;
     const QIcon masterIcon = QIcon(":/Icons/VideoIcon/master_white.png");
+    const QIcon alarmIcon = QIcon(":/Icons/VideoIcon/alarm.png");
+    const QString alarmTitle= "Opening  New Session";
+    const QString alarmText= "Opening a new session will result in losing  the current open session.\n Do yo want to save your progress?";
     void CreateMasterTab();
     void UpdateMasterTab();
 
+    void OpenFile(QString filename);
 signals:
     void userAdded(QString _userName, int tabID);
     void videoAdded(QString _fileName, int tabID);
@@ -71,5 +79,6 @@ signals:
     void ZoomI();
     void ZoomO();
     void SaveSession();
+    void OpenSession();
 };
 #endif // MAINWINDOW_H

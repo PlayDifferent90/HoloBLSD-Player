@@ -13,7 +13,6 @@ void FileOpener::OpenLog(QString _fileName)
     QApplication::setOverrideCursor(Qt::WaitCursor);
    // qDebug()<< "Opening file : " << _fileName;
     QFile inputFile(_fileName);  // change path #URL
-    //QFile inputFile("D:\\0_PHD\\Holo-BLSD\\HoloBLSD-DP\\HoloBLSD-DebriefTool\\V2\\Debrief_1\\recipe_test.log");  // change path #URL
     QRegularExpression regEx("^<LogEntry time=\"(?<hh>[0-9]+):(?<mm>[0-9]+):(?<ss>[0-9]+)\\.(?<millis>[0-9]+)\" owner=\"(?<owner>[^\"]*)\" type=\"(?<type>[^\"]*)\" msg=\"(?<msg>[^\"]*)\" />$");
     if (inputFile.open(QIODevice::ReadOnly))
     {

@@ -33,6 +33,7 @@
     <addaction name="separator"/>
     <addaction name="actionOpen_Session"/>
     <addaction name="actionSave_Session"/>
+    <addaction name="actionNew_Session"/>
    </widget>
    <widget class="QMenu" name="menuVideo">
     <property name="title">
@@ -116,6 +117,11 @@
   <action name="actionZoomOut">
    <property name="text">
     <string>ZoomOut</string>
+   </property>
+  </action>
+  <action name="actionNew_Session">
+   <property name="text">
+    <string>New Session</string>
    </property>
   </action>
  </widget>
