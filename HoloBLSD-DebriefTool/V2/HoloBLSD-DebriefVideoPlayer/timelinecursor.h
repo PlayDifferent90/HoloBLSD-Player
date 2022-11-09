@@ -41,6 +41,7 @@ private:
     QLine line;
     Theme* theme;
     QObject* parent;
+    bool isCursorMoved;
 
 protected:
     virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
