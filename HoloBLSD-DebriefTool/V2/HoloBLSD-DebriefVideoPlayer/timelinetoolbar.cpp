@@ -4,54 +4,54 @@
 #include "qboxlayout.h"
 #include "qdebug.h"
 
-TimelineToolBar::TimelineToolBar(QWidget *parent, FileOpener* _fo, MainWindow* mainWin)
+TimelineToolBar::TimelineToolBar(QWidget *parent, FileOpener* _fo, MainWindow* mainWin, int _wid, int _hei)
     : QWidget{parent}
 {
     fileOpener=_fo;
 
     QHBoxLayout* layout = new QHBoxLayout(parent);
-    layout->setMargin(5);;
-
     //play, pause, stop
-    playButton = new QPushButton(playIcon,"Play",this);
+    playButton = new QPushButton(playIcon,"",this);
     connect(playButton, &QPushButton::pressed, this, &TimelineToolBar::PlayTriggered);
 
-    pauseButton = new QPushButton(pauseIcon,"Pause",this);
+    pauseButton = new QPushButton(pauseIcon,"",this);
     connect(pauseButton, &QPushButton::pressed, this, &TimelineToolBar::PauseTriggered);
 
-    stopButton = new QPushButton(stopIcon,"Stop",this);
+    stopButton = new QPushButton(stopIcon,"",this);
     connect(stopButton, &QPushButton::pressed, this, &TimelineToolBar::StopTriggered);
 
     //volume
-    volumeUpButton = new QPushButton(volumeUpIcon,"volumeUp",this);
+    volumeUpButton = new QPushButton(volumeUpIcon,"",this);
     connect(volumeUpButton, &QPushButton::pressed, this, &TimelineToolBar::VolumeUpTriggered);
 
-    volumeDownButton = new QPushButton(volumeDownIcon,"volumeDown",this);
+    volumeDownButton = new QPushButton(volumeDownIcon,"",this);
     connect(volumeDownButton, &QPushButton::pressed, this, &TimelineToolBar::VolumeDownTriggered);
 
-    volumeMuteButton = new QPushButton(volumeMuteIcon,"volumeMute",this);
+    volumeMuteButton = new QPushButton(volumeMuteIcon,"",this);
     connect(volumeMuteButton, &QPushButton::pressed, this, &TimelineToolBar::VolumeMuteTriggered);
 
     volumeSlider = new QSlider(Qt::Horizontal, this);
     connect(volumeSlider, &QSlider::sliderMoved,this, &TimelineToolBar::VolumeValue);
+    volumeSlider->setMaximumWidth(_wid/6);
 
     //zoom
-    zoomInButton = new QPushButton(zoomInIcon,"zoomIn",this);
+    zoomInButton = new QPushButton(zoomInIcon,"",this);
     connect(zoomInButton, &QPushButton::pressed, this, &TimelineToolBar::ZoomInTriggered);
 
-    zoomOutButton = new QPushButton(zoomOutIcon,"zoomOut",this);
+    zoomOutButton = new QPushButton(zoomOutIcon,"",this);
     connect(zoomOutButton, &QPushButton::pressed, this, &TimelineToolBar::ZoomOutTriggered);
 
     zoomSlider = new QSlider(Qt::Horizontal, this);
     connect(zoomSlider, &QSlider::sliderMoved,this, &TimelineToolBar::ZoomValue);
     zoomSlider->setSliderPosition(100);
+    zoomSlider->setMaximumWidth(_wid/6);
 
     //visibility
     QList<QString> users = _fo->GetUsersList();
     if(users.length()>0){
         userCombo = new QComboBox(this);
-        userCombo->setMinimumSize(420,30);
-        userCombo->setMaximumSize(420,40);
+        userCombo->setMinimumSize(_wid/6,_hei/2);
+        userCombo->setMaximumSize(_wid/6,_hei/2);
         layout->addWidget(userCombo);
 
         userCombo->addItem(placeHolder);
@@ -60,20 +60,21 @@ TimelineToolBar::TimelineToolBar(QWidget *parent, FileOpener* _fo, MainWindow* m
                 }
        connect(userCombo, &QComboBox::currentTextChanged, this, &TimelineToolBar::VisibilitySwitch);
     }else{
-        layout->addSpacing(420);
+        layout->addSpacing(_wid/6);
     }
+    layout->addWidget(zoomOutButton);
+    layout->addWidget(zoomSlider);
+    layout->addWidget(zoomInButton);
+    layout->addSpacing(_wid/6*5/6);//dinamic sizechange
     layout->addWidget(playButton);
     layout->addWidget(pauseButton);
     layout->addWidget(stopButton);
-    layout->addSpacing(200);
+    layout->addSpacing(_wid/6*7/6);//dinamic sizechange
     layout->addWidget(volumeMuteButton);
     layout->addWidget(volumeDownButton);
     layout->addWidget(volumeSlider);
     layout->addWidget(volumeUpButton);
-    layout->addSpacing(400);
-    layout->addWidget(zoomOutButton);
-    layout->addWidget(zoomSlider);
-    layout->addWidget(zoomInButton);
+
 
     connect(mainWin, &MainWindow::ZoomI, this, &TimelineToolBar::ZoomInTriggered);
     connect(mainWin, &MainWindow::ZoomO, this, &TimelineToolBar::ZoomOutTriggered);

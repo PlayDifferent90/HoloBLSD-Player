@@ -17,7 +17,7 @@ class TimelineToolBar : public QWidget
     Q_OBJECT
 public:
     explicit TimelineToolBar(QObject *parent = nullptr);
-    TimelineToolBar(QWidget *parent, FileOpener *_fo, MainWindow* mainwin);
+    TimelineToolBar(QWidget *parent, FileOpener *_fo, MainWindow* mainwin, int _wid, int _hei);
     void PlayTriggered();
     void PauseTriggered();
     void StopTriggered();

@@ -181,7 +181,8 @@ QPushButton
 {
 	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(84, 84, 84, 255),stop:1 rgba(59, 59, 59, 255));
 	color: #ffffff;
-	min-width: 80px;
+        min-height: 15px;
+        min-width: 15px;
 	border-style: solid;
 	border-width: 1px;
 	border-radius: 3px;
@@ -791,11 +792,11 @@ QSlider::add-page:horizontal
 
 QSlider::handle:horizontal 
 {
-	background-color: #b78620;
-	width: 14px;
-	margin-top: -6px;
-	margin-bottom: -6px;
-	border-radius: 6px;
+        background-color: #b78620;
+        width: 14px;
+        margin-top: -6px;
+        margin-bottom: -6px;
+        border-radius: 7px;
 
 }
 

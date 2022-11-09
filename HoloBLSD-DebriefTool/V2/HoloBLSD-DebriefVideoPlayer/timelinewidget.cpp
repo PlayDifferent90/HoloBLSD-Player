@@ -10,8 +10,8 @@ TimelineWidget::TimelineWidget( MainWindow* _mw,QWidget *parent,FileOpener* _fil
     toolbarArea = new QScrollArea(this);
     toolbarArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     toolbarArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    toolbarArea->setFixedSize(_width,_height/13);
-    toolbar = new TimelineToolBar(toolbarArea, _fileOpener,_mw);
+    toolbarArea->setFixedSize(_width,_height/10);
+    toolbar = new TimelineToolBar(toolbarArea, _fileOpener,_mw, _width, _height/10);
     qDebug()<< "toolbar area cations" << toolbarArea->actions();
 
 

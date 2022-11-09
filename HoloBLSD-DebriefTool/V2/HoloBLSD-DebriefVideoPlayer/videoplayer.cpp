@@ -4,16 +4,19 @@ VideoPlayer::VideoPlayer(QWidget *parent, FileOpener* _fo, int _width, int _heig
     : QWidget{parent}
 {
     videoArea = new QVideoWidget(this);
-    videoArea->setMinimumSize(_width, _height/5*4.5);
-    videoArea->setMaximumSize(_width, _height/5*4.5);
+    videoArea->setMinimumSize(_width, _height/10*8);
+    videoArea->setMaximumSize(_width, _height/10*8);
     videoArea->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+
+    videoLabel = new QLabel("Video:");
+    videoLabel->setMaximumSize(_width,_height/10);
 
     player = new QMediaPlayer(this);
     player->setVideoOutput(videoArea);
     player->setNotifyInterval(500);
 
     videoCombo = new QComboBox(this);
-    videoCombo->setMaximumWidth(_width*0.95);
+    videoCombo->setMaximumWidth(_width);
     connect(videoCombo, &QComboBox::currentTextChanged, this, &VideoPlayer::ShowVideo);
 
     videoSlider = new QSlider(this);
@@ -21,6 +24,7 @@ VideoPlayer::VideoPlayer(QWidget *parent, FileOpener* _fo, int _width, int _heig
     videoSlider->setMaximumHeight(_height/30);
 
     localLayout = new QVBoxLayout(this);
+    localLayout->addWidget(videoLabel);
     localLayout->addWidget(videoCombo);
     localLayout->addWidget(videoArea);
     localLayout->addWidget(videoSlider);

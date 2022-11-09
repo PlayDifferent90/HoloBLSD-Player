@@ -17,7 +17,7 @@ TabWidget::TabWidget( MainWindow* mainWin, QString _name, FileOpener* _fileOpene
     //activity list
     activity = new ActivityList(this, leftColumnWidth,upperRowHeight/4,fo);
     //timeline
-    timelineWid = new TimelineWidget(mainWin, this, fo, (leftColumnWidth+centralColumnWidth + rightColumnMinWidth), upperRowHeight);
+    timelineWid = new TimelineWidget(mainWin, this, fo, (leftColumnWidth + centralColumnWidth + rightColumnMinWidth)*1.01, upperRowHeight);
 
 
     QVBoxLayout* leftColumn = new QVBoxLayout(this);
@@ -128,6 +128,6 @@ void TabWidget::SetWidgetDimention(MainWindow* _mainWin){
 
     leftColumnWidth = colWidth/6;
     centralColumnWidth = colWidth/6*2;
-    rightColumnMinWidth  = colWidth/6*3;
+    rightColumnMinWidth  = colWidth/6*2.9;
     upperRowHeight = rowHeight/2 *0.8;
 }
