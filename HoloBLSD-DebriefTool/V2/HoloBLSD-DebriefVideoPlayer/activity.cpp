@@ -65,7 +65,7 @@ int Activity::GetUsersNumber(bool _getAll){
             countingUsers.append(n->GetUserID());
         }
     }
-   // qDebug()<<" users per activity " <<this <<countingUsers.count();
+   qDebug()<<" users per activity " <<this <<countingUsers.count();
     return countingUsers.count();
 }
 

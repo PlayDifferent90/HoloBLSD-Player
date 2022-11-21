@@ -14,7 +14,7 @@ void UserVisibilityButton::NodeVisibilitySwitch(){
     foreach(Activity* act, fo->GetActivities()){
         foreach(Node* n, act->GetNodes()){
             if(n->GetUserID()==user){
-               // qDebug()<<"user node "<< user <<" vs "<<n->GetUserID();
+               qDebug()<<"user node "<< user <<" vs "<<n->GetUserID();
                 n->NodeSwitch();
                 this->ChangeIcon(n->IsVisible());
                 emit VisibilityPressed();

@@ -28,10 +28,10 @@ void ActivityList::AddActivityItem(QString _text, bool _visib){
     QIcon icon;
     if(_visib){
         icon = visible;
-        //qDebug()<< "setting visible icon" << _text;
+        qDebug()<< "setting visible icon" << _text;
     }else{
         icon = invisible;
-        //qDebug()<< "setting invisible icon" << _text;
+        qDebug()<< "setting invisible icon" << _text;
     }
    QListWidgetItem* _itm = new QListWidgetItem(icon, _text);
    activityList->addItem(_itm);

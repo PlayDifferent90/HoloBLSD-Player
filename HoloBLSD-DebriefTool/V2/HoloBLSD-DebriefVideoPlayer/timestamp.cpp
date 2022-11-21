@@ -8,7 +8,7 @@ Timestamp::Timestamp(QObject *parent)
 }
 Timestamp::Timestamp(int _time, QString _type, QString _msg){
 
-    //qDebug()<< "timestamp : creating - "<< QString::number(_time)<< ", " << _type << ", " << _msg ;
+    qDebug()<< "timestamp : creating - "<< QString::number(_time)<< ", " << _type << ", " << _msg ;
     time= _time;
     type=_type;
     msg =_msg;
@@ -18,6 +18,6 @@ Timestamp::~Timestamp(){
 }
 
 int Timestamp::GetTime(){
-    //qDebug()<<"retruntin time from timestamp : "<< time;
+   // qDebug()<<"retruntin time from timestamp : "<< time;
     return time;
 }

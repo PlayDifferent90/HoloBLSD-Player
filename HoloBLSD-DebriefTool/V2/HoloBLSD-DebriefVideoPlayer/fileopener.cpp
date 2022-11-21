@@ -11,7 +11,7 @@ void FileOpener::OpenLog(QString _fileName)
 {
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
-   // qDebug()<< "Opening file : " << _fileName;
+   qDebug()<< "Opening file : " << _fileName;
     QFile inputFile(_fileName);  // change path #URL
     QRegularExpression regEx("^<LogEntry time=\"(?<hh>[0-9]+):(?<mm>[0-9]+):(?<ss>[0-9]+)\\.(?<millis>[0-9]+)\" owner=\"(?<owner>[^\"]*)\" type=\"(?<type>[^\"]*)\" msg=\"(?<msg>[^\"]*)\" />$");
     if (inputFile.open(QIODevice::ReadOnly))
@@ -22,11 +22,11 @@ void FileOpener::OpenLog(QString _fileName)
      //  qDebug()<<"reading file ...";
        while (!in.atEnd())
        {
-         // qDebug()<<"Reading line ";
+         qDebug()<<"Reading line ";
           QString line = in.readLine();
           QRegularExpressionMatch match = regEx.match(line);
           if(match.hasMatch()){
-             // qDebug()<<"Matcha t line "<<i;
+             qDebug()<<"Matcha t line "<<i;
               i++;
               int hh = match.captured("hh").toInt();
               int mm = match.captured("mm").toInt();
@@ -89,7 +89,7 @@ bool FileOpener::DetectWar(QString _msg){
 void FileOpener::CreateActivity(int _time, QString _owner, QString _type, QString _msg)//, int war, int err)
 {
 
-   // qDebug()<< "time = " << _time << "own "<< _owner << "Type "<< _type;
+   qDebug()<< "time = " << _time << "own "<< _owner << "Type "<< _type;
     foreach (Activity* act, activities) {
         if(act->GetName() == _owner){
             if(_type=="Event"){
@@ -124,7 +124,7 @@ void FileOpener::CreateActivity(int _time, QString _owner, QString _type, QStrin
                 return;
             }else if((_type=="NodeTriggered" )){
                 Timestamp* timestampTriggered = new Timestamp{_time, _type, _msg};
-               // qDebug()<< "creating user ID: " << userID;
+               qDebug()<< "creating user ID: " << userID;
                 Node* node = new Node{timestampTriggered,userID};
                 act->AddNode(node);
                 actFound =true;
