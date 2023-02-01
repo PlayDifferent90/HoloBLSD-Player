@@ -115,6 +115,7 @@ void FileOpener::CreateActivity(int _time, QString _owner, QString _type, QStrin
                             n->SetFinish(timestampEvent);
                             if(n->GetFinish()->GetTime()>durationTime)
                                 durationTime=n->GetFinish()->GetTime();
+                                qDebug()<<"duration" << durationTime;
                         }
                     }
                 }else{

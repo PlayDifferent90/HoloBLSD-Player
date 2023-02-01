@@ -29,7 +29,7 @@ public:
     QList<QString> GetUsersList();
 private:
     QString userID;
-    int durationTime;
+    int durationTime =0;
     int errors=0;
     int warnings=0;
     int activityID = 0;
