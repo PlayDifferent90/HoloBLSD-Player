@@ -48,6 +48,7 @@ public:
     void UpdateTimeline();
     void SetVideoLength(int _videolength);
     int GetTimelineLength();
+    int ciak=0;
 private:
     QGraphicsScene *scene;
     QGraphicsScene *sibling;

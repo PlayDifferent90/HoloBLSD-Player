@@ -27,6 +27,8 @@ public:
     int GetUserNodeID();
     void SetUsersList(QList<QString> _u);
     QList<QString> GetUsersList();
+    QList<QString> GetSummary();
+    int ciackTime = 0;
 private:
     QString userID;
     int durationTime =0;
@@ -40,6 +42,10 @@ private:
     void CreateActivity(int _time, QString _owner, QString _type, QString _msg);
     int userNodeID =0;
     QList<QString> usersList;
+    QList<QString> summary;
+    void SummaryScenario(QString _msg);
+
+    void SyncTimeline(int _totMillis);
 signals:
     void FileRead();
     void MasterFileRead(int users);

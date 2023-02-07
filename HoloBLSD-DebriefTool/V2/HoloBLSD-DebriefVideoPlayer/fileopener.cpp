@@ -37,7 +37,14 @@ void FileOpener::OpenLog(QString _fileName)
               QString msg = match.captured("msg");
 
               int totMillis = millis/10000 + 1000*(ss + 60*(mm + 60*(hh)));
-              CreateActivity(totMillis, owner, type,msg);//,warnings,errors);
+              //todo make more efficient
+              if(owner!= "ACLSTrainingManager" & owner != "VideoRecordingManager"){
+                    CreateActivity(totMillis, owner, type,msg);//,warnings,errors);
+              }else if (owner== "ACLSTrainingManager"){
+                  SummaryScenario(msg);
+              }else if (msg=="start video recording"){
+                  SyncTimeline(totMillis);
+              }
           }
        }
        inputFile.close();
@@ -84,6 +91,14 @@ bool FileOpener::DetectWar(QString _msg){
         return true;
     }
     return false;
+}
+
+void FileOpener::SummaryScenario(QString _msg){
+    summary.append(_msg);
+}
+
+void FileOpener::SyncTimeline(int _totMillis){
+    ciackTime = _totMillis;
 }
 
 void FileOpener::CreateActivity(int _time, QString _owner, QString _type, QString _msg)//, int war, int err)
@@ -166,7 +181,9 @@ QString FileOpener::GetUser(){
     return userID;
 }
 
-
+QList<QString> FileOpener::GetSummary(){
+    return summary;
+}
 
 void FileOpener::SetUsersList(QList<QString> _u){
     usersList=_u;

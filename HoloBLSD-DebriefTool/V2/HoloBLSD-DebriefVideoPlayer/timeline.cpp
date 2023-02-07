@@ -87,7 +87,7 @@ void Timeline::DrawNode(Node* _node, int _actID, int _usersNumb, QString _userID
 
     QRectF* rect = new QRectF(0,0,(float)nodeLength/(float)videoLength *(float)timelineLength,timelineNodeHeight);
     QGraphicsItem *item = scene->addRect(*rect,theme->timelineNodeBorders,theme->RandomUserColor(_userID)); //#themetag
-    item->setPos((float)_node->GetStart()->GetTime()/(float)videoLength *(float)timelineLength,timelineNodeHeight * (_usersNumb+ drawnNodes));  //user id + actid
+    item->setPos(((float)_node->GetStart()->GetTime()-(float)ciak)/(float)videoLength *(float)timelineLength,timelineNodeHeight * (_usersNumb+ drawnNodes));  //user id + actid
 
     qDebug()<<"drawing :" << _node<< " at "<< (float)item->pos().x()<< " node Lenght = " << (float)nodeLength/(float)videoLength *(float)timelineLength << " , timeline length " << timelineLength;
     item->setZValue(90);
@@ -162,6 +162,7 @@ void Timeline::UpdateTimeline(){
     qDebug()<< QTime::currentTime().toString() << "entering Update";
     FlushTimeLineElement();
     DrawTimeLineAxis();
+    ciak = fileOpener->ciackTime;
   int actRow=0;
     if(!fileOpener->GetActivities().empty()){
         foreach (Activity* act, fileOpener->GetActivities()) {
