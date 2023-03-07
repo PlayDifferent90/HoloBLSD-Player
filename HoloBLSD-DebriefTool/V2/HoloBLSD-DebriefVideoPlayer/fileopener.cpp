@@ -128,12 +128,12 @@ void FileOpener::CreateActivity(int _time, QString _owner, QString _type, QStrin
                 QList<Node*> nodes = act->GetNodesByUser(userID);
                 if (!nodes.empty()){
                     foreach (Node* n, nodes) {
-                      //  if(n->GetFinish()==n->GetStart()){
+                        if(n->GetFinish()==n->GetStart()){
                             n->SetFinish(timestampEvent);
                             if(n->GetFinish()->GetTime()>durationTime)
                                 durationTime=n->GetFinish()->GetTime();
                                 qDebug()<<"duration" << durationTime;
-                     //   }
+                        }
                     }
                 }else{
                     qDebug()<< "ERROR: node " << _owner << "finishes without starting";
