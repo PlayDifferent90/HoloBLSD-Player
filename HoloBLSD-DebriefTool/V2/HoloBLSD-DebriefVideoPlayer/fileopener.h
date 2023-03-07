@@ -43,6 +43,7 @@ private:
     int userNodeID =0;
     QList<QString> usersList;
     QList<QString> summary;
+    QList<QString> ownerToHide = {"SequentialNode", "ParallelAndNode", "SequentialParallelAndNode"};
     void SummaryScenario(QString _msg);
 
     void SyncTimeline(int _totMillis);

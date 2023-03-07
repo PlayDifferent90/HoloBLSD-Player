@@ -43,7 +43,7 @@ void FileOpener::OpenLog(QString _fileName)
                   SummaryScenario(msg);
               }else if(msg=="Video Recording Start" && owner == "VideoManager"){
                   SyncTimeline(totMillis);
-              }else{
+              }else if(!ownerToHide.contains(owner)){
                   CreateActivity(totMillis, owner, type,msg);//,warnings,errors);
               }
 
