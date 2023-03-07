@@ -81,8 +81,12 @@ void Timeline::DrawBackgroundNodeSibling(QString _name,int _posY, int _numUsers,
 
 void Timeline::DrawNode(Node* _node, int _actID, int _usersNumb, QString _userID)
 {
-       qDebug()<< "UserId "<< _userID;
-    int nodeLength = (_node->GetFinish()->GetTime() - _node->GetStart()->GetTime());
+     //  qDebug()<< "UserId "<< _userID;
+       int nodeLength =0;
+       Timestamp* finish = _node->GetFinish();
+       if(finish != NULL && finish->GetTime()>0){
+           nodeLength = (_node->GetFinish()->GetTime() - _node->GetStart()->GetTime());
+       }
    qDebug()<<"nodeLength"<< nodeLength<<  "videoLength"<< videoLength << "timelineLength"<< timelineLength;
 
     QRectF* rect = new QRectF(0,0,(float)nodeLength/(float)videoLength *(float)timelineLength,timelineNodeHeight);
@@ -95,7 +99,7 @@ void Timeline::DrawNode(Node* _node, int _actID, int _usersNumb, QString _userID
         foreach (Timestamp* t, _node->GetEvents()) {
             QRectF* rect = new QRectF(0,0,5,timelineNodeHeight);
             QGraphicsItem *itemE = scene->addRect(*rect,theme->timelineNodeBorders,theme->eventBrush); //#themetag
-            itemE->setPos((float)t->GetTime()/(float)videoLength *(float)timelineLength,timelineNodeHeight *(_usersNumb+ drawnNodes));
+            itemE->setPos(((float)t->GetTime()-(float)ciak)/(float)videoLength *(float)timelineLength,timelineNodeHeight *(_usersNumb+ drawnNodes));
             itemE->setZValue(95);
         }
     }
@@ -143,7 +147,7 @@ int nums=0;
         scene->addRect(QRect(t,verTimelineOffset,1,scene->height()),theme->penLineTimeStop,theme->yellow)->setZValue(10);
         nums++;
     }
-qDebug()<< "printed " << nums << "numbers";
+//qDebug()<< "printed " << nums << "numbers";
 }
 
 void Timeline::SetScale(float _scale){
@@ -167,7 +171,8 @@ void Timeline::UpdateTimeline(){
     if(!fileOpener->GetActivities().empty()){
         foreach (Activity* act, fileOpener->GetActivities()) {
            if(act->GetVisibility()){
-               qDebug()<<"activity "<<act->GetName() << "in tab" << fileOpener->GetUser();
+               qDebug()<<"--------------- New Activity handled --------------- \n"
+                         "activity "<<act->GetName() << "in tab" << fileOpener->GetUser();
                DrawActivity(act,actRow);
                actRow++;
            }

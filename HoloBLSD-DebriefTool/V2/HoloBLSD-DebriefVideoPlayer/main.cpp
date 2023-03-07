@@ -12,23 +12,6 @@ void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QS
     QString debugMsg ="";
     const char *file = context.file ? context.file : "";
     const char *function = context.function ? context.function : "";
-   /** switch (type) {
-    case QtDebugMsg:
-        fprintf(stderr, "Debug : %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
-        break;
-    case QtInfoMsg:
-        fprintf(stderr, "Info : %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
-        break;
-    case QtWarningMsg:
-        fprintf(stderr, "Warning : %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
-        break;
-    case QtCriticalMsg:
-        fprintf(stderr, "Critical : %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
-        break;
-    case QtFatalMsg:
-        fprintf(stderr, "Fatal : %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
-        break;
-    }*/
 
     debugMsg += function;
     debugMsg += "   -   ";
@@ -44,7 +27,7 @@ void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QS
 int main(int argc, char *argv[])
 {
     qDebug()<< QDir::currentPath();
-    qInstallMessageHandler(myMessageOutput);
+ //   qInstallMessageHandler(myMessageOutput);  //comment this line for debugging in QT Creator
 
     QApplication a(argc, argv);
 

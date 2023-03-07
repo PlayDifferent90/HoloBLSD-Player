@@ -18,6 +18,5 @@ Timestamp::~Timestamp(){
 }
 
 int Timestamp::GetTime(){
-   // qDebug()<<"retruntin time from timestamp : "<< time;
-    return time;
+        return time;
 }

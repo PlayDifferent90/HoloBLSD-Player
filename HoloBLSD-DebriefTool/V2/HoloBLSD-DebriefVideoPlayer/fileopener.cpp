@@ -10,6 +10,8 @@ FileOpener::FileOpener(QString _userID)
 void FileOpener::OpenLog(QString _fileName)
 {
 
+    // todo: add control on video presence
+
     QApplication::setOverrideCursor(Qt::WaitCursor);
    qDebug()<< "Opening file : " << _fileName;
     QFile inputFile(_fileName);  // change path #URL
@@ -22,11 +24,11 @@ void FileOpener::OpenLog(QString _fileName)
      //  qDebug()<<"reading file ...";
        while (!in.atEnd())
        {
-         qDebug()<<"Reading line ";
+       //  qDebug()<<"Reading line ";
           QString line = in.readLine();
           QRegularExpressionMatch match = regEx.match(line);
           if(match.hasMatch()){
-             qDebug()<<"Matcha t line "<<i;
+          //   qDebug()<<"Matcha t line "<<i;
               i++;
               int hh = match.captured("hh").toInt();
               int mm = match.captured("mm").toInt();
@@ -37,14 +39,14 @@ void FileOpener::OpenLog(QString _fileName)
               QString msg = match.captured("msg");
 
               int totMillis = millis/10000 + 1000*(ss + 60*(mm + 60*(hh)));
-              //todo make more efficient
-              if(owner!= "ACLSTrainingManager" & owner != "VideoRecordingManager"){
-                    CreateActivity(totMillis, owner, type,msg);//,warnings,errors);
-              }else if (owner== "ACLSTrainingManager"){
+              if(owner== "ACLSTrainingManager"){
                   SummaryScenario(msg);
-              }else if (msg=="start video recording"){
+              }else if(msg=="Video Recording Start" && owner == "VideoManager"){
                   SyncTimeline(totMillis);
+              }else{
+                  CreateActivity(totMillis, owner, type,msg);//,warnings,errors);
               }
+
           }
        }
        inputFile.close();
@@ -112,9 +114,9 @@ void FileOpener::CreateActivity(int _time, QString _owner, QString _type, QStrin
                 QList<Node*> nodes = act->GetNodesByUser(userID);
                 if (!nodes.empty()){
                     foreach (Node* n, nodes) {
-                        if(n->GetFinish()==NULL){
+                      //  if(n->GetFinish()==n->GetStart()){
                             n->AddEvent(timestampEvent, DetectErr(_msg),DetectWar(_msg));
-                        }
+                     //   }
                     }
                 }else{
                     qDebug()<< "ERROR: node " << _owner << "has event before being triggered";
@@ -126,12 +128,12 @@ void FileOpener::CreateActivity(int _time, QString _owner, QString _type, QStrin
                 QList<Node*> nodes = act->GetNodesByUser(userID);
                 if (!nodes.empty()){
                     foreach (Node* n, nodes) {
-                        if(n->GetFinish()==NULL){
+                      //  if(n->GetFinish()==n->GetStart()){
                             n->SetFinish(timestampEvent);
                             if(n->GetFinish()->GetTime()>durationTime)
                                 durationTime=n->GetFinish()->GetTime();
                                 qDebug()<<"duration" << durationTime;
-                        }
+                     //   }
                     }
                 }else{
                     qDebug()<< "ERROR: node " << _owner << "finishes without starting";

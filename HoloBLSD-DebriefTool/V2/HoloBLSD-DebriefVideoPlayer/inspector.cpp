@@ -49,6 +49,9 @@ void Inspector::PopulateInspector(){
 
         auto nodes = act->GetNodes().count();
         foreach (Node* nn, act->GetNodesByUser(fo->GetUser())) {
+            if(nn->GetFinish()->GetTime()==NULL){
+                continue;
+            }
                 inspectorText->setText(inspectorText->text() +
                                        "Activity started at: " + QDateTime::fromMSecsSinceEpoch(nn->GetStart()->GetTime()).toString("mm:ss")+" , finished at: " + QDateTime::fromMSecsSinceEpoch(nn->GetFinish()->GetTime()).toString("mm:ss") +"\n" +
                                        "Errors: " + QString::number( nn->GetErr()) + "; Warning " + QString::number(nn->GetWar()) + "\n");
@@ -76,6 +79,9 @@ void Inspector::PopulateMasterInspector(){
                                "\n" );
 
         foreach (Node* nn, act->GetNodes()) {
+            if(nn->GetFinish()->GetTime()==NULL){
+                continue;
+            }
                 inspectorText->setText(inspectorText->text() +
                                        nn->GetUserID()+ ":\n"+
                                        "Activity started " + " at: " + QDateTime::fromMSecsSinceEpoch(nn->GetStart()->GetTime()).toString("mm:ss")+" , finished at: " + QDateTime::fromMSecsSinceEpoch(nn->GetFinish()->GetTime()).toString("mm:ss") +"\n" +

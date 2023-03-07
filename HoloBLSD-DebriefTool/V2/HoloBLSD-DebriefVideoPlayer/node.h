@@ -24,7 +24,7 @@ public:
     bool IsVisible();
 private:
     Timestamp* tStart;
-    Timestamp* tFinish=NULL;
+    Timestamp* tFinish;
     QList<Timestamp*> tEvents;
     int errors=0;
     int warnings = 0;

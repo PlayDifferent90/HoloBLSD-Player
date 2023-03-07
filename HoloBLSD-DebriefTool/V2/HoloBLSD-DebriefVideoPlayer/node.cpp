@@ -8,6 +8,7 @@ Node::Node(QObject *parent)
 }
 Node::Node(Timestamp* _tStart, QString _userID){
     tStart = _tStart;
+    tFinish = _tStart;
     userID =_userID;
 }
 
